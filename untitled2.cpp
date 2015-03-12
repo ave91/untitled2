@@ -24,20 +24,7 @@ untitled2::untitled2(QWidget *parent)
         (calibmatrix_qs[i]).resize(6);
     }
 
-    H_vector.reserve(7);
-    H_vector.resize(7);
-    V_vector.reserve(7);
-    V_vector.resize(7);
-    L_vector.reserve(7);
-    L_vector.resize(7);
-    P_vector.reserve(7);
-    P_vector.resize(7);
-    M_vector.reserve(7);
-    M_vector.resize(7);
-    L_vector.reserve(7);
-    L_vector.resize(7);
-    R_vector.reserve(7);
-    R_vector.resize(7);
+    stokesvect_qs.resize(4);
 
     //Initialize the tableview and his model
     model = new QStandardItemModel(7,6,this); //7 Rows and 6 Columns
@@ -54,6 +41,10 @@ untitled2::untitled2(QWidget *parent)
     model_matrix = new QStandardItemModel(4,6,this); //7 Rows and 6 Columns
     ui.tableView_2->setModel(model_matrix);
 
+    //Initialize the tableview and his model
+    model_stokes = new QStandardItemModel(4,1,this); //7 Rows and 6 Columns
+    ui.tableView_3->setModel(model_stokes);
+
 
     //Initializiation of data pointers to null, needed for memory managment
     for(int i=0;i<4;i++){
@@ -62,6 +53,9 @@ untitled2::untitled2(QWidget *parent)
         }
     }
 
+    for(int i=0;i<4;++i){
+        stokesvect_qs[i]=0;
+    }
 
     T_H1=0;
     T_H2=0;
@@ -143,13 +137,13 @@ void untitled2::on_pushButton_clicked() {
 
     daq_internal_pointer->read_daq();
 
-    ui.label_cvalue_1->setText(QString::number(daq_internal_pointer->data[1]));
-    ui.label_cvalue_2->setText(QString::number(daq_internal_pointer->data[2]));
-    ui.label_cvalue_3->setText(QString::number(daq_internal_pointer->data[3]));
-    ui.label_cvalue_4->setText(QString::number(daq_internal_pointer->data[4]));
-    ui.label_cvalue_5->setText(QString::number(daq_internal_pointer->data[5]));
-    ui.label_cvalue_6->setText(QString::number(daq_internal_pointer->data[6]));
-    ui.label_cvalue_7->setText(QString::number(daq_internal_pointer->data[7]));
+    ui.label_cvalue_1->setText(QString::number(daq_internal_pointer->mean(1)));
+    ui.label_cvalue_2->setText(QString::number(daq_internal_pointer->mean(2)));
+    ui.label_cvalue_3->setText(QString::number(daq_internal_pointer->mean(3)));
+    ui.label_cvalue_4->setText(QString::number(daq_internal_pointer->mean(4)));
+    ui.label_cvalue_5->setText(QString::number(daq_internal_pointer->mean(5)));
+    ui.label_cvalue_6->setText(QString::number(daq_internal_pointer->mean(6)));
+    ui.label_cvalue_7->setText(QString::number(daq_internal_pointer->mean(7)));
     /*QMessageBox msgBox;
     msgBox.setText(QString::number(daq_internal_pointer->data[1]));
     msgBox.exec();
@@ -167,17 +161,17 @@ void untitled2::on_pushButton_clicked() {
 
 void untitled2::on_H_Button_clicked()
 {
-    if(daq_internal_pointer!=0){
+    if(daq_internal_pointer!=0 && calib_internal_pointer!=0){
 
     daq_internal_pointer->read_daq();
 
-    H_vector[0]=(daq_internal_pointer->mean(1));
-    H_vector[1]=(daq_internal_pointer->mean(2));
-    H_vector[2]=(daq_internal_pointer->mean(3));
-    H_vector[3]=(daq_internal_pointer->mean(4));
-    H_vector[4]=(daq_internal_pointer->mean(5));
-    H_vector[5]=(daq_internal_pointer->mean(6));
-    H_vector[6]=(daq_internal_pointer->mean(7));
+    calib_internal_pointer->H_vector[0]=(daq_internal_pointer->mean(1));
+    calib_internal_pointer->H_vector[1]=(daq_internal_pointer->mean(2));
+    calib_internal_pointer->H_vector[2]=(daq_internal_pointer->mean(3));
+    calib_internal_pointer->H_vector[3]=(daq_internal_pointer->mean(4));
+    calib_internal_pointer->H_vector[4]=(daq_internal_pointer->mean(5));
+    calib_internal_pointer->H_vector[5]=(daq_internal_pointer->mean(6));
+    calib_internal_pointer->H_vector[6]=(daq_internal_pointer->mean(7));
 
 
     if(T_H1!=0){
@@ -209,13 +203,15 @@ void untitled2::on_H_Button_clicked()
         T_H7=0;
     }
 
-     T_H1= new QStandardItem (QString::number(H_vector[0]));
-     T_H2= new QStandardItem (QString::number(H_vector[1]));
-     T_H3= new QStandardItem (QString::number(H_vector[2]));
-     T_H4= new QStandardItem (QString::number(H_vector[3]));
-     T_H5= new QStandardItem (QString::number(H_vector[4]));
-     T_H6= new QStandardItem (QString::number(H_vector[5]));
-     T_H7= new QStandardItem (QString::number(H_vector[6]));
+
+
+     T_H1= new QStandardItem (QString::number(calib_internal_pointer->H_vector[0]));
+     T_H2= new QStandardItem (QString::number(calib_internal_pointer->H_vector[1]));
+     T_H3= new QStandardItem (QString::number(calib_internal_pointer->H_vector[2]));
+     T_H4= new QStandardItem (QString::number(calib_internal_pointer->H_vector[3]));
+     T_H5= new QStandardItem (QString::number(calib_internal_pointer->H_vector[4]));
+     T_H6= new QStandardItem (QString::number(calib_internal_pointer->H_vector[5]));
+     T_H7= new QStandardItem (QString::number(calib_internal_pointer->H_vector[6]));
 
     model->setItem(0,0,T_H1);
     model->setItem(1,0,T_H2);
@@ -243,13 +239,13 @@ void untitled2::on_V_Button_clicked()
 
     daq_internal_pointer->read_daq();
 
-    V_vector[0]=(daq_internal_pointer->mean(1));
-    V_vector[1]=(daq_internal_pointer->mean(2));
-    V_vector[2]=(daq_internal_pointer->mean(3));
-    V_vector[3]=(daq_internal_pointer->mean(4));
-    V_vector[4]=(daq_internal_pointer->mean(5));
-    V_vector[5]=(daq_internal_pointer->mean(6));
-    V_vector[6]=(daq_internal_pointer->mean(7));
+    calib_internal_pointer->V_vector[0]=(daq_internal_pointer->mean(1));
+    calib_internal_pointer->V_vector[1]=(daq_internal_pointer->mean(2));
+    calib_internal_pointer->V_vector[2]=(daq_internal_pointer->mean(3));
+    calib_internal_pointer->V_vector[3]=(daq_internal_pointer->mean(4));
+    calib_internal_pointer->V_vector[4]=(daq_internal_pointer->mean(5));
+    calib_internal_pointer->V_vector[5]=(daq_internal_pointer->mean(6));
+    calib_internal_pointer->V_vector[6]=(daq_internal_pointer->mean(7));
 
 
     if(T_V1!=0){
@@ -281,13 +277,13 @@ void untitled2::on_V_Button_clicked()
         T_V7=0;
     }
 
-     T_V1= new QStandardItem (QString::number(V_vector[0]));
-     T_V2= new QStandardItem (QString::number(V_vector[1]));
-     T_V3= new QStandardItem (QString::number(V_vector[2]));
-     T_V4= new QStandardItem (QString::number(V_vector[3]));
-     T_V5= new QStandardItem (QString::number(V_vector[4]));
-     T_V6= new QStandardItem (QString::number(V_vector[5]));
-     T_V7= new QStandardItem (QString::number(V_vector[6]));
+     T_V1= new QStandardItem (QString::number(calib_internal_pointer->V_vector[0]));
+     T_V2= new QStandardItem (QString::number(calib_internal_pointer->V_vector[1]));
+     T_V3= new QStandardItem (QString::number(calib_internal_pointer->V_vector[2]));
+     T_V4= new QStandardItem (QString::number(calib_internal_pointer->V_vector[3]));
+     T_V5= new QStandardItem (QString::number(calib_internal_pointer->V_vector[4]));
+     T_V6= new QStandardItem (QString::number(calib_internal_pointer->V_vector[5]));
+     T_V7= new QStandardItem (QString::number(calib_internal_pointer->V_vector[6]));
 
     model->setItem(0,1,T_V1);
     model->setItem(1,1,T_V2);
@@ -313,13 +309,13 @@ void untitled2::on_P_Button_clicked()
 
     daq_internal_pointer->read_daq();
 
-    P_vector[0]=(daq_internal_pointer->mean(1));
-    P_vector[1]=(daq_internal_pointer->mean(2));
-    P_vector[2]=(daq_internal_pointer->mean(3));
-    P_vector[3]=(daq_internal_pointer->mean(4));
-    P_vector[4]=(daq_internal_pointer->mean(5));
-    P_vector[5]=(daq_internal_pointer->mean(6));
-    P_vector[6]=(daq_internal_pointer->mean(7));
+    calib_internal_pointer->P_vector[0]=(daq_internal_pointer->mean(1));
+    calib_internal_pointer->P_vector[1]=(daq_internal_pointer->mean(2));
+    calib_internal_pointer->P_vector[2]=(daq_internal_pointer->mean(3));
+    calib_internal_pointer->P_vector[3]=(daq_internal_pointer->mean(4));
+    calib_internal_pointer->P_vector[4]=(daq_internal_pointer->mean(5));
+    calib_internal_pointer->P_vector[5]=(daq_internal_pointer->mean(6));
+    calib_internal_pointer->P_vector[6]=(daq_internal_pointer->mean(7));
 
 
     if(T_P1!=0){
@@ -351,13 +347,13 @@ void untitled2::on_P_Button_clicked()
         T_P7=0;
     }
 
-     T_P1= new QStandardItem (QString::number(P_vector[0]));
-     T_P2= new QStandardItem (QString::number(P_vector[1]));
-     T_P3= new QStandardItem (QString::number(P_vector[2]));
-     T_P4= new QStandardItem (QString::number(P_vector[3]));
-     T_P5= new QStandardItem (QString::number(P_vector[4]));
-     T_P6= new QStandardItem (QString::number(P_vector[5]));
-     T_P7= new QStandardItem (QString::number(P_vector[6]));
+     T_P1= new QStandardItem (QString::number(calib_internal_pointer->P_vector[0]));
+     T_P2= new QStandardItem (QString::number(calib_internal_pointer->P_vector[1]));
+     T_P3= new QStandardItem (QString::number(calib_internal_pointer->P_vector[2]));
+     T_P4= new QStandardItem (QString::number(calib_internal_pointer->P_vector[3]));
+     T_P5= new QStandardItem (QString::number(calib_internal_pointer->P_vector[4]));
+     T_P6= new QStandardItem (QString::number(calib_internal_pointer->P_vector[5]));
+     T_P7= new QStandardItem (QString::number(calib_internal_pointer->P_vector[6]));
 
     model->setItem(0,2,T_P1);
     model->setItem(1,2,T_P2);
@@ -383,13 +379,13 @@ void untitled2::on_M_Button_clicked()
 
     daq_internal_pointer->read_daq();
 
-    M_vector[0]=(daq_internal_pointer->mean(1));
-    M_vector[1]=(daq_internal_pointer->mean(2));
-    M_vector[2]=(daq_internal_pointer->mean(3));
-    M_vector[3]=(daq_internal_pointer->mean(4));
-    M_vector[4]=(daq_internal_pointer->mean(5));
-    M_vector[5]=(daq_internal_pointer->mean(6));
-    M_vector[6]=(daq_internal_pointer->mean(7));
+    calib_internal_pointer->M_vector[0]=(daq_internal_pointer->mean(1));
+    calib_internal_pointer->M_vector[1]=(daq_internal_pointer->mean(2));
+    calib_internal_pointer->M_vector[2]=(daq_internal_pointer->mean(3));
+    calib_internal_pointer->M_vector[3]=(daq_internal_pointer->mean(4));
+    calib_internal_pointer->M_vector[4]=(daq_internal_pointer->mean(5));
+    calib_internal_pointer->M_vector[5]=(daq_internal_pointer->mean(6));
+    calib_internal_pointer->M_vector[6]=(daq_internal_pointer->mean(7));
 
 
     if(T_M1!=0){
@@ -421,13 +417,13 @@ void untitled2::on_M_Button_clicked()
         T_M7=0;
     }
 
-     T_M1= new QStandardItem (QString::number(M_vector[0]));
-     T_M2= new QStandardItem (QString::number(M_vector[1]));
-     T_M3= new QStandardItem (QString::number(M_vector[2]));
-     T_M4= new QStandardItem (QString::number(M_vector[3]));
-     T_M5= new QStandardItem (QString::number(M_vector[4]));
-     T_M6= new QStandardItem (QString::number(M_vector[5]));
-     T_M7= new QStandardItem (QString::number(M_vector[6]));
+     T_M1= new QStandardItem (QString::number(calib_internal_pointer->M_vector[0]));
+     T_M2= new QStandardItem (QString::number(calib_internal_pointer->M_vector[1]));
+     T_M3= new QStandardItem (QString::number(calib_internal_pointer->M_vector[2]));
+     T_M4= new QStandardItem (QString::number(calib_internal_pointer->M_vector[3]));
+     T_M5= new QStandardItem (QString::number(calib_internal_pointer->M_vector[4]));
+     T_M6= new QStandardItem (QString::number(calib_internal_pointer->M_vector[5]));
+     T_M7= new QStandardItem (QString::number(calib_internal_pointer->M_vector[6]));
 
     model->setItem(0,3,T_M1);
     model->setItem(1,3,T_M2);
@@ -453,13 +449,13 @@ void untitled2::on_L_Button_clicked()
 
     daq_internal_pointer->read_daq();
 
-    L_vector[0]=(daq_internal_pointer->mean(1));
-    L_vector[1]=(daq_internal_pointer->mean(2));
-    L_vector[2]=(daq_internal_pointer->mean(3));
-    L_vector[3]=(daq_internal_pointer->mean(4));
-    L_vector[4]=(daq_internal_pointer->mean(5));
-    L_vector[5]=(daq_internal_pointer->mean(6));
-    L_vector[6]=(daq_internal_pointer->mean(7));
+    calib_internal_pointer->L_vector[0]=(daq_internal_pointer->mean(1));
+    calib_internal_pointer->L_vector[1]=(daq_internal_pointer->mean(2));
+    calib_internal_pointer->L_vector[2]=(daq_internal_pointer->mean(3));
+    calib_internal_pointer->L_vector[3]=(daq_internal_pointer->mean(4));
+    calib_internal_pointer->L_vector[4]=(daq_internal_pointer->mean(5));
+    calib_internal_pointer->L_vector[5]=(daq_internal_pointer->mean(6));
+    calib_internal_pointer->L_vector[6]=(daq_internal_pointer->mean(7));
 
 
     if(T_L1!=0){
@@ -491,13 +487,13 @@ void untitled2::on_L_Button_clicked()
         T_L7=0;
     }
 
-     T_L1= new QStandardItem (QString::number(L_vector[0]));
-     T_L2= new QStandardItem (QString::number(L_vector[1]));
-     T_L3= new QStandardItem (QString::number(L_vector[2]));
-     T_L4= new QStandardItem (QString::number(L_vector[3]));
-     T_L5= new QStandardItem (QString::number(L_vector[4]));
-     T_L6= new QStandardItem (QString::number(L_vector[5]));
-     T_L7= new QStandardItem (QString::number(L_vector[6]));
+     T_L1= new QStandardItem (QString::number(calib_internal_pointer->L_vector[0]));
+     T_L2= new QStandardItem (QString::number(calib_internal_pointer->L_vector[1]));
+     T_L3= new QStandardItem (QString::number(calib_internal_pointer->L_vector[2]));
+     T_L4= new QStandardItem (QString::number(calib_internal_pointer->L_vector[3]));
+     T_L5= new QStandardItem (QString::number(calib_internal_pointer->L_vector[4]));
+     T_L6= new QStandardItem (QString::number(calib_internal_pointer->L_vector[5]));
+     T_L7= new QStandardItem (QString::number(calib_internal_pointer->L_vector[6]));
 
     model->setItem(0,4,T_L1);
     model->setItem(1,4,T_L2);
@@ -523,13 +519,13 @@ void untitled2::on_R_Button_clicked()
 
     daq_internal_pointer->read_daq();
 
-    R_vector[0]=(daq_internal_pointer->mean(1));
-    R_vector[1]=(daq_internal_pointer->mean(2));
-    R_vector[2]=(daq_internal_pointer->mean(3));
-    R_vector[3]=(daq_internal_pointer->mean(4));
-    R_vector[4]=(daq_internal_pointer->mean(5));
-    R_vector[5]=(daq_internal_pointer->mean(6));
-    R_vector[6]=(daq_internal_pointer->mean(7));
+    calib_internal_pointer->R_vector[0]=(daq_internal_pointer->mean(1));
+    calib_internal_pointer->R_vector[1]=(daq_internal_pointer->mean(2));
+    calib_internal_pointer->R_vector[2]=(daq_internal_pointer->mean(3));
+    calib_internal_pointer->R_vector[3]=(daq_internal_pointer->mean(4));
+    calib_internal_pointer->R_vector[4]=(daq_internal_pointer->mean(5));
+    calib_internal_pointer->R_vector[5]=(daq_internal_pointer->mean(6));
+    calib_internal_pointer->R_vector[6]=(daq_internal_pointer->mean(7));
 
 
     if(T_R1!=0){
@@ -561,13 +557,13 @@ void untitled2::on_R_Button_clicked()
         T_R7=0;
     }
 
-     T_R1= new QStandardItem (QString::number(R_vector[0]));
-     T_R2= new QStandardItem (QString::number(R_vector[1]));
-     T_R3= new QStandardItem (QString::number(R_vector[2]));
-     T_R4= new QStandardItem (QString::number(R_vector[3]));
-     T_R5= new QStandardItem (QString::number(R_vector[4]));
-     T_R6= new QStandardItem (QString::number(R_vector[5]));
-     T_R7= new QStandardItem (QString::number(R_vector[6]));
+     T_R1= new QStandardItem (QString::number(calib_internal_pointer->R_vector[0]));
+     T_R2= new QStandardItem (QString::number(calib_internal_pointer->R_vector[1]));
+     T_R3= new QStandardItem (QString::number(calib_internal_pointer->R_vector[2]));
+     T_R4= new QStandardItem (QString::number(calib_internal_pointer->R_vector[3]));
+     T_R5= new QStandardItem (QString::number(calib_internal_pointer->R_vector[4]));
+     T_R6= new QStandardItem (QString::number(calib_internal_pointer->R_vector[5]));
+     T_R7= new QStandardItem (QString::number(calib_internal_pointer->R_vector[6]));
 
     model->setItem(0,5,T_R1);
     model->setItem(1,5,T_R2);
@@ -590,7 +586,7 @@ void untitled2::on_R_Button_clicked()
 void untitled2::on_CalibrateButton_clicked()
 {
     if(calib_internal_pointer!=0){
-        calib_internal_pointer->compute_calibration(&H_vector,&V_vector,&P_vector,&M_vector,&L_vector,&R_vector);
+        calib_internal_pointer->compute_calibration();
 
         for(int i=0;i<4;i++){
             for(int j=0;j<6;j++){
@@ -612,5 +608,49 @@ void untitled2::on_CalibrateButton_clicked()
 
 
 
+    }
+}
+
+void untitled2::on_stokesButton_clicked()
+{
+    if(calib_internal_pointer!=0 && daq_internal_pointer!=0 ){
+
+      daq_internal_pointer->read_daq();
+
+      double itot=daq_internal_pointer->mean(7);
+      double i1=(daq_internal_pointer->mean(1))/itot;
+      double i2=(daq_internal_pointer->mean(2))/itot;
+      double i3=(daq_internal_pointer->mean(3))/itot;
+      double i4=(daq_internal_pointer->mean(4))/itot;
+      double i5=(daq_internal_pointer->mean(5))/itot;
+      double i6=(daq_internal_pointer->mean(6))/itot;
+
+
+
+      calib_internal_pointer->stokes_dat[0]=i1*calib_internal_pointer->matrix[0][0] + i2*calib_internal_pointer->matrix[0][1] + i3*calib_internal_pointer->matrix[0][2] + i4*calib_internal_pointer->matrix[0][3] + i5*calib_internal_pointer->matrix[0][4] + i6*calib_internal_pointer->matrix[0][5];
+      calib_internal_pointer->stokes_dat[1]=i1*calib_internal_pointer->matrix[1][0] + i2*calib_internal_pointer->matrix[1][1] + i3*calib_internal_pointer->matrix[1][2] + i4*calib_internal_pointer->matrix[1][3] + i5*calib_internal_pointer->matrix[1][4] + i6*calib_internal_pointer->matrix[1][5];
+      calib_internal_pointer->stokes_dat[2]=i1*calib_internal_pointer->matrix[2][0] + i2*calib_internal_pointer->matrix[2][1] + i3*calib_internal_pointer->matrix[2][2] + i4*calib_internal_pointer->matrix[2][3] + i5*calib_internal_pointer->matrix[2][4] + i6*calib_internal_pointer->matrix[2][5];
+      calib_internal_pointer->stokes_dat[3]=i1*calib_internal_pointer->matrix[3][0] + i2*calib_internal_pointer->matrix[3][1] + i3*calib_internal_pointer->matrix[3][2] + i4*calib_internal_pointer->matrix[3][3] + i5*calib_internal_pointer->matrix[3][4] + i6*calib_internal_pointer->matrix[3][5];
+
+      for(int i=0;i<4;i++){
+             if(  stokesvect_qs[i]!=0){
+                 delete stokesvect_qs[i];
+                 stokesvect_qs[i]=0;
+             }
+      }
+
+      for(int i=0;i<4;i++){
+              stokesvect_qs[i]=new QStandardItem (QString::number(calib_internal_pointer->stokes_dat[i]));
+              model_stokes->setItem(i,0,stokesvect_qs[i]);
+
+      }
+
+      ui.tableView_3->update();
+
+    }
+    else{
+        QMessageBox msgBox;
+        msgBox.setText("Error: No reference to daq istance");
+        msgBox.exec();
     }
 }

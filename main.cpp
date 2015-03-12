@@ -15,15 +15,17 @@ int main(int argc, char *argv[])
 {
 	QApplication a(argc, argv);
     untitled2 w;
-	w.show();
+
 	
     acquisition daq(7000,"Dev1/ai0:6",10.0,-10.0,2000,1000);
     w.daq_internal_pointer=&daq;
-
-    daq.read_daq();
-
     calibration calib;
     w.calib_internal_pointer=&calib;
+    w.show();
+
+
+
+
 
     return a.exec();
 }

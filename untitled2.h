@@ -29,13 +29,6 @@ public:
 	void setlabel7(double val);
     std::vector <float64> internal_data;
 
-    std::vector<double> H_vector;
-    std::vector<double> V_vector;
-    std::vector<double> P_vector;
-    std::vector<double> M_vector;
-    std::vector<double> L_vector;
-    std::vector<double> R_vector;
-
     acquisition * daq_internal_pointer;
     calibration * calib_internal_pointer;
 
@@ -45,8 +38,10 @@ private:
 	Ui::untitled2Class ui;
     QStandardItemModel *model;
     QStandardItemModel *model_matrix;
+    QStandardItemModel *model_stokes;
 
     vector< vector <QStandardItem*>> calibmatrix_qs;
+    vector <QStandardItem*> stokesvect_qs;
 
     QStandardItem * T_H1;
     QStandardItem * T_H2;
@@ -108,6 +103,7 @@ private slots:
     void on_L_Button_clicked();
     void on_R_Button_clicked();
     void on_CalibrateButton_clicked();
+    void on_stokesButton_clicked();
 };
 
 #endif // UNTITLED2_H

@@ -76,6 +76,8 @@ public:
     QFrame *line;
     QPushButton *pushButton_2;
     QPushButton *pushButton_3;
+    QTableView *tableView_3;
+    QPushButton *stokesButton;
     QMenuBar *menuBar;
     QToolBar *mainToolBar;
     QStatusBar *statusBar;
@@ -84,7 +86,7 @@ public:
     {
         if (untitled2Class->objectName().isEmpty())
             untitled2Class->setObjectName(QStringLiteral("untitled2Class"));
-        untitled2Class->resize(864, 421);
+        untitled2Class->resize(922, 421);
         centralWidget = new QWidget(untitled2Class);
         centralWidget->setObjectName(QStringLiteral("centralWidget"));
         pushButton = new QPushButton(centralWidget);
@@ -276,10 +278,16 @@ public:
         pushButton_3 = new QPushButton(centralWidget);
         pushButton_3->setObjectName(QStringLiteral("pushButton_3"));
         pushButton_3->setGeometry(QRect(20, 330, 75, 23));
+        tableView_3 = new QTableView(centralWidget);
+        tableView_3->setObjectName(QStringLiteral("tableView_3"));
+        tableView_3->setGeometry(QRect(800, 10, 101, 201));
+        stokesButton = new QPushButton(centralWidget);
+        stokesButton->setObjectName(QStringLiteral("stokesButton"));
+        stokesButton->setGeometry(QRect(820, 230, 75, 23));
         untitled2Class->setCentralWidget(centralWidget);
         menuBar = new QMenuBar(untitled2Class);
         menuBar->setObjectName(QStringLiteral("menuBar"));
-        menuBar->setGeometry(QRect(0, 0, 864, 21));
+        menuBar->setGeometry(QRect(0, 0, 922, 21));
         untitled2Class->setMenuBar(menuBar);
         mainToolBar = new QToolBar(untitled2Class);
         mainToolBar->setObjectName(QStringLiteral("mainToolBar"));
@@ -321,6 +329,7 @@ public:
         CalibrateButton->setText(QApplication::translate("untitled2Class", "Calibrate!", 0));
         pushButton_2->setText(QApplication::translate("untitled2Class", "Export", 0));
         pushButton_3->setText(QApplication::translate("untitled2Class", "Import", 0));
+        stokesButton->setText(QApplication::translate("untitled2Class", "Stokes", 0));
     } // retranslateUi
 
 };

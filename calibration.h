@@ -13,7 +13,17 @@ public:
     explicit calibration(QObject *parent = 0);
     ~calibration();
     double matrix[4][6];
-    void compute_calibration(vector<double> * H_vector,vector<double> * V_vector,vector<double> * P_vector,vector<double> * M_vector,vector<double> * L_vector, std::vector<double> * R_vector );
+    std::vector<double> H_vector;
+    std::vector<double> V_vector;
+    std::vector<double> P_vector;
+    std::vector<double> M_vector;
+    std::vector<double> L_vector;
+    std::vector<double> R_vector;
+
+    std::vector<double> stokes_dat;
+
+
+    void compute_calibration();
 signals:
 
 public slots:
