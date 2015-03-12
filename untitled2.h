@@ -44,7 +44,9 @@ public:
 private:
 	Ui::untitled2Class ui;
     QStandardItemModel *model;
-     QStandardItemModel *model_matrix;
+    QStandardItemModel *model_matrix;
+
+    vector< vector <QStandardItem*>> calibmatrix_qs;
 
     QStandardItem * T_H1;
     QStandardItem * T_H2;

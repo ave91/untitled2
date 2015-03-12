@@ -18,6 +18,12 @@ untitled2::untitled2(QWidget *parent)
     ui.setupUi(this);
 
     //Reserve memory for C-like use of vectors
+
+    calibmatrix_qs.resize(4);
+    for(int i=0;i<4;i++){
+        (calibmatrix_qs[i]).resize(6);
+    }
+
     H_vector.reserve(7);
     H_vector.resize(7);
     V_vector.reserve(7);
@@ -50,6 +56,13 @@ untitled2::untitled2(QWidget *parent)
 
 
     //Initializiation of data pointers to null, needed for memory managment
+    for(int i=0;i<4;i++){
+        for(int j=0;j<6;j++){
+            calibmatrix_qs[i][j]=0;
+        }
+    }
+
+
     T_H1=0;
     T_H2=0;
     T_H3=0;
@@ -578,9 +591,26 @@ void untitled2::on_CalibrateButton_clicked()
 {
     if(calib_internal_pointer!=0){
         calib_internal_pointer->compute_calibration(&H_vector,&V_vector,&P_vector,&M_vector,&L_vector,&R_vector);
-        QMessageBox ms;
-        ms.setText(QString::number(calib_internal_pointer->matrix[0][0]));
-        ms.exec();
+
+        for(int i=0;i<4;i++){
+            for(int j=0;j<6;j++){
+               if(  calibmatrix_qs[i][j]!=0){
+                   delete calibmatrix_qs[i][j];
+                   calibmatrix_qs[i][j]=0;
+               }
+            }
+        }
+
+        for(int i=0;i<4;i++){
+            for(int j=0;j<6;j++){
+                calibmatrix_qs[i][j]=new QStandardItem (QString::number(calib_internal_pointer->matrix[i][j]));
+                model_matrix->setItem(i,j,calibmatrix_qs[i][j]);
+            }
+        }
+
+        ui.tableView_2->update();
+
+
 
     }
 }
