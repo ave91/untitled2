@@ -104,6 +104,7 @@ private slots:
     void on_R_Button_clicked();
     void on_CalibrateButton_clicked();
     void on_stokesButton_clicked();
+
 };
 
 #endif // UNTITLED2_H

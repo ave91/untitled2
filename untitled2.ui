@@ -370,8 +370,8 @@
    <widget class="Line" name="line">
     <property name="geometry">
      <rect>
-      <x>17</x>
-      <y>280</y>
+      <x>40</x>
+      <y>270</y>
       <width>761</width>
       <height>20</height>
      </rect>

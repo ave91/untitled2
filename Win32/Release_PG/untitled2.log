@@ -1,0 +1,14 @@
+﻿  Moc'ing acquisition.h...
+  Moc'ing calibration.h...
+  Moc'ing untitled2.h...
+  acquisition.cpp
+  calibration.cpp
+  moc_acquisition.cpp
+c1xx : fatal error C1083: Impossibile aprire il file origine 'GeneratedFiles\Release\moc_acquisition.cpp': No such file or directory
+  moc_calibration.cpp
+c1xx : fatal error C1083: Impossibile aprire il file origine 'GeneratedFiles\Release\moc_calibration.cpp': No such file or directory
+  moc_untitled2.cpp
+c1xx : fatal error C1083: Impossibile aprire il file origine 'GeneratedFiles\Release\moc_untitled2.cpp': No such file or directory
+  main.cpp
+  untitled2.cpp
+  Generazione del codice in corso...

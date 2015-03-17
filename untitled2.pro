@@ -33,3 +33,14 @@ SOURCES += \
     acquisition.cpp \
     calibration.cpp
 
+win32 {
+    # aadimos la ruta para localizar la cabecera de la tarjeta
+    INCLUDEPATH += "C:\Program Files (x86)\National Instruments\Shared\ExternalCompilerSupport\C\include"
+
+    # aadimos la ruta de busqueda de las bibliotecas (opcin -L)
+    LIBS += -L"C:\Program Files (x86)\National Instruments\Shared\ExternalCompilerSupport\C\lib32\msvc"
+    #LIBS += -L$$PWD # donde esta mi programa
+    
+    # aadimos la librera "NIDAQmx.lib" quitando partes del nombre del archivo, (opcin -l)
+    LIBS += -lNIDAQmx
+}

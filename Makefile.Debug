@@ -367,8 +367,8 @@ GeneratedFiles\debug\moc_untitled2.cpp: E:\Qt\5.4\msvc2013\include\QtWidgets\QMa
 		E:\Qt\5.4\msvc2013\include\QtWidgets\QVBoxLayout \
 		E:\Qt\5.4\msvc2013\include\QtWidgets\QWidget \
 		calibration.h \
-		acquisition.h \
 		E:\Qt\5.4\msvc2013\include\QtCore\QObject \
+		acquisition.h \
 		E:\Qt\5.4\msvc2013\include\QtGui\QStandardItemModel \
 		E:\Qt\5.4\msvc2013\include\QtGui\qstandarditemmodel.h \
 		E:\Qt\5.4\msvc2013\include\QtGui\QStandardItem \
@@ -428,7 +428,57 @@ GeneratedFiles\debug\moc_acquisition.cpp: E:\Qt\5.4\msvc2013\include\QtCore\QObj
 		acquisition.h
 	E:\Qt\5.4\msvc2013\bin\moc.exe $(DEFINES) -D_MSC_VER=1800 -D_WIN32 -IE:/Qt/5.4/msvc2013/mkspecs/win32-msvc2013 -I"C:/Users/Ave/Documents/Visual Studio 2013/Projects/learn/untitled2/untitled2" -I"C:/Users/Ave/Documents/Visual Studio 2013/Projects/learn/untitled2/untitled2/GeneratedFiles" -I"C:/Users/Ave/Documents/Visual Studio 2013/Projects/learn/untitled2/untitled2" -I"C:/Users/Ave/Documents/Visual Studio 2013/Projects/learn/untitled2/untitled2/GeneratedFiles/Debug" -IC:/../Program -I"C:/Users/Ave/Documents/Visual Studio 2013/Projects/learn/untitled2/untitled2/Files" -I"C:/Users/Ave/Documents/Visual Studio 2013/Projects/learn/untitled2/untitled2/(x86)/National" -I"C:/Users/Ave/Documents/Visual Studio 2013/Projects/learn/untitled2/untitled2/Instruments/Shared/ExternalCompilerSupport/C/include" -IC:/../Program -I"C:/Users/Ave/Documents/Visual Studio 2013/Projects/learn/untitled2/untitled2/Files" -I"C:/Users/Ave/Documents/Visual Studio 2013/Projects/learn/untitled2/untitled2/(x86)/National" -I"C:/Users/Ave/Documents/Visual Studio 2013/Projects/learn/untitled2/untitled2/Instruments/Shared/ExternalCompilerSupport/C/lib32/msvc" -IE:/Qt/5.4/msvc2013/include -IE:/Qt/5.4/msvc2013/include/QtOpenGL -IE:/Qt/5.4/msvc2013/include/QtWidgets -IE:/Qt/5.4/msvc2013/include/QtGui -IE:/Qt/5.4/msvc2013/include/QtANGLE -IE:/Qt/5.4/msvc2013/include/QtCore acquisition.h -o GeneratedFiles\debug\moc_acquisition.cpp
 
-GeneratedFiles\debug\moc_calibration.cpp: calibration.h
+GeneratedFiles\debug\moc_calibration.cpp: E:\Qt\5.4\msvc2013\include\QtCore\QObject \
+		E:\Qt\5.4\msvc2013\include\QtCore\qobject.h \
+		E:\Qt\5.4\msvc2013\include\QtCore\qobjectdefs.h \
+		E:\Qt\5.4\msvc2013\include\QtCore\qnamespace.h \
+		E:\Qt\5.4\msvc2013\include\QtCore\qglobal.h \
+		E:\Qt\5.4\msvc2013\include\QtCore\qconfig.h \
+		E:\Qt\5.4\msvc2013\include\QtCore\qfeatures.h \
+		E:\Qt\5.4\msvc2013\include\QtCore\qsystemdetection.h \
+		E:\Qt\5.4\msvc2013\include\QtCore\qprocessordetection.h \
+		E:\Qt\5.4\msvc2013\include\QtCore\qcompilerdetection.h \
+		E:\Qt\5.4\msvc2013\include\QtCore\qtypeinfo.h \
+		E:\Qt\5.4\msvc2013\include\QtCore\qtypetraits.h \
+		E:\Qt\5.4\msvc2013\include\QtCore\qsysinfo.h \
+		E:\Qt\5.4\msvc2013\include\QtCore\qlogging.h \
+		E:\Qt\5.4\msvc2013\include\QtCore\qflags.h \
+		E:\Qt\5.4\msvc2013\include\QtCore\qatomic.h \
+		E:\Qt\5.4\msvc2013\include\QtCore\qbasicatomic.h \
+		E:\Qt\5.4\msvc2013\include\QtCore\qatomic_bootstrap.h \
+		E:\Qt\5.4\msvc2013\include\QtCore\qgenericatomic.h \
+		E:\Qt\5.4\msvc2013\include\QtCore\qatomic_msvc.h \
+		E:\Qt\5.4\msvc2013\include\QtCore\qatomic_armv7.h \
+		E:\Qt\5.4\msvc2013\include\QtCore\qatomic_armv6.h \
+		E:\Qt\5.4\msvc2013\include\QtCore\qatomic_armv5.h \
+		E:\Qt\5.4\msvc2013\include\QtCore\qatomic_ia64.h \
+		E:\Qt\5.4\msvc2013\include\QtCore\qatomic_mips.h \
+		E:\Qt\5.4\msvc2013\include\QtCore\qatomic_x86.h \
+		E:\Qt\5.4\msvc2013\include\QtCore\qatomic_cxx11.h \
+		E:\Qt\5.4\msvc2013\include\QtCore\qatomic_gcc.h \
+		E:\Qt\5.4\msvc2013\include\QtCore\qatomic_unix.h \
+		E:\Qt\5.4\msvc2013\include\QtCore\qglobalstatic.h \
+		E:\Qt\5.4\msvc2013\include\QtCore\qmutex.h \
+		E:\Qt\5.4\msvc2013\include\QtCore\qnumeric.h \
+		E:\Qt\5.4\msvc2013\include\QtCore\qobjectdefs_impl.h \
+		E:\Qt\5.4\msvc2013\include\QtCore\qstring.h \
+		E:\Qt\5.4\msvc2013\include\QtCore\qchar.h \
+		E:\Qt\5.4\msvc2013\include\QtCore\qbytearray.h \
+		E:\Qt\5.4\msvc2013\include\QtCore\qrefcount.h \
+		E:\Qt\5.4\msvc2013\include\QtCore\qarraydata.h \
+		E:\Qt\5.4\msvc2013\include\QtCore\qstringbuilder.h \
+		E:\Qt\5.4\msvc2013\include\QtCore\qlist.h \
+		E:\Qt\5.4\msvc2013\include\QtCore\qalgorithms.h \
+		E:\Qt\5.4\msvc2013\include\QtCore\qiterator.h \
+		E:\Qt\5.4\msvc2013\include\QtCore\qbytearraylist.h \
+		E:\Qt\5.4\msvc2013\include\QtCore\qcoreevent.h \
+		E:\Qt\5.4\msvc2013\include\QtCore\qscopedpointer.h \
+		E:\Qt\5.4\msvc2013\include\QtCore\qmetatype.h \
+		E:\Qt\5.4\msvc2013\include\QtCore\qvarlengtharray.h \
+		E:\Qt\5.4\msvc2013\include\QtCore\qcontainerfwd.h \
+		E:\Qt\5.4\msvc2013\include\QtCore\qisenum.h \
+		E:\Qt\5.4\msvc2013\include\QtCore\qobject_impl.h \
+		calibration.h
 	E:\Qt\5.4\msvc2013\bin\moc.exe $(DEFINES) -D_MSC_VER=1800 -D_WIN32 -IE:/Qt/5.4/msvc2013/mkspecs/win32-msvc2013 -I"C:/Users/Ave/Documents/Visual Studio 2013/Projects/learn/untitled2/untitled2" -I"C:/Users/Ave/Documents/Visual Studio 2013/Projects/learn/untitled2/untitled2/GeneratedFiles" -I"C:/Users/Ave/Documents/Visual Studio 2013/Projects/learn/untitled2/untitled2" -I"C:/Users/Ave/Documents/Visual Studio 2013/Projects/learn/untitled2/untitled2/GeneratedFiles/Debug" -IC:/../Program -I"C:/Users/Ave/Documents/Visual Studio 2013/Projects/learn/untitled2/untitled2/Files" -I"C:/Users/Ave/Documents/Visual Studio 2013/Projects/learn/untitled2/untitled2/(x86)/National" -I"C:/Users/Ave/Documents/Visual Studio 2013/Projects/learn/untitled2/untitled2/Instruments/Shared/ExternalCompilerSupport/C/include" -IC:/../Program -I"C:/Users/Ave/Documents/Visual Studio 2013/Projects/learn/untitled2/untitled2/Files" -I"C:/Users/Ave/Documents/Visual Studio 2013/Projects/learn/untitled2/untitled2/(x86)/National" -I"C:/Users/Ave/Documents/Visual Studio 2013/Projects/learn/untitled2/untitled2/Instruments/Shared/ExternalCompilerSupport/C/lib32/msvc" -IE:/Qt/5.4/msvc2013/include -IE:/Qt/5.4/msvc2013/include/QtOpenGL -IE:/Qt/5.4/msvc2013/include/QtWidgets -IE:/Qt/5.4/msvc2013/include/QtGui -IE:/Qt/5.4/msvc2013/include/QtANGLE -IE:/Qt/5.4/msvc2013/include/QtCore calibration.h -o GeneratedFiles\debug\moc_calibration.cpp
 
 compiler_moc_source_make_all:
@@ -612,8 +662,8 @@ debug\main.obj: main.cpp untitled2.h \
 		E:\Qt\5.4\msvc2013\include\QtWidgets\QVBoxLayout \
 		E:\Qt\5.4\msvc2013\include\QtWidgets\QWidget \
 		calibration.h \
-		acquisition.h \
 		E:\Qt\5.4\msvc2013\include\QtCore\QObject \
+		acquisition.h \
 		E:\Qt\5.4\msvc2013\include\QtGui\QStandardItemModel \
 		E:\Qt\5.4\msvc2013\include\QtGui\qstandarditemmodel.h \
 		E:\Qt\5.4\msvc2013\include\QtGui\QStandardItem \
@@ -782,8 +832,8 @@ debug\untitled2.obj: untitled2.cpp untitled2.h \
 		E:\Qt\5.4\msvc2013\include\QtWidgets\QVBoxLayout \
 		E:\Qt\5.4\msvc2013\include\QtWidgets\QWidget \
 		calibration.h \
-		acquisition.h \
 		E:\Qt\5.4\msvc2013\include\QtCore\QObject \
+		acquisition.h \
 		E:\Qt\5.4\msvc2013\include\QtGui\QStandardItemModel \
 		E:\Qt\5.4\msvc2013\include\QtGui\qstandarditemmodel.h \
 		E:\Qt\5.4\msvc2013\include\QtGui\QStandardItem \
@@ -897,11 +947,10 @@ debug\acquisition.obj: acquisition.cpp acquisition.h \
 		E:\Qt\5.4\msvc2013\include\QtGui\qtouchdevice.h
 
 debug\calibration.obj: calibration.cpp calibration.h \
-		E:\Qt\5.4\msvc2013\include\QtWidgets\QMessageBox \
-		E:\Qt\5.4\msvc2013\include\QtWidgets\qmessagebox.h \
-		E:\Qt\5.4\msvc2013\include\QtWidgets\qdialog.h \
-		E:\Qt\5.4\msvc2013\include\QtWidgets\qwidget.h \
-		E:\Qt\5.4\msvc2013\include\QtGui\qwindowdefs.h \
+		E:\Qt\5.4\msvc2013\include\QtCore\QObject \
+		E:\Qt\5.4\msvc2013\include\QtCore\qobject.h \
+		E:\Qt\5.4\msvc2013\include\QtCore\qobjectdefs.h \
+		E:\Qt\5.4\msvc2013\include\QtCore\qnamespace.h \
 		E:\Qt\5.4\msvc2013\include\QtCore\qglobal.h \
 		E:\Qt\5.4\msvc2013\include\QtCore\qconfig.h \
 		E:\Qt\5.4\msvc2013\include\QtCore\qfeatures.h \
@@ -930,11 +979,7 @@ debug\calibration.obj: calibration.cpp calibration.h \
 		E:\Qt\5.4\msvc2013\include\QtCore\qglobalstatic.h \
 		E:\Qt\5.4\msvc2013\include\QtCore\qmutex.h \
 		E:\Qt\5.4\msvc2013\include\QtCore\qnumeric.h \
-		E:\Qt\5.4\msvc2013\include\QtCore\qobjectdefs.h \
-		E:\Qt\5.4\msvc2013\include\QtCore\qnamespace.h \
 		E:\Qt\5.4\msvc2013\include\QtCore\qobjectdefs_impl.h \
-		E:\Qt\5.4\msvc2013\include\QtGui\qwindowdefs_win.h \
-		E:\Qt\5.4\msvc2013\include\QtCore\qobject.h \
 		E:\Qt\5.4\msvc2013\include\QtCore\qstring.h \
 		E:\Qt\5.4\msvc2013\include\QtCore\qchar.h \
 		E:\Qt\5.4\msvc2013\include\QtCore\qbytearray.h \
@@ -952,6 +997,12 @@ debug\calibration.obj: calibration.cpp calibration.h \
 		E:\Qt\5.4\msvc2013\include\QtCore\qcontainerfwd.h \
 		E:\Qt\5.4\msvc2013\include\QtCore\qisenum.h \
 		E:\Qt\5.4\msvc2013\include\QtCore\qobject_impl.h \
+		E:\Qt\5.4\msvc2013\include\QtWidgets\QMessageBox \
+		E:\Qt\5.4\msvc2013\include\QtWidgets\qmessagebox.h \
+		E:\Qt\5.4\msvc2013\include\QtWidgets\qdialog.h \
+		E:\Qt\5.4\msvc2013\include\QtWidgets\qwidget.h \
+		E:\Qt\5.4\msvc2013\include\QtGui\qwindowdefs.h \
+		E:\Qt\5.4\msvc2013\include\QtGui\qwindowdefs_win.h \
 		E:\Qt\5.4\msvc2013\include\QtCore\qmargins.h \
 		E:\Qt\5.4\msvc2013\include\QtGui\qpaintdevice.h \
 		E:\Qt\5.4\msvc2013\include\QtCore\qrect.h \

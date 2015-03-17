@@ -269,7 +269,7 @@ public:
         CalibrateButton->setGeometry(QRect(600, 230, 75, 23));
         line = new QFrame(centralWidget);
         line->setObjectName(QStringLiteral("line"));
-        line->setGeometry(QRect(17, 280, 761, 20));
+        line->setGeometry(QRect(40, 270, 761, 20));
         line->setFrameShape(QFrame::HLine);
         line->setFrameShadow(QFrame::Sunken);
         pushButton_2 = new QPushButton(centralWidget);
