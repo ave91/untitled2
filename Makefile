@@ -202,6 +202,7 @@ Makefile: untitled2.pro E:\Qt\5.4\msvc2013\mkspecs\win32-msvc2013\qmake.conf E:\
 		E:/Qt/5.4/msvc2013/lib/qtmaind.prl \
 		E:/Qt/5.4/msvc2013/lib/Qt5Cored.prl \
 		E:/Qt/5.4/msvc2013/lib/Qt5OpenGL.prl \
+		E:/Qt/5.4/msvc2013/lib/Qt5PrintSupport.prl \
 		E:/Qt/5.4/msvc2013/lib/Qt5Widgets.prl \
 		E:/Qt/5.4/msvc2013/lib/Qt5Gui.prl \
 		E:/Qt/5.4/msvc2013/lib/Qt5Core.prl
@@ -335,6 +336,7 @@ untitled2.pro:
 E:/Qt/5.4/msvc2013/lib/qtmaind.prl:
 E:/Qt/5.4/msvc2013/lib/Qt5Cored.prl:
 E:/Qt/5.4/msvc2013/lib/Qt5OpenGL.prl:
+E:/Qt/5.4/msvc2013/lib/Qt5PrintSupport.prl:
 E:/Qt/5.4/msvc2013/lib/Qt5Widgets.prl:
 E:/Qt/5.4/msvc2013/lib/Qt5Gui.prl:
 E:/Qt/5.4/msvc2013/lib/Qt5Core.prl:

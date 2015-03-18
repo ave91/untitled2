@@ -6,6 +6,7 @@ TEMPLATE = app
 TARGET = untitled2
 DESTDIR = ../Win32/Debug
 QT += core opengl widgets gui
+greaterThan(QT_MAJOR_VERSION, 4): QT += widgets printsupport
 CONFIG += debug
 DEFINES += WIN64 QT_DLL QT_OPENGL_LIB QT_WIDGETS_LIB
 INCLUDEPATH += ./GeneratedFiles \
@@ -27,11 +28,15 @@ win32:RC_FILE = untitled2.rc
 
 HEADERS += \
     acquisition.h \
-    calibration.h
+    calibration.h \
+    qcustomplot.cpp \
+    plot.h
 
 SOURCES += \
     acquisition.cpp \
-    calibration.cpp
+    calibration.cpp \
+    qcustomplot.cpp \
+    plot.cpp
 
 win32 {
     # aadimos la ruta para localizar la cabecera de la tarjeta
@@ -44,3 +49,6 @@ win32 {
     # aadimos la librera "NIDAQmx.lib" quitando partes del nombre del archivo, (opcin -l)
     LIBS += -lNIDAQmx
 }
+
+FORMS += \
+    plot.ui

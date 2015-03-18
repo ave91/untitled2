@@ -19,8 +19,8 @@
 
 QT_BEGIN_MOC_NAMESPACE
 struct qt_meta_stringdata_untitled2_t {
-    QByteArrayData data[13];
-    char stringdata[252];
+    QByteArrayData data[14];
+    char stringdata[274];
 };
 #define QT_MOC_LITERAL(idx, ofs, len) \
     Q_STATIC_BYTE_ARRAY_DATA_HEADER_INITIALIZER_WITH_OFFSET(len, \
@@ -41,7 +41,8 @@ QT_MOC_LITERAL(8, 133, 19), // "on_R_Button_clicked"
 QT_MOC_LITERAL(9, 153, 26), // "on_CalibrateButton_clicked"
 QT_MOC_LITERAL(10, 180, 23), // "on_stokesButton_clicked"
 QT_MOC_LITERAL(11, 204, 23), // "on_exportButton_clicked"
-QT_MOC_LITERAL(12, 228, 23) // "on_importButton_clicked"
+QT_MOC_LITERAL(12, 228, 23), // "on_importButton_clicked"
+QT_MOC_LITERAL(13, 252, 21) // "on_plotButton_clicked"
 
     },
     "untitled2\0on_pushButton_clicked\0\0"
@@ -50,7 +51,7 @@ QT_MOC_LITERAL(12, 228, 23) // "on_importButton_clicked"
     "on_L_Button_clicked\0on_R_Button_clicked\0"
     "on_CalibrateButton_clicked\0"
     "on_stokesButton_clicked\0on_exportButton_clicked\0"
-    "on_importButton_clicked"
+    "on_importButton_clicked\0on_plotButton_clicked"
 };
 #undef QT_MOC_LITERAL
 
@@ -60,7 +61,7 @@ static const uint qt_meta_data_untitled2[] = {
        7,       // revision
        0,       // classname
        0,    0, // classinfo
-      11,   14, // methods
+      12,   14, // methods
        0,    0, // properties
        0,    0, // enums/sets
        0,    0, // constructors
@@ -68,19 +69,21 @@ static const uint qt_meta_data_untitled2[] = {
        0,       // signalCount
 
  // slots: name, argc, parameters, tag, flags
-       1,    0,   69,    2, 0x0a /* Public */,
-       3,    0,   70,    2, 0x08 /* Private */,
-       4,    0,   71,    2, 0x08 /* Private */,
-       5,    0,   72,    2, 0x08 /* Private */,
-       6,    0,   73,    2, 0x08 /* Private */,
-       7,    0,   74,    2, 0x08 /* Private */,
-       8,    0,   75,    2, 0x08 /* Private */,
-       9,    0,   76,    2, 0x08 /* Private */,
-      10,    0,   77,    2, 0x08 /* Private */,
-      11,    0,   78,    2, 0x08 /* Private */,
-      12,    0,   79,    2, 0x08 /* Private */,
+       1,    0,   74,    2, 0x0a /* Public */,
+       3,    0,   75,    2, 0x08 /* Private */,
+       4,    0,   76,    2, 0x08 /* Private */,
+       5,    0,   77,    2, 0x08 /* Private */,
+       6,    0,   78,    2, 0x08 /* Private */,
+       7,    0,   79,    2, 0x08 /* Private */,
+       8,    0,   80,    2, 0x08 /* Private */,
+       9,    0,   81,    2, 0x08 /* Private */,
+      10,    0,   82,    2, 0x08 /* Private */,
+      11,    0,   83,    2, 0x08 /* Private */,
+      12,    0,   84,    2, 0x08 /* Private */,
+      13,    0,   85,    2, 0x08 /* Private */,
 
  // slots: parameters
+    QMetaType::Void,
     QMetaType::Void,
     QMetaType::Void,
     QMetaType::Void,
@@ -112,6 +115,7 @@ void untitled2::qt_static_metacall(QObject *_o, QMetaObject::Call _c, int _id, v
         case 8: _t->on_stokesButton_clicked(); break;
         case 9: _t->on_exportButton_clicked(); break;
         case 10: _t->on_importButton_clicked(); break;
+        case 11: _t->on_plotButton_clicked(); break;
         default: ;
         }
     }
@@ -143,13 +147,13 @@ int untitled2::qt_metacall(QMetaObject::Call _c, int _id, void **_a)
     if (_id < 0)
         return _id;
     if (_c == QMetaObject::InvokeMetaMethod) {
-        if (_id < 11)
+        if (_id < 12)
             qt_static_metacall(this, _c, _id, _a);
-        _id -= 11;
+        _id -= 12;
     } else if (_c == QMetaObject::RegisterMethodArgumentMetaType) {
-        if (_id < 11)
+        if (_id < 12)
             *reinterpret_cast<int*>(_a[0]) = -1;
-        _id -= 11;
+        _id -= 12;
     }
     return _id;
 }

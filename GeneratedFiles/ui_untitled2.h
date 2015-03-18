@@ -78,6 +78,7 @@ public:
     QPushButton *importButton;
     QTableView *tableView_3;
     QPushButton *stokesButton;
+    QPushButton *plotButton;
     QMenuBar *menuBar;
     QToolBar *mainToolBar;
     QStatusBar *statusBar;
@@ -284,6 +285,9 @@ public:
         stokesButton = new QPushButton(centralWidget);
         stokesButton->setObjectName(QStringLiteral("stokesButton"));
         stokesButton->setGeometry(QRect(820, 230, 75, 23));
+        plotButton = new QPushButton(centralWidget);
+        plotButton->setObjectName(QStringLiteral("plotButton"));
+        plotButton->setGeometry(QRect(150, 300, 91, 23));
         untitled2Class->setCentralWidget(centralWidget);
         menuBar = new QMenuBar(untitled2Class);
         menuBar->setObjectName(QStringLiteral("menuBar"));
@@ -330,6 +334,7 @@ public:
         exportButton->setText(QApplication::translate("untitled2Class", "Export", 0));
         importButton->setText(QApplication::translate("untitled2Class", "Import", 0));
         stokesButton->setText(QApplication::translate("untitled2Class", "Stokes", 0));
+        plotButton->setText(QApplication::translate("untitled2Class", "Continous Plot", 0));
     } // retranslateUi
 
 };

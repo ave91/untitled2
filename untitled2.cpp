@@ -5,6 +5,8 @@
 #include "QStandardItemModel"
 #include <memory>
 #include "QFileDialog"
+#include "qcustomplot.h"
+#include "plot.h"
 
 #define DAQmxErrChk(functionCall) if( DAQmxFailed(error=(functionCall)) ) goto Error; else
 
@@ -13,6 +15,7 @@
 untitled2::untitled2(QWidget *parent)
 	: QMainWindow(parent)
 {	
+    wdg=0;
     //Configure pointers reference not initialized yet
     daq_internal_pointer=0;
     calib_internal_pointer=0;
@@ -731,5 +734,16 @@ void untitled2::on_importButton_clicked()
 
 
 
+
+}
+
+void untitled2::on_plotButton_clicked()
+{
+
+    wdg = new Plot;
+    wdg->setAttribute(Qt::WA_DeleteOnClose);
+
+    wdg->show();
+    wdg->run(daq_internal_pointer);
 
 }

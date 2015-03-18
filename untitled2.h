@@ -10,6 +10,7 @@
 #include "acquisition.h"
 #include "QStandardItemModel"
 #include "QStandardItem"
+#include "plot.h"
 
 
 
@@ -91,6 +92,8 @@ private:
     QStandardItem * T_R6;
     QStandardItem * T_R7;
 
+    Plot *wdg;
+
 
 
 	public slots: void on_pushButton_clicked();
@@ -106,6 +109,7 @@ private slots:
     void on_stokesButton_clicked();
     void on_exportButton_clicked();
     void on_importButton_clicked();
+    void on_plotButton_clicked();
 };
 
 #endif // UNTITLED2_H
