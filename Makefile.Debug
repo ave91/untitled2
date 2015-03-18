@@ -14,10 +14,10 @@ CXX           = cl
 DEFINES       = -DUNICODE -DWIN32 -DWIN64 -DQT_DLL -DQT_OPENGL_LIB -DQT_WIDGETS_LIB -DQT_OPENGL_LIB -DQT_WIDGETS_LIB -DQT_GUI_LIB -DQT_CORE_LIB
 CFLAGS        = -nologo -Zm200 -Zc:wchar_t -FS -Zi -MDd -W3 /Fd..\Win32\Debug\untitled2.pdb $(DEFINES)
 CXXFLAGS      = -nologo -Zm200 -Zc:wchar_t -FS -Zi -MDd -GR -W3 -w34100 -w34189 -EHsc /Fd..\Win32\Debug\untitled2.pdb $(DEFINES)
-INCPATH       = -I"." -I"GeneratedFiles" -I"." -I"GeneratedFiles\Debug" -I"..\..\..\..\..\..\..\..\..\Program" -I"Files" -I"(x86)\National" -I"Instruments\Shared\ExternalCompilerSupport\C\include" -I"..\..\..\..\..\..\..\..\..\Program" -I"Files" -I"(x86)\National" -I"Instruments\Shared\ExternalCompilerSupport\C\lib32\msvc" -I"E:\Qt\5.4\msvc2013\include" -I"E:\Qt\5.4\msvc2013\include\QtOpenGL" -I"E:\Qt\5.4\msvc2013\include\QtWidgets" -I"E:\Qt\5.4\msvc2013\include\QtGui" -I"E:\Qt\5.4\msvc2013\include\QtANGLE" -I"E:\Qt\5.4\msvc2013\include\QtCore" -I"GeneratedFiles\debug" -I"GeneratedFiles" -I"E:\Qt\5.4\msvc2013\mkspecs\win32-msvc2013" 
+INCPATH       = -I"." -I"GeneratedFiles" -I"." -I"GeneratedFiles\Debug" -I"..\..\..\..\..\..\..\..\..\Program" -I"Files" -I"(x86)\National" -I"Instruments\Shared\ExternalCompilerSupport\C\include" -I"..\..\..\..\..\..\..\..\..\Program" -I"Files" -I"(x86)\National" -I"Instruments\Shared\ExternalCompilerSupport\C\lib32\msvc" -I"C:\Program Files (x86)\National Instruments\Shared\ExternalCompilerSupport\C\include" -I"E:\Qt\5.4\msvc2013\include" -I"E:\Qt\5.4\msvc2013\include\QtOpenGL" -I"E:\Qt\5.4\msvc2013\include\QtWidgets" -I"E:\Qt\5.4\msvc2013\include\QtGui" -I"E:\Qt\5.4\msvc2013\include\QtANGLE" -I"E:\Qt\5.4\msvc2013\include\QtCore" -I"GeneratedFiles\debug" -I"GeneratedFiles" -I"E:\Qt\5.4\msvc2013\mkspecs\win32-msvc2013" 
 LINKER        = link
 LFLAGS        = /NOLOGO /DYNAMICBASE /NXCOMPAT /DEBUG /SUBSYSTEM:WINDOWS "/MANIFESTDEPENDENCY:type='win32' name='Microsoft.Windows.Common-Controls' version='6.0.0.0' publicKeyToken='6595b64144ccf1df' language='*' processorArchitecture='*'"
-LIBS          = /LIBPATH:E:\Qt\5.4\msvc2013\lib E:\Qt\5.4\msvc2013\lib\qtmaind.lib shell32.lib /LIBPATH:"..\..\..\..\..\..\..\..\..\Program Files (x86)\National Instruments\Shared\ExternalCompilerSupport\C\lib32\msvc" opengl32.lib glu32.lib "..\..\..\..\..\..\..\..\..\Program Files (x86)\National Instruments\Shared\ExternalCompilerSupport\C\lib32\msvc\NIDAQmx.lib" E:\Qt\5.4\msvc2013\lib\Qt5OpenGLd.lib E:\Qt\5.4\msvc2013\lib\Qt5Widgetsd.lib E:\Qt\5.4\msvc2013\lib\Qt5Guid.lib E:\Qt\5.4\msvc2013\lib\Qt5Cored.lib debug\untitled2.res 
+LIBS          = /LIBPATH:E:\Qt\5.4\msvc2013\lib E:\Qt\5.4\msvc2013\lib\qtmaind.lib shell32.lib /LIBPATH:"..\..\..\..\..\..\..\..\..\Program Files (x86)\National Instruments\Shared\ExternalCompilerSupport\C\lib32\msvc" opengl32.lib glu32.lib /LIBPATH:"C:\Program Files (x86)\National Instruments\Shared\ExternalCompilerSupport\C\lib32\msvc" "..\..\..\..\..\..\..\..\..\Program Files (x86)\National Instruments\Shared\ExternalCompilerSupport\C\lib32\msvc\NIDAQmx.lib" E:\Qt\5.4\msvc2013\lib\Qt5OpenGLd.lib E:\Qt\5.4\msvc2013\lib\Qt5Widgetsd.lib E:\Qt\5.4\msvc2013\lib\Qt5Guid.lib E:\Qt\5.4\msvc2013\lib\Qt5Cored.lib debug\untitled2.res 
 QMAKE         = E:\Qt\5.4\msvc2013\bin\qmake.exe
 IDC           = idc
 IDL           = midl
@@ -366,6 +366,7 @@ GeneratedFiles\debug\moc_untitled2.cpp: E:\Qt\5.4\msvc2013\include\QtWidgets\QMa
 		E:\Qt\5.4\msvc2013\include\QtWidgets\qtoolbar.h \
 		E:\Qt\5.4\msvc2013\include\QtWidgets\QVBoxLayout \
 		E:\Qt\5.4\msvc2013\include\QtWidgets\QWidget \
+		"C:\Program Files (x86)\National Instruments\Shared\ExternalCompilerSupport\C\include\NIDAQmx.h" \
 		calibration.h \
 		E:\Qt\5.4\msvc2013\include\QtCore\QObject \
 		acquisition.h \
@@ -373,7 +374,7 @@ GeneratedFiles\debug\moc_untitled2.cpp: E:\Qt\5.4\msvc2013\include\QtWidgets\QMa
 		E:\Qt\5.4\msvc2013\include\QtGui\qstandarditemmodel.h \
 		E:\Qt\5.4\msvc2013\include\QtGui\QStandardItem \
 		untitled2.h
-	E:\Qt\5.4\msvc2013\bin\moc.exe $(DEFINES) -D_MSC_VER=1800 -D_WIN32 -IE:/Qt/5.4/msvc2013/mkspecs/win32-msvc2013 -I"C:/Users/Ave/Documents/Visual Studio 2013/Projects/learn/untitled2/untitled2" -I"C:/Users/Ave/Documents/Visual Studio 2013/Projects/learn/untitled2/untitled2/GeneratedFiles" -I"C:/Users/Ave/Documents/Visual Studio 2013/Projects/learn/untitled2/untitled2" -I"C:/Users/Ave/Documents/Visual Studio 2013/Projects/learn/untitled2/untitled2/GeneratedFiles/Debug" -IC:/../Program -I"C:/Users/Ave/Documents/Visual Studio 2013/Projects/learn/untitled2/untitled2/Files" -I"C:/Users/Ave/Documents/Visual Studio 2013/Projects/learn/untitled2/untitled2/(x86)/National" -I"C:/Users/Ave/Documents/Visual Studio 2013/Projects/learn/untitled2/untitled2/Instruments/Shared/ExternalCompilerSupport/C/include" -IC:/../Program -I"C:/Users/Ave/Documents/Visual Studio 2013/Projects/learn/untitled2/untitled2/Files" -I"C:/Users/Ave/Documents/Visual Studio 2013/Projects/learn/untitled2/untitled2/(x86)/National" -I"C:/Users/Ave/Documents/Visual Studio 2013/Projects/learn/untitled2/untitled2/Instruments/Shared/ExternalCompilerSupport/C/lib32/msvc" -IE:/Qt/5.4/msvc2013/include -IE:/Qt/5.4/msvc2013/include/QtOpenGL -IE:/Qt/5.4/msvc2013/include/QtWidgets -IE:/Qt/5.4/msvc2013/include/QtGui -IE:/Qt/5.4/msvc2013/include/QtANGLE -IE:/Qt/5.4/msvc2013/include/QtCore untitled2.h -o GeneratedFiles\debug\moc_untitled2.cpp
+	E:\Qt\5.4\msvc2013\bin\moc.exe $(DEFINES) -D_MSC_VER=1800 -D_WIN32 -IE:/Qt/5.4/msvc2013/mkspecs/win32-msvc2013 -I"C:/Users/Ave/Documents/Visual Studio 2013/Projects/learn/untitled2/untitled2" -I"C:/Users/Ave/Documents/Visual Studio 2013/Projects/learn/untitled2/untitled2/GeneratedFiles" -I"C:/Users/Ave/Documents/Visual Studio 2013/Projects/learn/untitled2/untitled2" -I"C:/Users/Ave/Documents/Visual Studio 2013/Projects/learn/untitled2/untitled2/GeneratedFiles/Debug" -IC:/../Program -I"C:/Users/Ave/Documents/Visual Studio 2013/Projects/learn/untitled2/untitled2/Files" -I"C:/Users/Ave/Documents/Visual Studio 2013/Projects/learn/untitled2/untitled2/(x86)/National" -I"C:/Users/Ave/Documents/Visual Studio 2013/Projects/learn/untitled2/untitled2/Instruments/Shared/ExternalCompilerSupport/C/include" -IC:/../Program -I"C:/Users/Ave/Documents/Visual Studio 2013/Projects/learn/untitled2/untitled2/Files" -I"C:/Users/Ave/Documents/Visual Studio 2013/Projects/learn/untitled2/untitled2/(x86)/National" -I"C:/Users/Ave/Documents/Visual Studio 2013/Projects/learn/untitled2/untitled2/Instruments/Shared/ExternalCompilerSupport/C/lib32/msvc" -I"C:/Program Files (x86)/National Instruments/Shared/ExternalCompilerSupport/C/include" -IE:/Qt/5.4/msvc2013/include -IE:/Qt/5.4/msvc2013/include/QtOpenGL -IE:/Qt/5.4/msvc2013/include/QtWidgets -IE:/Qt/5.4/msvc2013/include/QtGui -IE:/Qt/5.4/msvc2013/include/QtANGLE -IE:/Qt/5.4/msvc2013/include/QtCore untitled2.h -o GeneratedFiles\debug\moc_untitled2.cpp
 
 GeneratedFiles\debug\moc_acquisition.cpp: E:\Qt\5.4\msvc2013\include\QtCore\QObject \
 		E:\Qt\5.4\msvc2013\include\QtCore\qobject.h \
@@ -425,8 +426,9 @@ GeneratedFiles\debug\moc_acquisition.cpp: E:\Qt\5.4\msvc2013\include\QtCore\QObj
 		E:\Qt\5.4\msvc2013\include\QtCore\qcontainerfwd.h \
 		E:\Qt\5.4\msvc2013\include\QtCore\qisenum.h \
 		E:\Qt\5.4\msvc2013\include\QtCore\qobject_impl.h \
+		"C:\Program Files (x86)\National Instruments\Shared\ExternalCompilerSupport\C\include\NIDAQmx.h" \
 		acquisition.h
-	E:\Qt\5.4\msvc2013\bin\moc.exe $(DEFINES) -D_MSC_VER=1800 -D_WIN32 -IE:/Qt/5.4/msvc2013/mkspecs/win32-msvc2013 -I"C:/Users/Ave/Documents/Visual Studio 2013/Projects/learn/untitled2/untitled2" -I"C:/Users/Ave/Documents/Visual Studio 2013/Projects/learn/untitled2/untitled2/GeneratedFiles" -I"C:/Users/Ave/Documents/Visual Studio 2013/Projects/learn/untitled2/untitled2" -I"C:/Users/Ave/Documents/Visual Studio 2013/Projects/learn/untitled2/untitled2/GeneratedFiles/Debug" -IC:/../Program -I"C:/Users/Ave/Documents/Visual Studio 2013/Projects/learn/untitled2/untitled2/Files" -I"C:/Users/Ave/Documents/Visual Studio 2013/Projects/learn/untitled2/untitled2/(x86)/National" -I"C:/Users/Ave/Documents/Visual Studio 2013/Projects/learn/untitled2/untitled2/Instruments/Shared/ExternalCompilerSupport/C/include" -IC:/../Program -I"C:/Users/Ave/Documents/Visual Studio 2013/Projects/learn/untitled2/untitled2/Files" -I"C:/Users/Ave/Documents/Visual Studio 2013/Projects/learn/untitled2/untitled2/(x86)/National" -I"C:/Users/Ave/Documents/Visual Studio 2013/Projects/learn/untitled2/untitled2/Instruments/Shared/ExternalCompilerSupport/C/lib32/msvc" -IE:/Qt/5.4/msvc2013/include -IE:/Qt/5.4/msvc2013/include/QtOpenGL -IE:/Qt/5.4/msvc2013/include/QtWidgets -IE:/Qt/5.4/msvc2013/include/QtGui -IE:/Qt/5.4/msvc2013/include/QtANGLE -IE:/Qt/5.4/msvc2013/include/QtCore acquisition.h -o GeneratedFiles\debug\moc_acquisition.cpp
+	E:\Qt\5.4\msvc2013\bin\moc.exe $(DEFINES) -D_MSC_VER=1800 -D_WIN32 -IE:/Qt/5.4/msvc2013/mkspecs/win32-msvc2013 -I"C:/Users/Ave/Documents/Visual Studio 2013/Projects/learn/untitled2/untitled2" -I"C:/Users/Ave/Documents/Visual Studio 2013/Projects/learn/untitled2/untitled2/GeneratedFiles" -I"C:/Users/Ave/Documents/Visual Studio 2013/Projects/learn/untitled2/untitled2" -I"C:/Users/Ave/Documents/Visual Studio 2013/Projects/learn/untitled2/untitled2/GeneratedFiles/Debug" -IC:/../Program -I"C:/Users/Ave/Documents/Visual Studio 2013/Projects/learn/untitled2/untitled2/Files" -I"C:/Users/Ave/Documents/Visual Studio 2013/Projects/learn/untitled2/untitled2/(x86)/National" -I"C:/Users/Ave/Documents/Visual Studio 2013/Projects/learn/untitled2/untitled2/Instruments/Shared/ExternalCompilerSupport/C/include" -IC:/../Program -I"C:/Users/Ave/Documents/Visual Studio 2013/Projects/learn/untitled2/untitled2/Files" -I"C:/Users/Ave/Documents/Visual Studio 2013/Projects/learn/untitled2/untitled2/(x86)/National" -I"C:/Users/Ave/Documents/Visual Studio 2013/Projects/learn/untitled2/untitled2/Instruments/Shared/ExternalCompilerSupport/C/lib32/msvc" -I"C:/Program Files (x86)/National Instruments/Shared/ExternalCompilerSupport/C/include" -IE:/Qt/5.4/msvc2013/include -IE:/Qt/5.4/msvc2013/include/QtOpenGL -IE:/Qt/5.4/msvc2013/include/QtWidgets -IE:/Qt/5.4/msvc2013/include/QtGui -IE:/Qt/5.4/msvc2013/include/QtANGLE -IE:/Qt/5.4/msvc2013/include/QtCore acquisition.h -o GeneratedFiles\debug\moc_acquisition.cpp
 
 GeneratedFiles\debug\moc_calibration.cpp: E:\Qt\5.4\msvc2013\include\QtCore\QObject \
 		E:\Qt\5.4\msvc2013\include\QtCore\qobject.h \
@@ -479,7 +481,7 @@ GeneratedFiles\debug\moc_calibration.cpp: E:\Qt\5.4\msvc2013\include\QtCore\QObj
 		E:\Qt\5.4\msvc2013\include\QtCore\qisenum.h \
 		E:\Qt\5.4\msvc2013\include\QtCore\qobject_impl.h \
 		calibration.h
-	E:\Qt\5.4\msvc2013\bin\moc.exe $(DEFINES) -D_MSC_VER=1800 -D_WIN32 -IE:/Qt/5.4/msvc2013/mkspecs/win32-msvc2013 -I"C:/Users/Ave/Documents/Visual Studio 2013/Projects/learn/untitled2/untitled2" -I"C:/Users/Ave/Documents/Visual Studio 2013/Projects/learn/untitled2/untitled2/GeneratedFiles" -I"C:/Users/Ave/Documents/Visual Studio 2013/Projects/learn/untitled2/untitled2" -I"C:/Users/Ave/Documents/Visual Studio 2013/Projects/learn/untitled2/untitled2/GeneratedFiles/Debug" -IC:/../Program -I"C:/Users/Ave/Documents/Visual Studio 2013/Projects/learn/untitled2/untitled2/Files" -I"C:/Users/Ave/Documents/Visual Studio 2013/Projects/learn/untitled2/untitled2/(x86)/National" -I"C:/Users/Ave/Documents/Visual Studio 2013/Projects/learn/untitled2/untitled2/Instruments/Shared/ExternalCompilerSupport/C/include" -IC:/../Program -I"C:/Users/Ave/Documents/Visual Studio 2013/Projects/learn/untitled2/untitled2/Files" -I"C:/Users/Ave/Documents/Visual Studio 2013/Projects/learn/untitled2/untitled2/(x86)/National" -I"C:/Users/Ave/Documents/Visual Studio 2013/Projects/learn/untitled2/untitled2/Instruments/Shared/ExternalCompilerSupport/C/lib32/msvc" -IE:/Qt/5.4/msvc2013/include -IE:/Qt/5.4/msvc2013/include/QtOpenGL -IE:/Qt/5.4/msvc2013/include/QtWidgets -IE:/Qt/5.4/msvc2013/include/QtGui -IE:/Qt/5.4/msvc2013/include/QtANGLE -IE:/Qt/5.4/msvc2013/include/QtCore calibration.h -o GeneratedFiles\debug\moc_calibration.cpp
+	E:\Qt\5.4\msvc2013\bin\moc.exe $(DEFINES) -D_MSC_VER=1800 -D_WIN32 -IE:/Qt/5.4/msvc2013/mkspecs/win32-msvc2013 -I"C:/Users/Ave/Documents/Visual Studio 2013/Projects/learn/untitled2/untitled2" -I"C:/Users/Ave/Documents/Visual Studio 2013/Projects/learn/untitled2/untitled2/GeneratedFiles" -I"C:/Users/Ave/Documents/Visual Studio 2013/Projects/learn/untitled2/untitled2" -I"C:/Users/Ave/Documents/Visual Studio 2013/Projects/learn/untitled2/untitled2/GeneratedFiles/Debug" -IC:/../Program -I"C:/Users/Ave/Documents/Visual Studio 2013/Projects/learn/untitled2/untitled2/Files" -I"C:/Users/Ave/Documents/Visual Studio 2013/Projects/learn/untitled2/untitled2/(x86)/National" -I"C:/Users/Ave/Documents/Visual Studio 2013/Projects/learn/untitled2/untitled2/Instruments/Shared/ExternalCompilerSupport/C/include" -IC:/../Program -I"C:/Users/Ave/Documents/Visual Studio 2013/Projects/learn/untitled2/untitled2/Files" -I"C:/Users/Ave/Documents/Visual Studio 2013/Projects/learn/untitled2/untitled2/(x86)/National" -I"C:/Users/Ave/Documents/Visual Studio 2013/Projects/learn/untitled2/untitled2/Instruments/Shared/ExternalCompilerSupport/C/lib32/msvc" -I"C:/Program Files (x86)/National Instruments/Shared/ExternalCompilerSupport/C/include" -IE:/Qt/5.4/msvc2013/include -IE:/Qt/5.4/msvc2013/include/QtOpenGL -IE:/Qt/5.4/msvc2013/include/QtWidgets -IE:/Qt/5.4/msvc2013/include/QtGui -IE:/Qt/5.4/msvc2013/include/QtANGLE -IE:/Qt/5.4/msvc2013/include/QtCore calibration.h -o GeneratedFiles\debug\moc_calibration.cpp
 
 compiler_moc_source_make_all:
 compiler_moc_source_clean:
@@ -661,6 +663,7 @@ debug\main.obj: main.cpp untitled2.h \
 		E:\Qt\5.4\msvc2013\include\QtWidgets\qtoolbar.h \
 		E:\Qt\5.4\msvc2013\include\QtWidgets\QVBoxLayout \
 		E:\Qt\5.4\msvc2013\include\QtWidgets\QWidget \
+		"C:\Program Files (x86)\National Instruments\Shared\ExternalCompilerSupport\C\include\NIDAQmx.h" \
 		calibration.h \
 		E:\Qt\5.4\msvc2013\include\QtCore\QObject \
 		acquisition.h \
@@ -831,6 +834,7 @@ debug\untitled2.obj: untitled2.cpp untitled2.h \
 		E:\Qt\5.4\msvc2013\include\QtWidgets\qtoolbar.h \
 		E:\Qt\5.4\msvc2013\include\QtWidgets\QVBoxLayout \
 		E:\Qt\5.4\msvc2013\include\QtWidgets\QWidget \
+		"C:\Program Files (x86)\National Instruments\Shared\ExternalCompilerSupport\C\include\NIDAQmx.h" \
 		calibration.h \
 		E:\Qt\5.4\msvc2013\include\QtCore\QObject \
 		acquisition.h \
@@ -838,7 +842,11 @@ debug\untitled2.obj: untitled2.cpp untitled2.h \
 		E:\Qt\5.4\msvc2013\include\QtGui\qstandarditemmodel.h \
 		E:\Qt\5.4\msvc2013\include\QtGui\QStandardItem \
 		E:\Qt\5.4\msvc2013\include\QtWidgets\qmessagebox.h \
-		E:\Qt\5.4\msvc2013\include\QtWidgets\qdialog.h
+		E:\Qt\5.4\msvc2013\include\QtWidgets\qdialog.h \
+		E:\Qt\5.4\msvc2013\include\QtWidgets\QFileDialog \
+		E:\Qt\5.4\msvc2013\include\QtWidgets\qfiledialog.h \
+		E:\Qt\5.4\msvc2013\include\QtCore\qdir.h \
+		E:\Qt\5.4\msvc2013\include\QtCore\qfileinfo.h
 
 debug\acquisition.obj: acquisition.cpp acquisition.h \
 		E:\Qt\5.4\msvc2013\include\QtCore\QObject \
@@ -891,6 +899,7 @@ debug\acquisition.obj: acquisition.cpp acquisition.h \
 		E:\Qt\5.4\msvc2013\include\QtCore\qcontainerfwd.h \
 		E:\Qt\5.4\msvc2013\include\QtCore\qisenum.h \
 		E:\Qt\5.4\msvc2013\include\QtCore\qobject_impl.h \
+		"C:\Program Files (x86)\National Instruments\Shared\ExternalCompilerSupport\C\include\NIDAQmx.h" \
 		E:\Qt\5.4\msvc2013\include\QtWidgets\qmessagebox.h \
 		E:\Qt\5.4\msvc2013\include\QtWidgets\qdialog.h \
 		E:\Qt\5.4\msvc2013\include\QtWidgets\qwidget.h \

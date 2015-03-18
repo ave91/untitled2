@@ -74,8 +74,8 @@ public:
     QTableView *tableView_2;
     QPushButton *CalibrateButton;
     QFrame *line;
-    QPushButton *pushButton_2;
-    QPushButton *pushButton_3;
+    QPushButton *exportButton;
+    QPushButton *importButton;
     QTableView *tableView_3;
     QPushButton *stokesButton;
     QMenuBar *menuBar;
@@ -272,12 +272,12 @@ public:
         line->setGeometry(QRect(40, 270, 761, 20));
         line->setFrameShape(QFrame::HLine);
         line->setFrameShadow(QFrame::Sunken);
-        pushButton_2 = new QPushButton(centralWidget);
-        pushButton_2->setObjectName(QStringLiteral("pushButton_2"));
-        pushButton_2->setGeometry(QRect(20, 300, 75, 23));
-        pushButton_3 = new QPushButton(centralWidget);
-        pushButton_3->setObjectName(QStringLiteral("pushButton_3"));
-        pushButton_3->setGeometry(QRect(20, 330, 75, 23));
+        exportButton = new QPushButton(centralWidget);
+        exportButton->setObjectName(QStringLiteral("exportButton"));
+        exportButton->setGeometry(QRect(20, 300, 75, 23));
+        importButton = new QPushButton(centralWidget);
+        importButton->setObjectName(QStringLiteral("importButton"));
+        importButton->setGeometry(QRect(20, 330, 75, 23));
         tableView_3 = new QTableView(centralWidget);
         tableView_3->setObjectName(QStringLiteral("tableView_3"));
         tableView_3->setGeometry(QRect(800, 10, 101, 201));
@@ -327,8 +327,8 @@ public:
         L_Button->setText(QApplication::translate("untitled2Class", "|L>", 0));
         R_Button->setText(QApplication::translate("untitled2Class", "|R>", 0));
         CalibrateButton->setText(QApplication::translate("untitled2Class", "Calibrate!", 0));
-        pushButton_2->setText(QApplication::translate("untitled2Class", "Export", 0));
-        pushButton_3->setText(QApplication::translate("untitled2Class", "Import", 0));
+        exportButton->setText(QApplication::translate("untitled2Class", "Export", 0));
+        importButton->setText(QApplication::translate("untitled2Class", "Import", 0));
         stokesButton->setText(QApplication::translate("untitled2Class", "Stokes", 0));
     } // retranslateUi
 

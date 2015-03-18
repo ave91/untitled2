@@ -380,7 +380,7 @@
      <enum>Qt::Horizontal</enum>
     </property>
    </widget>
-   <widget class="QPushButton" name="pushButton_2">
+   <widget class="QPushButton" name="exportButton">
     <property name="geometry">
      <rect>
       <x>20</x>
@@ -393,7 +393,7 @@
      <string>Export</string>
     </property>
    </widget>
-   <widget class="QPushButton" name="pushButton_3">
+   <widget class="QPushButton" name="importButton">
     <property name="geometry">
      <rect>
       <x>20</x>

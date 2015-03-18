@@ -4,6 +4,7 @@
 #include <fstream>
 #include "QStandardItemModel"
 #include <memory>
+#include "QFileDialog"
 
 #define DAQmxErrChk(functionCall) if( DAQmxFailed(error=(functionCall)) ) goto Error; else
 
@@ -655,3 +656,80 @@ void untitled2::on_stokesButton_clicked()
     }
 }
 
+
+void untitled2::on_exportButton_clicked()
+{
+    QString filename=QFileDialog::getSaveFileName(this, tr("Save File"),"./calibration.txt",tr("Text files (*.txt)"));
+    ofstream fileout;
+    fileout.open(filename.toUtf8().constData());
+
+    if(calib_internal_pointer!=0){
+        for(int i=0;i<4;++i){
+            for(int j=0;j<6;++j){
+                fileout<<calib_internal_pointer->matrix[i][j]<<"\t";
+            }
+        fileout<<endl;
+        }
+    }
+    fileout.close();
+    return;
+
+}
+
+void untitled2::on_importButton_clicked()
+{
+    QString filename=QFileDialog::getOpenFileName(this, tr("Open File"),"./calibration.txt",tr("Text files (*.txt)"));
+    ifstream filein;
+    filein.open(filename.toUtf8().constData());
+
+    double temp0=0;
+    double temp1=0;
+    double temp2=0;
+    double temp3=0;
+    double temp4=0;
+    double temp5=0;
+
+    if(calib_internal_pointer!=0){
+        for(int i=0;i<4;++i){
+            filein>>temp0;
+            filein>>temp1;
+            filein>>temp2;
+            filein>>temp3;
+            filein>>temp4;
+            filein>>temp5;
+
+            calib_internal_pointer->matrix[i][0]=temp0;
+            calib_internal_pointer->matrix[i][1]=temp1;
+            calib_internal_pointer->matrix[i][2]=temp2;
+            calib_internal_pointer->matrix[i][3]=temp3;
+            calib_internal_pointer->matrix[i][4]=temp4;
+            calib_internal_pointer->matrix[i][5]=temp5;
+
+        }
+    }
+    filein.close();
+    for(int i=0;i<4;i++){
+        for(int j=0;j<6;j++){
+           if(  calibmatrix_qs[i][j]!=0){
+               delete calibmatrix_qs[i][j];
+               calibmatrix_qs[i][j]=0;
+           }
+        }
+    }
+
+    for(int i=0;i<4;i++){
+        for(int j=0;j<6;j++){
+            calibmatrix_qs[i][j]=new QStandardItem (QString::number(calib_internal_pointer->matrix[i][j]));
+            model_matrix->setItem(i,j,calibmatrix_qs[i][j]);
+        }
+    }
+
+
+    ui.tableView_2->update();
+
+    return;
+
+
+
+
+}

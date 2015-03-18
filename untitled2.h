@@ -104,7 +104,8 @@ private slots:
     void on_R_Button_clicked();
     void on_CalibrateButton_clicked();
     void on_stokesButton_clicked();
-
+    void on_exportButton_clicked();
+    void on_importButton_clicked();
 };
 
 #endif // UNTITLED2_H
