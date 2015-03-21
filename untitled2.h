@@ -94,7 +94,7 @@ private:
 
     Plot *wdg;
 
-
+    void closeEvent(QCloseEvent *event);
 
 	public slots: void on_pushButton_clicked();
 
