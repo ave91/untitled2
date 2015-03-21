@@ -31,16 +31,16 @@ public:
     {
         if (Plot->objectName().isEmpty())
             Plot->setObjectName(QStringLiteral("Plot"));
-        Plot->resize(487, 391);
+        Plot->resize(867, 577);
         customplot = new QCustomPlot(Plot);
         customplot->setObjectName(QStringLiteral("customplot"));
-        customplot->setGeometry(QRect(20, 10, 451, 331));
+        customplot->setGeometry(QRect(20, 10, 811, 501));
         startButton = new QPushButton(Plot);
         startButton->setObjectName(QStringLiteral("startButton"));
-        startButton->setGeometry(QRect(60, 350, 75, 23));
+        startButton->setGeometry(QRect(60, 530, 75, 23));
         stopButton = new QPushButton(Plot);
         stopButton->setObjectName(QStringLiteral("stopButton"));
-        stopButton->setGeometry(QRect(340, 350, 75, 23));
+        stopButton->setGeometry(QRect(620, 540, 75, 23));
 
         retranslateUi(Plot);
 

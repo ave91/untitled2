@@ -740,11 +740,11 @@ void untitled2::on_importButton_clicked()
 void untitled2::on_plotButton_clicked()
 {
 
-    wdg = new Plot;
+    wdg = new Plot(daq_internal_pointer);
     wdg->setAttribute(Qt::WA_DeleteOnClose);
 
     wdg->show();
-    wdg->run(daq_internal_pointer);
+    wdg->run();
 
 }
 
@@ -758,3 +758,7 @@ void untitled2::on_stopacqButton_clicked()
     daq_internal_pointer->thread_cont_acq_stop();
 }
 
+void untitled2::closeEvent(QCloseEvent *event)
+{
+ acquisition::stop=true;
+}
