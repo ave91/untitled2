@@ -15,8 +15,12 @@ class Plot : public QWidget
 public:
     explicit Plot(QWidget *parent = 0);
     void run(acquisition * acq_pointer);
+    acquisition * acq_int_point;
 
     ~Plot();
+
+private slots:
+    void on_startButton_clicked();
 
 private:
     Ui::Plot *ui;

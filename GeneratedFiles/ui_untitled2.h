@@ -79,6 +79,8 @@ public:
     QTableView *tableView_3;
     QPushButton *stokesButton;
     QPushButton *plotButton;
+    QPushButton *contAcqButton;
+    QPushButton *stopacqButton;
     QMenuBar *menuBar;
     QToolBar *mainToolBar;
     QStatusBar *statusBar;
@@ -288,6 +290,12 @@ public:
         plotButton = new QPushButton(centralWidget);
         plotButton->setObjectName(QStringLiteral("plotButton"));
         plotButton->setGeometry(QRect(150, 300, 91, 23));
+        contAcqButton = new QPushButton(centralWidget);
+        contAcqButton->setObjectName(QStringLiteral("contAcqButton"));
+        contAcqButton->setGeometry(QRect(280, 300, 101, 23));
+        stopacqButton = new QPushButton(centralWidget);
+        stopacqButton->setObjectName(QStringLiteral("stopacqButton"));
+        stopacqButton->setGeometry(QRect(410, 300, 75, 23));
         untitled2Class->setCentralWidget(centralWidget);
         menuBar = new QMenuBar(untitled2Class);
         menuBar->setObjectName(QStringLiteral("menuBar"));
@@ -335,6 +343,8 @@ public:
         importButton->setText(QApplication::translate("untitled2Class", "Import", 0));
         stokesButton->setText(QApplication::translate("untitled2Class", "Stokes", 0));
         plotButton->setText(QApplication::translate("untitled2Class", "Continous Plot", 0));
+        contAcqButton->setText(QApplication::translate("untitled2Class", "Cont Acquisition", 0));
+        stopacqButton->setText(QApplication::translate("untitled2Class", "Stop Acq", 0));
     } // retranslateUi
 
 };

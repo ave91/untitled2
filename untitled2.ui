@@ -442,6 +442,32 @@
      <string>Continous Plot</string>
     </property>
    </widget>
+   <widget class="QPushButton" name="contAcqButton">
+    <property name="geometry">
+     <rect>
+      <x>280</x>
+      <y>300</y>
+      <width>101</width>
+      <height>23</height>
+     </rect>
+    </property>
+    <property name="text">
+     <string>Cont Acquisition</string>
+    </property>
+   </widget>
+   <widget class="QPushButton" name="stopacqButton">
+    <property name="geometry">
+     <rect>
+      <x>410</x>
+      <y>300</y>
+      <width>75</width>
+      <height>23</height>
+     </rect>
+    </property>
+    <property name="text">
+     <string>Stop Acq</string>
+    </property>
+   </widget>
   </widget>
   <widget class="QMenuBar" name="menuBar">
    <property name="geometry">

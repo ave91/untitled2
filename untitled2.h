@@ -110,6 +110,8 @@ private slots:
     void on_exportButton_clicked();
     void on_importButton_clicked();
     void on_plotButton_clicked();
+    void on_contAcqButton_clicked();
+    void on_stopacqButton_clicked();
 };
 
 #endif // UNTITLED2_H

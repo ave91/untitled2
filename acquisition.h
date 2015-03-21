@@ -5,6 +5,7 @@
 #include "NIDAQmx.h"
 #include "vector"
 #include "fstream"
+#include <QtConcurrent/QtConcurrent>
 
 using namespace std;
 
@@ -13,25 +14,45 @@ class acquisition : public QObject
 {
     Q_OBJECT
 public:
-    explicit acquisition(int datasize, std::string devices, double maxVolt, double minVolt, double rate, double samp_per_chan,QObject *parent = 0);
+    explicit acquisition(QObject *parent = 0);
     ~acquisition();
     double mean(int channel);
+    void cont_acq();
+    void thread_cont_acq();
+    void thread_cont_acq_stop();
     void read_daq();
-    vector <float64> data;
+    static int32 CVICALLBACK EveryNCallback(TaskHandle taskHandle, int32 everyNsamplesEventType, uInt32 nSamples, void *callbackData);
+    static int32 CVICALLBACK DoneCallback(TaskHandle taskHandle, int32 status, void *callbackData);
+    static vector <float64> data;
+
+
+
+   static int datasize;
+   static string devices;
+   static double maxVolt;
+   static double minVolt;
+   static double rate;
+   static double samp_per_chan;
+   static bool stop;
+
+
+   ofstream file_err;
 
 private:
     int32       error;
     TaskHandle  taskHandle;
     int32       read;
     char    *    errBuff;
-    ofstream file_err;
-    int32 sample_chan;
-    int32 total_sample;
+    QFuture <void> newfuture;
+
     int skip;
 
 signals:
 
 public slots:
 };
+
+
+
 
 #endif // ACQUISITION_H

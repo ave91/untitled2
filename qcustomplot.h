@@ -52,6 +52,7 @@
 #else
 #  include <QtNumeric>
 #  include <QtPrintSupport>
+
 #endif
 
 class QCPPainter;

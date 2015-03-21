@@ -747,3 +747,14 @@ void untitled2::on_plotButton_clicked()
     wdg->run(daq_internal_pointer);
 
 }
+
+void untitled2::on_contAcqButton_clicked()
+{
+    daq_internal_pointer->thread_cont_acq();
+}
+
+void untitled2::on_stopacqButton_clicked()
+{
+    daq_internal_pointer->thread_cont_acq_stop();
+}
+

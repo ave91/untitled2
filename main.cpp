@@ -17,8 +17,12 @@ int main(int argc, char *argv[])
     untitled2 w;
 
 	
-    acquisition daq(7000,"Dev1/ai0:6",10.0,-10.0,2000,1000);
-    w.daq_internal_pointer=&daq;
+    acquisition * daq=new acquisition();
+
+
+
+
+    w.daq_internal_pointer=(daq);
     calibration calib;
     w.calib_internal_pointer=&calib;
     w.show();

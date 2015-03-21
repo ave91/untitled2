@@ -1,18 +1,9 @@
-﻿  Moc'ing acquisition.h...
-  Moc'ing calibration.h...
-  Moc'ing untitled2.h...
-  Uic'ing untitled2.ui...
-  Rcc'ing untitled2.qrc...
-RCC : warning : No resources in 'C:\Users\Ave\Documents\Visual Studio 2013\Projects\learn\untitled2\untitled2\untitled2.qrc'.
-  
-  acquisition.cpp
-  calibration.cpp
-  moc_acquisition.cpp
-  moc_calibration.cpp
-  moc_untitled2.cpp
-  main.cpp
-  untitled2.cpp
-  Esecuzione dell'analisi codice per C/C++ in corso...
-  Generazione del codice in corso...
-  qrc_untitled2.cpp
-  untitled2.vcxproj -> C:\Users\Ave\Documents\Visual Studio 2013\Projects\learn\untitled2\untitled2\..\Win32\Debug\untitled2.exe
+﻿qcustomplot.obj : error LNK2019: riferimento al simbolo esterno "__declspec(dllimport) public: __thiscall QPrinter::QPrinter(enum QPrinter::PrinterMode)" (__imp_??0QPrinter@@QAE@W4PrinterMode@0@@Z) non risolto nella funzione "public: bool __thiscall QCustomPlot::savePdf(class QString const &,bool,int,int,class QString const &,class QString const &)" (?savePdf@QCustomPlot@@QAE_NABVQString@@_NHH00@Z)
+qcustomplot.obj : error LNK2019: riferimento al simbolo esterno "__declspec(dllimport) public: virtual __thiscall QPrinter::~QPrinter(void)" (__imp_??1QPrinter@@UAE@XZ) non risolto nella funzione "public: bool __thiscall QCustomPlot::savePdf(class QString const &,bool,int,int,class QString const &,class QString const &)" (?savePdf@QCustomPlot@@QAE_NABVQString@@_NHH00@Z)
+qcustomplot.obj : error LNK2019: riferimento al simbolo esterno "__declspec(dllimport) public: void __thiscall QPrinter::setOutputFormat(enum QPrinter::OutputFormat)" (__imp_?setOutputFormat@QPrinter@@QAEXW4OutputFormat@1@@Z) non risolto nella funzione "public: bool __thiscall QCustomPlot::savePdf(class QString const &,bool,int,int,class QString const &,class QString const &)" (?savePdf@QCustomPlot@@QAE_NABVQString@@_NHH00@Z)
+qcustomplot.obj : error LNK2019: riferimento al simbolo esterno "__declspec(dllimport) public: void __thiscall QPrinter::setOutputFileName(class QString const &)" (__imp_?setOutputFileName@QPrinter@@QAEXABVQString@@@Z) non risolto nella funzione "public: bool __thiscall QCustomPlot::savePdf(class QString const &,bool,int,int,class QString const &,class QString const &)" (?savePdf@QCustomPlot@@QAE_NABVQString@@_NHH00@Z)
+qcustomplot.obj : error LNK2019: riferimento al simbolo esterno "__declspec(dllimport) public: void __thiscall QPrinter::setColorMode(enum QPrinter::ColorMode)" (__imp_?setColorMode@QPrinter@@QAEXW4ColorMode@1@@Z) non risolto nella funzione "public: bool __thiscall QCustomPlot::savePdf(class QString const &,bool,int,int,class QString const &,class QString const &)" (?savePdf@QCustomPlot@@QAE_NABVQString@@_NHH00@Z)
+qcustomplot.obj : error LNK2019: riferimento al simbolo esterno "__declspec(dllimport) public: class QPrintEngine * __thiscall QPrinter::printEngine(void)const " (__imp_?printEngine@QPrinter@@QBEPAVQPrintEngine@@XZ) non risolto nella funzione "public: bool __thiscall QCustomPlot::savePdf(class QString const &,bool,int,int,class QString const &,class QString const &)" (?savePdf@QCustomPlot@@QAE_NABVQString@@_NHH00@Z)
+untitled2.obj : error LNK2019: riferimento al simbolo esterno "public: __thiscall Plot::Plot(class QWidget *)" (??0Plot@@QAE@PAVQWidget@@@Z) non risolto nella funzione "private: void __thiscall untitled2::on_plotButton_clicked(void)" (?on_plotButton_clicked@untitled2@@AAEXXZ)
+untitled2.obj : error LNK2019: riferimento al simbolo esterno "public: void __thiscall Plot::run(class acquisition *)" (?run@Plot@@QAEXPAVacquisition@@@Z) non risolto nella funzione "private: void __thiscall untitled2::on_plotButton_clicked(void)" (?on_plotButton_clicked@untitled2@@AAEXXZ)
+..\Win32\Debug\\untitled2.exe : fatal error LNK1120: 8 esterni non risolti

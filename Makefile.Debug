@@ -48,7 +48,8 @@ SOURCES       = main.cpp \
 		acquisition.cpp \
 		calibration.cpp \
 		qcustomplot.cpp \
-		plot.cpp GeneratedFiles\qrc_untitled2.cpp \
+		plot.cpp \
+		acquisition.cpp GeneratedFiles\qrc_untitled2.cpp \
 		GeneratedFiles\debug\moc_untitled2.cpp \
 		GeneratedFiles\debug\moc_qcustomplot.cpp \
 		GeneratedFiles\debug\moc_acquisition.cpp \
@@ -60,6 +61,7 @@ OBJECTS       = debug\main.obj \
 		debug\calibration.obj \
 		debug\qcustomplot.obj \
 		debug\plot.obj \
+		debug\acquisition.obj \
 		debug\qrc_untitled2.obj \
 		debug\moc_untitled2.obj \
 		debug\moc_qcustomplot.obj \
@@ -82,7 +84,8 @@ DIST          =  untitled2.h \
 		acquisition.cpp \
 		calibration.cpp \
 		qcustomplot.cpp \
-		plot.cpp
+		plot.cpp \
+		acquisition.cpp
 QMAKE_TARGET  = untitled2
 DESTDIR        = ..\Win32\Debug\ #avoid trailing-slash linebreak
 TARGET         = untitled2.exe
@@ -194,7 +197,7 @@ dist:
 	$(ZIP) untitled2.zip $(SOURCES) $(DIST) untitled2.pro E:\Qt\5.4\msvc2013\mkspecs\features\spec_pre.prf E:\Qt\5.4\msvc2013\mkspecs\common\shell-win32.conf E:\Qt\5.4\msvc2013\mkspecs\qconfig.pri E:\Qt\5.4\msvc2013\mkspecs\modules\qt_lib_axbase.pri E:\Qt\5.4\msvc2013\mkspecs\modules\qt_lib_axbase_private.pri E:\Qt\5.4\msvc2013\mkspecs\modules\qt_lib_axcontainer.pri E:\Qt\5.4\msvc2013\mkspecs\modules\qt_lib_axcontainer_private.pri E:\Qt\5.4\msvc2013\mkspecs\modules\qt_lib_axserver.pri E:\Qt\5.4\msvc2013\mkspecs\modules\qt_lib_axserver_private.pri E:\Qt\5.4\msvc2013\mkspecs\modules\qt_lib_bluetooth.pri E:\Qt\5.4\msvc2013\mkspecs\modules\qt_lib_bluetooth_private.pri E:\Qt\5.4\msvc2013\mkspecs\modules\qt_lib_bootstrap_private.pri E:\Qt\5.4\msvc2013\mkspecs\modules\qt_lib_clucene_private.pri E:\Qt\5.4\msvc2013\mkspecs\modules\qt_lib_concurrent.pri E:\Qt\5.4\msvc2013\mkspecs\modules\qt_lib_concurrent_private.pri E:\Qt\5.4\msvc2013\mkspecs\modules\qt_lib_core.pri E:\Qt\5.4\msvc2013\mkspecs\modules\qt_lib_core_private.pri E:\Qt\5.4\msvc2013\mkspecs\modules\qt_lib_dbus.pri E:\Qt\5.4\msvc2013\mkspecs\modules\qt_lib_dbus_private.pri E:\Qt\5.4\msvc2013\mkspecs\modules\qt_lib_declarative.pri E:\Qt\5.4\msvc2013\mkspecs\modules\qt_lib_declarative_private.pri E:\Qt\5.4\msvc2013\mkspecs\modules\qt_lib_designer.pri E:\Qt\5.4\msvc2013\mkspecs\modules\qt_lib_designer_private.pri E:\Qt\5.4\msvc2013\mkspecs\modules\qt_lib_designercomponents_private.pri E:\Qt\5.4\msvc2013\mkspecs\modules\qt_lib_enginio.pri E:\Qt\5.4\msvc2013\mkspecs\modules\qt_lib_enginio_private.pri E:\Qt\5.4\msvc2013\mkspecs\modules\qt_lib_gui.pri E:\Qt\5.4\msvc2013\mkspecs\modules\qt_lib_gui_private.pri E:\Qt\5.4\msvc2013\mkspecs\modules\qt_lib_help.pri E:\Qt\5.4\msvc2013\mkspecs\modules\qt_lib_help_private.pri E:\Qt\5.4\msvc2013\mkspecs\modules\qt_lib_location.pri E:\Qt\5.4\msvc2013\mkspecs\modules\qt_lib_location_private.pri E:\Qt\5.4\msvc2013\mkspecs\modules\qt_lib_multimedia.pri E:\Qt\5.4\msvc2013\mkspecs\modules\qt_lib_multimedia_private.pri E:\Qt\5.4\msvc2013\mkspecs\modules\qt_lib_multimediawidgets.pri E:\Qt\5.4\msvc2013\mkspecs\modules\qt_lib_multimediawidgets_private.pri E:\Qt\5.4\msvc2013\mkspecs\modules\qt_lib_network.pri E:\Qt\5.4\msvc2013\mkspecs\modules\qt_lib_network_private.pri E:\Qt\5.4\msvc2013\mkspecs\modules\qt_lib_nfc.pri E:\Qt\5.4\msvc2013\mkspecs\modules\qt_lib_nfc_private.pri E:\Qt\5.4\msvc2013\mkspecs\modules\qt_lib_opengl.pri E:\Qt\5.4\msvc2013\mkspecs\modules\qt_lib_opengl_private.pri E:\Qt\5.4\msvc2013\mkspecs\modules\qt_lib_openglextensions.pri E:\Qt\5.4\msvc2013\mkspecs\modules\qt_lib_openglextensions_private.pri E:\Qt\5.4\msvc2013\mkspecs\modules\qt_lib_platformsupport_private.pri E:\Qt\5.4\msvc2013\mkspecs\modules\qt_lib_positioning.pri E:\Qt\5.4\msvc2013\mkspecs\modules\qt_lib_positioning_private.pri E:\Qt\5.4\msvc2013\mkspecs\modules\qt_lib_printsupport.pri E:\Qt\5.4\msvc2013\mkspecs\modules\qt_lib_printsupport_private.pri E:\Qt\5.4\msvc2013\mkspecs\modules\qt_lib_qml.pri E:\Qt\5.4\msvc2013\mkspecs\modules\qt_lib_qml_private.pri E:\Qt\5.4\msvc2013\mkspecs\modules\qt_lib_qmldevtools_private.pri E:\Qt\5.4\msvc2013\mkspecs\modules\qt_lib_qmltest.pri E:\Qt\5.4\msvc2013\mkspecs\modules\qt_lib_qmltest_private.pri E:\Qt\5.4\msvc2013\mkspecs\modules\qt_lib_qtmultimediaquicktools_private.pri E:\Qt\5.4\msvc2013\mkspecs\modules\qt_lib_quick.pri E:\Qt\5.4\msvc2013\mkspecs\modules\qt_lib_quick_private.pri E:\Qt\5.4\msvc2013\mkspecs\modules\qt_lib_quickparticles_private.pri E:\Qt\5.4\msvc2013\mkspecs\modules\qt_lib_quickwidgets.pri E:\Qt\5.4\msvc2013\mkspecs\modules\qt_lib_quickwidgets_private.pri E:\Qt\5.4\msvc2013\mkspecs\modules\qt_lib_script.pri E:\Qt\5.4\msvc2013\mkspecs\modules\qt_lib_script_private.pri E:\Qt\5.4\msvc2013\mkspecs\modules\qt_lib_scripttools.pri E:\Qt\5.4\msvc2013\mkspecs\modules\qt_lib_scripttools_private.pri E:\Qt\5.4\msvc2013\mkspecs\modules\qt_lib_sensors.pri E:\Qt\5.4\msvc2013\mkspecs\modules\qt_lib_sensors_private.pri E:\Qt\5.4\msvc2013\mkspecs\modules\qt_lib_serialport.pri E:\Qt\5.4\msvc2013\mkspecs\modules\qt_lib_serialport_private.pri E:\Qt\5.4\msvc2013\mkspecs\modules\qt_lib_sql.pri E:\Qt\5.4\msvc2013\mkspecs\modules\qt_lib_sql_private.pri E:\Qt\5.4\msvc2013\mkspecs\modules\qt_lib_svg.pri E:\Qt\5.4\msvc2013\mkspecs\modules\qt_lib_svg_private.pri E:\Qt\5.4\msvc2013\mkspecs\modules\qt_lib_testlib.pri E:\Qt\5.4\msvc2013\mkspecs\modules\qt_lib_testlib_private.pri E:\Qt\5.4\msvc2013\mkspecs\modules\qt_lib_uitools.pri E:\Qt\5.4\msvc2013\mkspecs\modules\qt_lib_uitools_private.pri E:\Qt\5.4\msvc2013\mkspecs\modules\qt_lib_webchannel.pri E:\Qt\5.4\msvc2013\mkspecs\modules\qt_lib_webchannel_private.pri E:\Qt\5.4\msvc2013\mkspecs\modules\qt_lib_webengine.pri E:\Qt\5.4\msvc2013\mkspecs\modules\qt_lib_webengine_private.pri E:\Qt\5.4\msvc2013\mkspecs\modules\qt_lib_webenginecore.pri E:\Qt\5.4\msvc2013\mkspecs\modules\qt_lib_webenginecore_private.pri E:\Qt\5.4\msvc2013\mkspecs\modules\qt_lib_webenginewidgets.pri E:\Qt\5.4\msvc2013\mkspecs\modules\qt_lib_webenginewidgets_private.pri E:\Qt\5.4\msvc2013\mkspecs\modules\qt_lib_webkit.pri E:\Qt\5.4\msvc2013\mkspecs\modules\qt_lib_webkit_private.pri E:\Qt\5.4\msvc2013\mkspecs\modules\qt_lib_webkitwidgets.pri E:\Qt\5.4\msvc2013\mkspecs\modules\qt_lib_webkitwidgets_private.pri E:\Qt\5.4\msvc2013\mkspecs\modules\qt_lib_websockets.pri E:\Qt\5.4\msvc2013\mkspecs\modules\qt_lib_websockets_private.pri E:\Qt\5.4\msvc2013\mkspecs\modules\qt_lib_webview.pri E:\Qt\5.4\msvc2013\mkspecs\modules\qt_lib_webview_private.pri E:\Qt\5.4\msvc2013\mkspecs\modules\qt_lib_widgets.pri E:\Qt\5.4\msvc2013\mkspecs\modules\qt_lib_widgets_private.pri E:\Qt\5.4\msvc2013\mkspecs\modules\qt_lib_winextras.pri E:\Qt\5.4\msvc2013\mkspecs\modules\qt_lib_winextras_private.pri E:\Qt\5.4\msvc2013\mkspecs\modules\qt_lib_xml.pri E:\Qt\5.4\msvc2013\mkspecs\modules\qt_lib_xml_private.pri E:\Qt\5.4\msvc2013\mkspecs\modules\qt_lib_xmlpatterns.pri E:\Qt\5.4\msvc2013\mkspecs\modules\qt_lib_xmlpatterns_private.pri E:\Qt\5.4\msvc2013\mkspecs\features\qt_functions.prf E:\Qt\5.4\msvc2013\mkspecs\features\qt_config.prf E:\Qt\5.4\msvc2013\mkspecs\features\win32\qt_config.prf E:\Qt\5.4\msvc2013\mkspecs\win32-msvc2013\qmake.conf E:\Qt\5.4\msvc2013\mkspecs\features\spec_post.prf E:\Qt\5.4\msvc2013\mkspecs\features\exclusive_builds.prf E:\Qt\5.4\msvc2013\mkspecs\features\default_pre.prf E:\Qt\5.4\msvc2013\mkspecs\features\win32\default_pre.prf untitled2.pri E:\Qt\5.4\msvc2013\mkspecs\features\resolve_config.prf E:\Qt\5.4\msvc2013\mkspecs\features\exclusive_builds_post.prf E:\Qt\5.4\msvc2013\mkspecs\features\default_post.prf E:\Qt\5.4\msvc2013\mkspecs\features\build_pass.prf E:\Qt\5.4\msvc2013\mkspecs\features\win32\rtti.prf E:\Qt\5.4\msvc2013\mkspecs\features\precompile_header.prf E:\Qt\5.4\msvc2013\mkspecs\features\warn_on.prf E:\Qt\5.4\msvc2013\mkspecs\features\qt.prf E:\Qt\5.4\msvc2013\mkspecs\features\resources.prf E:\Qt\5.4\msvc2013\mkspecs\features\moc.prf E:\Qt\5.4\msvc2013\mkspecs\features\win32\opengl.prf E:\Qt\5.4\msvc2013\mkspecs\features\uic.prf E:\Qt\5.4\msvc2013\mkspecs\features\win32\windows.prf E:\Qt\5.4\msvc2013\mkspecs\features\testcase_targets.prf E:\Qt\5.4\msvc2013\mkspecs\features\exceptions.prf E:\Qt\5.4\msvc2013\mkspecs\features\yacc.prf E:\Qt\5.4\msvc2013\mkspecs\features\lex.prf untitled2.pro untitled2.qrc E:/Qt/5.4/msvc2013/lib/qtmaind.prl E:/Qt/5.4/msvc2013/lib/Qt5Cored.prl E:/Qt/5.4/msvc2013/lib/Qt5OpenGLd.prl E:/Qt/5.4/msvc2013/lib/Qt5PrintSupportd.prl E:/Qt/5.4/msvc2013/lib/Qt5Widgetsd.prl E:/Qt/5.4/msvc2013/lib/Qt5Guid.prl  NO_PCH_SOURCES RESOURCES HEADERS SOURCES OBJECTIVE_SOURCES FORMS YACCSOURCES YACCSOURCES LEXSOURCES 
 
 clean: compiler_clean 
-	-$(DEL_FILE) debug\main.obj debug\untitled2.obj debug\acquisition.obj debug\calibration.obj debug\qcustomplot.obj debug\plot.obj debug\qrc_untitled2.obj debug\moc_untitled2.obj debug\moc_qcustomplot.obj debug\moc_acquisition.obj debug\moc_calibration.obj debug\moc_plot.obj
+	-$(DEL_FILE) debug\main.obj debug\untitled2.obj debug\acquisition.obj debug\calibration.obj debug\qcustomplot.obj debug\plot.obj debug\acquisition.obj debug\qrc_untitled2.obj debug\moc_untitled2.obj debug\moc_qcustomplot.obj debug\moc_acquisition.obj debug\moc_calibration.obj debug\moc_plot.obj
 	-$(DEL_FILE) ..\Win32\Debug\untitled2.exp ..\Win32\Debug\untitled2.ilk ..\Win32\Debug\untitled2.idb
 	-$(DEL_FILE) debug\untitled2.res
 
@@ -383,6 +386,127 @@ GeneratedFiles\debug\moc_untitled2.cpp: E:\Qt\5.4\msvc2013\include\QtWidgets\QMa
 		calibration.h \
 		E:\Qt\5.4\msvc2013\include\QtCore\QObject \
 		acquisition.h \
+		E:\Qt\5.4\msvc2013\include\QtConcurrent\QtConcurrent \
+		E:\Qt\5.4\msvc2013\include\QtConcurrent\QtConcurrentDepends \
+		E:\Qt\5.4\msvc2013\include\QtCore\QtCore \
+		E:\Qt\5.4\msvc2013\include\QtCore\QtCoreDepends \
+		E:\Qt\5.4\msvc2013\include\QtCore\qabstractanimation.h \
+		E:\Qt\5.4\msvc2013\include\QtCore\qanimationgroup.h \
+		E:\Qt\5.4\msvc2013\include\QtCore\qparallelanimationgroup.h \
+		E:\Qt\5.4\msvc2013\include\QtCore\qpauseanimation.h \
+		E:\Qt\5.4\msvc2013\include\QtCore\qpropertyanimation.h \
+		E:\Qt\5.4\msvc2013\include\QtCore\qvariantanimation.h \
+		E:\Qt\5.4\msvc2013\include\QtCore\qeasingcurve.h \
+		E:\Qt\5.4\msvc2013\include\QtCore\qsequentialanimationgroup.h \
+		E:\Qt\5.4\msvc2013\include\QtCore\qtextcodec.h \
+		E:\Qt\5.4\msvc2013\include\QtCore\qendian.h \
+		E:\Qt\5.4\msvc2013\include\QtCore\qlibraryinfo.h \
+		E:\Qt\5.4\msvc2013\include\QtCore\qdatetime.h \
+		E:\Qt\5.4\msvc2013\include\QtCore\qbuffer.h \
+		E:\Qt\5.4\msvc2013\include\QtCore\qdir.h \
+		E:\Qt\5.4\msvc2013\include\QtCore\qfileinfo.h \
+		E:\Qt\5.4\msvc2013\include\QtCore\qdiriterator.h \
+		E:\Qt\5.4\msvc2013\include\QtCore\qfileselector.h \
+		E:\Qt\5.4\msvc2013\include\QtCore\QStringList \
+		E:\Qt\5.4\msvc2013\include\QtCore\qfilesystemwatcher.h \
+		E:\Qt\5.4\msvc2013\include\QtCore\qlockfile.h \
+		E:\Qt\5.4\msvc2013\include\QtCore\qloggingcategory.h \
+		E:\Qt\5.4\msvc2013\include\QtCore\qprocess.h \
+		E:\Qt\5.4\msvc2013\include\QtCore\qresource.h \
+		E:\Qt\5.4\msvc2013\include\QtCore\qsavefile.h \
+		E:\Qt\5.4\msvc2013\include\QtCore\qsettings.h \
+		E:\Qt\5.4\msvc2013\include\QtCore\qstandardpaths.h \
+		E:\Qt\5.4\msvc2013\include\QtCore\qstorageinfo.h \
+		E:\Qt\5.4\msvc2013\include\QtCore\qtemporarydir.h \
+		E:\Qt\5.4\msvc2013\include\QtCore\QScopedPointer \
+		E:\Qt\5.4\msvc2013\include\QtCore\qtemporaryfile.h \
+		E:\Qt\5.4\msvc2013\include\QtCore\qabstractproxymodel.h \
+		E:\Qt\5.4\msvc2013\include\QtCore\qidentityproxymodel.h \
+		E:\Qt\5.4\msvc2013\include\QtCore\qsortfilterproxymodel.h \
+		E:\Qt\5.4\msvc2013\include\QtCore\qstringlistmodel.h \
+		E:\Qt\5.4\msvc2013\include\QtCore\qjsonarray.h \
+		E:\Qt\5.4\msvc2013\include\QtCore\qjsonvalue.h \
+		E:\Qt\5.4\msvc2013\include\QtCore\qjsondocument.h \
+		E:\Qt\5.4\msvc2013\include\QtCore\qjsonobject.h \
+		E:\Qt\5.4\msvc2013\include\QtCore\qabstracteventdispatcher.h \
+		E:\Qt\5.4\msvc2013\include\QtCore\qabstractnativeeventfilter.h \
+		E:\Qt\5.4\msvc2013\include\QtCore\qbasictimer.h \
+		E:\Qt\5.4\msvc2013\include\QtCore\qmath.h \
+		E:\Qt\5.4\msvc2013\include\QtCore\qmetaobject.h \
+		E:\Qt\5.4\msvc2013\include\QtCore\qmimedata.h \
+		E:\Qt\5.4\msvc2013\include\QtCore\qobjectcleanuphandler.h \
+		E:\Qt\5.4\msvc2013\include\QtCore\qpointer.h \
+		E:\Qt\5.4\msvc2013\include\QtCore\qsharedmemory.h \
+		E:\Qt\5.4\msvc2013\include\QtCore\qsignalmapper.h \
+		E:\Qt\5.4\msvc2013\include\QtCore\qsocketnotifier.h \
+		E:\Qt\5.4\msvc2013\include\QtCore\qsystemsemaphore.h \
+		E:\Qt\5.4\msvc2013\include\QtCore\qtimer.h \
+		E:\Qt\5.4\msvc2013\include\QtCore\qtranslator.h \
+		E:\Qt\5.4\msvc2013\include\QtCore\qwineventnotifier.h \
+		E:\Qt\5.4\msvc2013\include\QtCore\qmimedatabase.h \
+		E:\Qt\5.4\msvc2013\include\QtCore\qmimetype.h \
+		E:\Qt\5.4\msvc2013\include\QtCore\qfactoryinterface.h \
+		E:\Qt\5.4\msvc2013\include\QtCore\qlibrary.h \
+		E:\Qt\5.4\msvc2013\include\QtCore\qplugin.h \
+		E:\Qt\5.4\msvc2013\include\QtCore\qpluginloader.h \
+		E:\Qt\5.4\msvc2013\include\QtCore\quuid.h \
+		E:\Qt\5.4\msvc2013\include\QtCore\qabstractstate.h \
+		E:\Qt\5.4\msvc2013\include\QtCore\qabstracttransition.h \
+		E:\Qt\5.4\msvc2013\include\QtCore\qeventtransition.h \
+		E:\Qt\5.4\msvc2013\include\QtCore\qfinalstate.h \
+		E:\Qt\5.4\msvc2013\include\QtCore\qhistorystate.h \
+		E:\Qt\5.4\msvc2013\include\QtCore\qsignaltransition.h \
+		E:\Qt\5.4\msvc2013\include\QtCore\qstate.h \
+		E:\Qt\5.4\msvc2013\include\QtCore\qstatemachine.h \
+		E:\Qt\5.4\msvc2013\include\QtCore\qexception.h \
+		E:\Qt\5.4\msvc2013\include\QtCore\qfuture.h \
+		E:\Qt\5.4\msvc2013\include\QtCore\qfutureinterface.h \
+		E:\Qt\5.4\msvc2013\include\QtCore\qrunnable.h \
+		E:\Qt\5.4\msvc2013\include\QtCore\qresultstore.h \
+		E:\Qt\5.4\msvc2013\include\QtCore\qfuturesynchronizer.h \
+		E:\Qt\5.4\msvc2013\include\QtCore\qfuturewatcher.h \
+		E:\Qt\5.4\msvc2013\include\QtCore\qreadwritelock.h \
+		E:\Qt\5.4\msvc2013\include\QtCore\qsemaphore.h \
+		E:\Qt\5.4\msvc2013\include\QtCore\qthread.h \
+		E:\Qt\5.4\msvc2013\include\QtCore\qthreadpool.h \
+		E:\Qt\5.4\msvc2013\include\QtCore\qthreadstorage.h \
+		E:\Qt\5.4\msvc2013\include\QtCore\qwaitcondition.h \
+		E:\Qt\5.4\msvc2013\include\QtCore\qarraydataops.h \
+		E:\Qt\5.4\msvc2013\include\QtCore\qarraydatapointer.h \
+		E:\Qt\5.4\msvc2013\include\QtCore\qbitarray.h \
+		E:\Qt\5.4\msvc2013\include\QtCore\qbytearraymatcher.h \
+		E:\Qt\5.4\msvc2013\include\QtCore\qcache.h \
+		E:\Qt\5.4\msvc2013\include\QtCore\qcollator.h \
+		E:\Qt\5.4\msvc2013\include\QtCore\qcommandlineoption.h \
+		E:\Qt\5.4\msvc2013\include\QtCore\qcommandlineparser.h \
+		E:\Qt\5.4\msvc2013\include\QtCore\qcryptographichash.h \
+		E:\Qt\5.4\msvc2013\include\QtCore\qelapsedtimer.h \
+		E:\Qt\5.4\msvc2013\include\QtCore\qlinkedlist.h \
+		E:\Qt\5.4\msvc2013\include\QtCore\qmessageauthenticationcode.h \
+		E:\Qt\5.4\msvc2013\include\QtCore\qqueue.h \
+		E:\Qt\5.4\msvc2013\include\QtCore\qscopedvaluerollback.h \
+		E:\Qt\5.4\msvc2013\include\QtCore\qstack.h \
+		E:\Qt\5.4\msvc2013\include\QtCore\qtextboundaryfinder.h \
+		E:\Qt\5.4\msvc2013\include\QtCore\qtimeline.h \
+		E:\Qt\5.4\msvc2013\include\QtCore\qtimezone.h \
+		E:\Qt\5.4\msvc2013\include\QtCore\qxmlstream.h \
+		E:\Qt\5.4\msvc2013\include\QtCore\qtcoreversion.h \
+		E:\Qt\5.4\msvc2013\include\QtConcurrent\qtconcurrentcompilertest.h \
+		E:\Qt\5.4\msvc2013\include\QtConcurrent\qtconcurrent_global.h \
+		E:\Qt\5.4\msvc2013\include\QtConcurrent\qtconcurrentexception.h \
+		E:\Qt\5.4\msvc2013\include\QtConcurrent\qtconcurrentfilter.h \
+		E:\Qt\5.4\msvc2013\include\QtConcurrent\qtconcurrentfilterkernel.h \
+		E:\Qt\5.4\msvc2013\include\QtConcurrent\qtconcurrentiteratekernel.h \
+		E:\Qt\5.4\msvc2013\include\QtConcurrent\qtconcurrentmedian.h \
+		E:\Qt\5.4\msvc2013\include\QtConcurrent\qtconcurrentthreadengine.h \
+		E:\Qt\5.4\msvc2013\include\QtConcurrent\qtconcurrentmapkernel.h \
+		E:\Qt\5.4\msvc2013\include\QtConcurrent\qtconcurrentreducekernel.h \
+		E:\Qt\5.4\msvc2013\include\QtConcurrent\qtconcurrentfunctionwrappers.h \
+		E:\Qt\5.4\msvc2013\include\QtConcurrent\qtconcurrentmap.h \
+		E:\Qt\5.4\msvc2013\include\QtConcurrent\qtconcurrentrun.h \
+		E:\Qt\5.4\msvc2013\include\QtConcurrent\qtconcurrentrunbase.h \
+		E:\Qt\5.4\msvc2013\include\QtConcurrent\qtconcurrentstoredfunctioncall.h \
+		E:\Qt\5.4\msvc2013\include\QtConcurrent\qtconcurrentversion.h \
 		E:\Qt\5.4\msvc2013\include\QtGui\QStandardItemModel \
 		E:\Qt\5.4\msvc2013\include\QtGui\qstandarditemmodel.h \
 		E:\Qt\5.4\msvc2013\include\QtGui\QStandardItem \
@@ -927,6 +1051,159 @@ GeneratedFiles\debug\moc_acquisition.cpp: E:\Qt\5.4\msvc2013\include\QtCore\QObj
 		E:\Qt\5.4\msvc2013\include\QtCore\qisenum.h \
 		E:\Qt\5.4\msvc2013\include\QtCore\qobject_impl.h \
 		"C:\Program Files (x86)\National Instruments\Shared\ExternalCompilerSupport\C\include\NIDAQmx.h" \
+		E:\Qt\5.4\msvc2013\include\QtConcurrent\QtConcurrent \
+		E:\Qt\5.4\msvc2013\include\QtConcurrent\QtConcurrentDepends \
+		E:\Qt\5.4\msvc2013\include\QtCore\QtCore \
+		E:\Qt\5.4\msvc2013\include\QtCore\QtCoreDepends \
+		E:\Qt\5.4\msvc2013\include\QtCore\qabstractanimation.h \
+		E:\Qt\5.4\msvc2013\include\QtCore\qanimationgroup.h \
+		E:\Qt\5.4\msvc2013\include\QtCore\qparallelanimationgroup.h \
+		E:\Qt\5.4\msvc2013\include\QtCore\qpauseanimation.h \
+		E:\Qt\5.4\msvc2013\include\QtCore\qpropertyanimation.h \
+		E:\Qt\5.4\msvc2013\include\QtCore\qvariantanimation.h \
+		E:\Qt\5.4\msvc2013\include\QtCore\qeasingcurve.h \
+		E:\Qt\5.4\msvc2013\include\QtCore\qvector.h \
+		E:\Qt\5.4\msvc2013\include\QtCore\qpoint.h \
+		E:\Qt\5.4\msvc2013\include\QtCore\qvariant.h \
+		E:\Qt\5.4\msvc2013\include\QtCore\qmap.h \
+		E:\Qt\5.4\msvc2013\include\QtCore\qpair.h \
+		E:\Qt\5.4\msvc2013\include\QtCore\qdebug.h \
+		E:\Qt\5.4\msvc2013\include\QtCore\qhash.h \
+		E:\Qt\5.4\msvc2013\include\QtCore\qtextstream.h \
+		E:\Qt\5.4\msvc2013\include\QtCore\qiodevice.h \
+		E:\Qt\5.4\msvc2013\include\QtCore\qlocale.h \
+		E:\Qt\5.4\msvc2013\include\QtCore\qshareddata.h \
+		E:\Qt\5.4\msvc2013\include\QtCore\qset.h \
+		E:\Qt\5.4\msvc2013\include\QtCore\qcontiguouscache.h \
+		E:\Qt\5.4\msvc2013\include\QtCore\qstringlist.h \
+		E:\Qt\5.4\msvc2013\include\QtCore\qdatastream.h \
+		E:\Qt\5.4\msvc2013\include\QtCore\qregexp.h \
+		E:\Qt\5.4\msvc2013\include\QtCore\qstringmatcher.h \
+		E:\Qt\5.4\msvc2013\include\QtCore\qsequentialanimationgroup.h \
+		E:\Qt\5.4\msvc2013\include\QtCore\qtextcodec.h \
+		E:\Qt\5.4\msvc2013\include\QtCore\qendian.h \
+		E:\Qt\5.4\msvc2013\include\QtCore\qlibraryinfo.h \
+		E:\Qt\5.4\msvc2013\include\QtCore\qdatetime.h \
+		E:\Qt\5.4\msvc2013\include\QtCore\qbuffer.h \
+		E:\Qt\5.4\msvc2013\include\QtCore\qdir.h \
+		E:\Qt\5.4\msvc2013\include\QtCore\qfileinfo.h \
+		E:\Qt\5.4\msvc2013\include\QtCore\qfile.h \
+		E:\Qt\5.4\msvc2013\include\QtCore\qfiledevice.h \
+		E:\Qt\5.4\msvc2013\include\QtCore\qdiriterator.h \
+		E:\Qt\5.4\msvc2013\include\QtCore\qfileselector.h \
+		E:\Qt\5.4\msvc2013\include\QtCore\QStringList \
+		E:\Qt\5.4\msvc2013\include\QtCore\qfilesystemwatcher.h \
+		E:\Qt\5.4\msvc2013\include\QtCore\qlockfile.h \
+		E:\Qt\5.4\msvc2013\include\QtCore\qloggingcategory.h \
+		E:\Qt\5.4\msvc2013\include\QtCore\qprocess.h \
+		E:\Qt\5.4\msvc2013\include\QtCore\qresource.h \
+		E:\Qt\5.4\msvc2013\include\QtCore\qsavefile.h \
+		E:\Qt\5.4\msvc2013\include\QtCore\qsettings.h \
+		E:\Qt\5.4\msvc2013\include\QtCore\qstandardpaths.h \
+		E:\Qt\5.4\msvc2013\include\QtCore\qstorageinfo.h \
+		E:\Qt\5.4\msvc2013\include\QtCore\qtemporarydir.h \
+		E:\Qt\5.4\msvc2013\include\QtCore\QScopedPointer \
+		E:\Qt\5.4\msvc2013\include\QtCore\qtemporaryfile.h \
+		E:\Qt\5.4\msvc2013\include\QtCore\qurl.h \
+		E:\Qt\5.4\msvc2013\include\QtCore\qurlquery.h \
+		E:\Qt\5.4\msvc2013\include\QtCore\qabstractitemmodel.h \
+		E:\Qt\5.4\msvc2013\include\QtCore\qabstractproxymodel.h \
+		E:\Qt\5.4\msvc2013\include\QtCore\qidentityproxymodel.h \
+		E:\Qt\5.4\msvc2013\include\QtCore\qitemselectionmodel.h \
+		E:\Qt\5.4\msvc2013\include\QtCore\qsortfilterproxymodel.h \
+		E:\Qt\5.4\msvc2013\include\QtCore\qstringlistmodel.h \
+		E:\Qt\5.4\msvc2013\include\QtCore\qjsonarray.h \
+		E:\Qt\5.4\msvc2013\include\QtCore\qjsonvalue.h \
+		E:\Qt\5.4\msvc2013\include\QtCore\qjsondocument.h \
+		E:\Qt\5.4\msvc2013\include\QtCore\qjsonobject.h \
+		E:\Qt\5.4\msvc2013\include\QtCore\qabstracteventdispatcher.h \
+		E:\Qt\5.4\msvc2013\include\QtCore\qeventloop.h \
+		E:\Qt\5.4\msvc2013\include\QtCore\qabstractnativeeventfilter.h \
+		E:\Qt\5.4\msvc2013\include\QtCore\qbasictimer.h \
+		E:\Qt\5.4\msvc2013\include\QtCore\qcoreapplication.h \
+		E:\Qt\5.4\msvc2013\include\QtCore\qmath.h \
+		E:\Qt\5.4\msvc2013\include\QtCore\qmetaobject.h \
+		E:\Qt\5.4\msvc2013\include\QtCore\qmimedata.h \
+		E:\Qt\5.4\msvc2013\include\QtCore\qobjectcleanuphandler.h \
+		E:\Qt\5.4\msvc2013\include\QtCore\qpointer.h \
+		E:\Qt\5.4\msvc2013\include\QtCore\qsharedpointer.h \
+		E:\Qt\5.4\msvc2013\include\QtCore\qsharedpointer_impl.h \
+		E:\Qt\5.4\msvc2013\include\QtCore\qsharedmemory.h \
+		E:\Qt\5.4\msvc2013\include\QtCore\qsignalmapper.h \
+		E:\Qt\5.4\msvc2013\include\QtCore\qsocketnotifier.h \
+		E:\Qt\5.4\msvc2013\include\QtCore\qsystemsemaphore.h \
+		E:\Qt\5.4\msvc2013\include\QtCore\qtimer.h \
+		E:\Qt\5.4\msvc2013\include\QtCore\qtranslator.h \
+		E:\Qt\5.4\msvc2013\include\QtCore\qwineventnotifier.h \
+		E:\Qt\5.4\msvc2013\include\QtCore\qmimedatabase.h \
+		E:\Qt\5.4\msvc2013\include\QtCore\qmimetype.h \
+		E:\Qt\5.4\msvc2013\include\QtCore\qfactoryinterface.h \
+		E:\Qt\5.4\msvc2013\include\QtCore\qlibrary.h \
+		E:\Qt\5.4\msvc2013\include\QtCore\qplugin.h \
+		E:\Qt\5.4\msvc2013\include\QtCore\qpluginloader.h \
+		E:\Qt\5.4\msvc2013\include\QtCore\quuid.h \
+		E:\Qt\5.4\msvc2013\include\QtCore\qabstractstate.h \
+		E:\Qt\5.4\msvc2013\include\QtCore\qabstracttransition.h \
+		E:\Qt\5.4\msvc2013\include\QtCore\qeventtransition.h \
+		E:\Qt\5.4\msvc2013\include\QtCore\qfinalstate.h \
+		E:\Qt\5.4\msvc2013\include\QtCore\qhistorystate.h \
+		E:\Qt\5.4\msvc2013\include\QtCore\qsignaltransition.h \
+		E:\Qt\5.4\msvc2013\include\QtCore\qstate.h \
+		E:\Qt\5.4\msvc2013\include\QtCore\qstatemachine.h \
+		E:\Qt\5.4\msvc2013\include\QtCore\qexception.h \
+		E:\Qt\5.4\msvc2013\include\QtCore\qfuture.h \
+		E:\Qt\5.4\msvc2013\include\QtCore\qfutureinterface.h \
+		E:\Qt\5.4\msvc2013\include\QtCore\qrunnable.h \
+		E:\Qt\5.4\msvc2013\include\QtCore\qresultstore.h \
+		E:\Qt\5.4\msvc2013\include\QtCore\qfuturesynchronizer.h \
+		E:\Qt\5.4\msvc2013\include\QtCore\qfuturewatcher.h \
+		E:\Qt\5.4\msvc2013\include\QtCore\qreadwritelock.h \
+		E:\Qt\5.4\msvc2013\include\QtCore\qsemaphore.h \
+		E:\Qt\5.4\msvc2013\include\QtCore\qthread.h \
+		E:\Qt\5.4\msvc2013\include\QtCore\qthreadpool.h \
+		E:\Qt\5.4\msvc2013\include\QtCore\qthreadstorage.h \
+		E:\Qt\5.4\msvc2013\include\QtCore\qwaitcondition.h \
+		E:\Qt\5.4\msvc2013\include\QtCore\qarraydataops.h \
+		E:\Qt\5.4\msvc2013\include\QtCore\qarraydatapointer.h \
+		E:\Qt\5.4\msvc2013\include\QtCore\qbitarray.h \
+		E:\Qt\5.4\msvc2013\include\QtCore\qbytearraymatcher.h \
+		E:\Qt\5.4\msvc2013\include\QtCore\qcache.h \
+		E:\Qt\5.4\msvc2013\include\QtCore\qcollator.h \
+		E:\Qt\5.4\msvc2013\include\QtCore\qcommandlineoption.h \
+		E:\Qt\5.4\msvc2013\include\QtCore\qcommandlineparser.h \
+		E:\Qt\5.4\msvc2013\include\QtCore\qcryptographichash.h \
+		E:\Qt\5.4\msvc2013\include\QtCore\qelapsedtimer.h \
+		E:\Qt\5.4\msvc2013\include\QtCore\qline.h \
+		E:\Qt\5.4\msvc2013\include\QtCore\qlinkedlist.h \
+		E:\Qt\5.4\msvc2013\include\QtCore\qmargins.h \
+		E:\Qt\5.4\msvc2013\include\QtCore\qmessageauthenticationcode.h \
+		E:\Qt\5.4\msvc2013\include\QtCore\qqueue.h \
+		E:\Qt\5.4\msvc2013\include\QtCore\qrect.h \
+		E:\Qt\5.4\msvc2013\include\QtCore\qsize.h \
+		E:\Qt\5.4\msvc2013\include\QtCore\qregularexpression.h \
+		E:\Qt\5.4\msvc2013\include\QtCore\qscopedvaluerollback.h \
+		E:\Qt\5.4\msvc2013\include\QtCore\qstack.h \
+		E:\Qt\5.4\msvc2013\include\QtCore\qtextboundaryfinder.h \
+		E:\Qt\5.4\msvc2013\include\QtCore\qtimeline.h \
+		E:\Qt\5.4\msvc2013\include\QtCore\qtimezone.h \
+		E:\Qt\5.4\msvc2013\include\QtCore\qxmlstream.h \
+		E:\Qt\5.4\msvc2013\include\QtCore\qtcoreversion.h \
+		E:\Qt\5.4\msvc2013\include\QtConcurrent\qtconcurrentcompilertest.h \
+		E:\Qt\5.4\msvc2013\include\QtConcurrent\qtconcurrent_global.h \
+		E:\Qt\5.4\msvc2013\include\QtConcurrent\qtconcurrentexception.h \
+		E:\Qt\5.4\msvc2013\include\QtConcurrent\qtconcurrentfilter.h \
+		E:\Qt\5.4\msvc2013\include\QtConcurrent\qtconcurrentfilterkernel.h \
+		E:\Qt\5.4\msvc2013\include\QtConcurrent\qtconcurrentiteratekernel.h \
+		E:\Qt\5.4\msvc2013\include\QtConcurrent\qtconcurrentmedian.h \
+		E:\Qt\5.4\msvc2013\include\QtConcurrent\qtconcurrentthreadengine.h \
+		E:\Qt\5.4\msvc2013\include\QtConcurrent\qtconcurrentmapkernel.h \
+		E:\Qt\5.4\msvc2013\include\QtConcurrent\qtconcurrentreducekernel.h \
+		E:\Qt\5.4\msvc2013\include\QtConcurrent\qtconcurrentfunctionwrappers.h \
+		E:\Qt\5.4\msvc2013\include\QtConcurrent\qtconcurrentmap.h \
+		E:\Qt\5.4\msvc2013\include\QtConcurrent\qtconcurrentrun.h \
+		E:\Qt\5.4\msvc2013\include\QtConcurrent\qtconcurrentrunbase.h \
+		E:\Qt\5.4\msvc2013\include\QtConcurrent\qtconcurrentstoredfunctioncall.h \
+		E:\Qt\5.4\msvc2013\include\QtConcurrent\qtconcurrentversion.h \
 		acquisition.h
 	E:\Qt\5.4\msvc2013\bin\moc.exe $(DEFINES) -D_MSC_VER=1800 -D_WIN32 -IE:/Qt/5.4/msvc2013/mkspecs/win32-msvc2013 -I"C:/Users/Ave/Documents/Visual Studio 2013/Projects/learn/untitled2/untitled2" -I"C:/Users/Ave/Documents/Visual Studio 2013/Projects/learn/untitled2/untitled2/GeneratedFiles" -I"C:/Users/Ave/Documents/Visual Studio 2013/Projects/learn/untitled2/untitled2" -I"C:/Users/Ave/Documents/Visual Studio 2013/Projects/learn/untitled2/untitled2/GeneratedFiles/Debug" -IC:/../Program -I"C:/Users/Ave/Documents/Visual Studio 2013/Projects/learn/untitled2/untitled2/Files" -I"C:/Users/Ave/Documents/Visual Studio 2013/Projects/learn/untitled2/untitled2/(x86)/National" -I"C:/Users/Ave/Documents/Visual Studio 2013/Projects/learn/untitled2/untitled2/Instruments/Shared/ExternalCompilerSupport/C/include" -IC:/../Program -I"C:/Users/Ave/Documents/Visual Studio 2013/Projects/learn/untitled2/untitled2/Files" -I"C:/Users/Ave/Documents/Visual Studio 2013/Projects/learn/untitled2/untitled2/(x86)/National" -I"C:/Users/Ave/Documents/Visual Studio 2013/Projects/learn/untitled2/untitled2/Instruments/Shared/ExternalCompilerSupport/C/lib32/msvc" -I"C:/Program Files (x86)/National Instruments/Shared/ExternalCompilerSupport/C/include" -IE:/Qt/5.4/msvc2013/include -IE:/Qt/5.4/msvc2013/include/QtOpenGL -IE:/Qt/5.4/msvc2013/include/QtPrintSupport -IE:/Qt/5.4/msvc2013/include/QtWidgets -IE:/Qt/5.4/msvc2013/include/QtGui -IE:/Qt/5.4/msvc2013/include/QtANGLE -IE:/Qt/5.4/msvc2013/include/QtCore acquisition.h -o GeneratedFiles\debug\moc_acquisition.cpp
 
@@ -1085,8 +1362,135 @@ GeneratedFiles\debug\moc_plot.cpp: E:\Qt\5.4\msvc2013\include\QtWidgets\QWidget 
 		E:\Qt\5.4\msvc2013\include\QtCore\qfiledevice.h \
 		E:\Qt\5.4\msvc2013\include\QtGui\qvector2d.h \
 		E:\Qt\5.4\msvc2013\include\QtGui\qtouchdevice.h \
-		calibration.h \
+		acquisition.h \
 		E:\Qt\5.4\msvc2013\include\QtCore\QObject \
+		"C:\Program Files (x86)\National Instruments\Shared\ExternalCompilerSupport\C\include\NIDAQmx.h" \
+		E:\Qt\5.4\msvc2013\include\QtConcurrent\QtConcurrent \
+		E:\Qt\5.4\msvc2013\include\QtConcurrent\QtConcurrentDepends \
+		E:\Qt\5.4\msvc2013\include\QtCore\QtCore \
+		E:\Qt\5.4\msvc2013\include\QtCore\QtCoreDepends \
+		E:\Qt\5.4\msvc2013\include\QtCore\qabstractanimation.h \
+		E:\Qt\5.4\msvc2013\include\QtCore\qanimationgroup.h \
+		E:\Qt\5.4\msvc2013\include\QtCore\qparallelanimationgroup.h \
+		E:\Qt\5.4\msvc2013\include\QtCore\qpauseanimation.h \
+		E:\Qt\5.4\msvc2013\include\QtCore\qpropertyanimation.h \
+		E:\Qt\5.4\msvc2013\include\QtCore\qvariantanimation.h \
+		E:\Qt\5.4\msvc2013\include\QtCore\qeasingcurve.h \
+		E:\Qt\5.4\msvc2013\include\QtCore\qsequentialanimationgroup.h \
+		E:\Qt\5.4\msvc2013\include\QtCore\qtextcodec.h \
+		E:\Qt\5.4\msvc2013\include\QtCore\qendian.h \
+		E:\Qt\5.4\msvc2013\include\QtCore\qlibraryinfo.h \
+		E:\Qt\5.4\msvc2013\include\QtCore\qdatetime.h \
+		E:\Qt\5.4\msvc2013\include\QtCore\qbuffer.h \
+		E:\Qt\5.4\msvc2013\include\QtCore\qdir.h \
+		E:\Qt\5.4\msvc2013\include\QtCore\qfileinfo.h \
+		E:\Qt\5.4\msvc2013\include\QtCore\qdiriterator.h \
+		E:\Qt\5.4\msvc2013\include\QtCore\qfileselector.h \
+		E:\Qt\5.4\msvc2013\include\QtCore\QStringList \
+		E:\Qt\5.4\msvc2013\include\QtCore\qfilesystemwatcher.h \
+		E:\Qt\5.4\msvc2013\include\QtCore\qlockfile.h \
+		E:\Qt\5.4\msvc2013\include\QtCore\qloggingcategory.h \
+		E:\Qt\5.4\msvc2013\include\QtCore\qprocess.h \
+		E:\Qt\5.4\msvc2013\include\QtCore\qresource.h \
+		E:\Qt\5.4\msvc2013\include\QtCore\qsavefile.h \
+		E:\Qt\5.4\msvc2013\include\QtCore\qsettings.h \
+		E:\Qt\5.4\msvc2013\include\QtCore\qstandardpaths.h \
+		E:\Qt\5.4\msvc2013\include\QtCore\qstorageinfo.h \
+		E:\Qt\5.4\msvc2013\include\QtCore\qtemporarydir.h \
+		E:\Qt\5.4\msvc2013\include\QtCore\QScopedPointer \
+		E:\Qt\5.4\msvc2013\include\QtCore\qtemporaryfile.h \
+		E:\Qt\5.4\msvc2013\include\QtCore\qabstractitemmodel.h \
+		E:\Qt\5.4\msvc2013\include\QtCore\qabstractproxymodel.h \
+		E:\Qt\5.4\msvc2013\include\QtCore\qidentityproxymodel.h \
+		E:\Qt\5.4\msvc2013\include\QtCore\qitemselectionmodel.h \
+		E:\Qt\5.4\msvc2013\include\QtCore\qsortfilterproxymodel.h \
+		E:\Qt\5.4\msvc2013\include\QtCore\qstringlistmodel.h \
+		E:\Qt\5.4\msvc2013\include\QtCore\qjsonarray.h \
+		E:\Qt\5.4\msvc2013\include\QtCore\qjsonvalue.h \
+		E:\Qt\5.4\msvc2013\include\QtCore\qjsondocument.h \
+		E:\Qt\5.4\msvc2013\include\QtCore\qjsonobject.h \
+		E:\Qt\5.4\msvc2013\include\QtCore\qabstracteventdispatcher.h \
+		E:\Qt\5.4\msvc2013\include\QtCore\qeventloop.h \
+		E:\Qt\5.4\msvc2013\include\QtCore\qabstractnativeeventfilter.h \
+		E:\Qt\5.4\msvc2013\include\QtCore\qbasictimer.h \
+		E:\Qt\5.4\msvc2013\include\QtCore\qcoreapplication.h \
+		E:\Qt\5.4\msvc2013\include\QtCore\qmath.h \
+		E:\Qt\5.4\msvc2013\include\QtCore\qmetaobject.h \
+		E:\Qt\5.4\msvc2013\include\QtCore\qmimedata.h \
+		E:\Qt\5.4\msvc2013\include\QtCore\qobjectcleanuphandler.h \
+		E:\Qt\5.4\msvc2013\include\QtCore\qpointer.h \
+		E:\Qt\5.4\msvc2013\include\QtCore\qsharedmemory.h \
+		E:\Qt\5.4\msvc2013\include\QtCore\qsignalmapper.h \
+		E:\Qt\5.4\msvc2013\include\QtCore\qsocketnotifier.h \
+		E:\Qt\5.4\msvc2013\include\QtCore\qsystemsemaphore.h \
+		E:\Qt\5.4\msvc2013\include\QtCore\qtimer.h \
+		E:\Qt\5.4\msvc2013\include\QtCore\qtranslator.h \
+		E:\Qt\5.4\msvc2013\include\QtCore\qwineventnotifier.h \
+		E:\Qt\5.4\msvc2013\include\QtCore\qmimedatabase.h \
+		E:\Qt\5.4\msvc2013\include\QtCore\qmimetype.h \
+		E:\Qt\5.4\msvc2013\include\QtCore\qfactoryinterface.h \
+		E:\Qt\5.4\msvc2013\include\QtCore\qlibrary.h \
+		E:\Qt\5.4\msvc2013\include\QtCore\qplugin.h \
+		E:\Qt\5.4\msvc2013\include\QtCore\qpluginloader.h \
+		E:\Qt\5.4\msvc2013\include\QtCore\quuid.h \
+		E:\Qt\5.4\msvc2013\include\QtCore\qabstractstate.h \
+		E:\Qt\5.4\msvc2013\include\QtCore\qabstracttransition.h \
+		E:\Qt\5.4\msvc2013\include\QtCore\qeventtransition.h \
+		E:\Qt\5.4\msvc2013\include\QtCore\qfinalstate.h \
+		E:\Qt\5.4\msvc2013\include\QtCore\qhistorystate.h \
+		E:\Qt\5.4\msvc2013\include\QtCore\qsignaltransition.h \
+		E:\Qt\5.4\msvc2013\include\QtCore\qstate.h \
+		E:\Qt\5.4\msvc2013\include\QtCore\qstatemachine.h \
+		E:\Qt\5.4\msvc2013\include\QtCore\qexception.h \
+		E:\Qt\5.4\msvc2013\include\QtCore\qfuture.h \
+		E:\Qt\5.4\msvc2013\include\QtCore\qfutureinterface.h \
+		E:\Qt\5.4\msvc2013\include\QtCore\qrunnable.h \
+		E:\Qt\5.4\msvc2013\include\QtCore\qresultstore.h \
+		E:\Qt\5.4\msvc2013\include\QtCore\qfuturesynchronizer.h \
+		E:\Qt\5.4\msvc2013\include\QtCore\qfuturewatcher.h \
+		E:\Qt\5.4\msvc2013\include\QtCore\qreadwritelock.h \
+		E:\Qt\5.4\msvc2013\include\QtCore\qsemaphore.h \
+		E:\Qt\5.4\msvc2013\include\QtCore\qthread.h \
+		E:\Qt\5.4\msvc2013\include\QtCore\qthreadpool.h \
+		E:\Qt\5.4\msvc2013\include\QtCore\qthreadstorage.h \
+		E:\Qt\5.4\msvc2013\include\QtCore\qwaitcondition.h \
+		E:\Qt\5.4\msvc2013\include\QtCore\qarraydataops.h \
+		E:\Qt\5.4\msvc2013\include\QtCore\qarraydatapointer.h \
+		E:\Qt\5.4\msvc2013\include\QtCore\qbitarray.h \
+		E:\Qt\5.4\msvc2013\include\QtCore\qbytearraymatcher.h \
+		E:\Qt\5.4\msvc2013\include\QtCore\qcache.h \
+		E:\Qt\5.4\msvc2013\include\QtCore\qcollator.h \
+		E:\Qt\5.4\msvc2013\include\QtCore\qcommandlineoption.h \
+		E:\Qt\5.4\msvc2013\include\QtCore\qcommandlineparser.h \
+		E:\Qt\5.4\msvc2013\include\QtCore\qcryptographichash.h \
+		E:\Qt\5.4\msvc2013\include\QtCore\qelapsedtimer.h \
+		E:\Qt\5.4\msvc2013\include\QtCore\qlinkedlist.h \
+		E:\Qt\5.4\msvc2013\include\QtCore\qmessageauthenticationcode.h \
+		E:\Qt\5.4\msvc2013\include\QtCore\qqueue.h \
+		E:\Qt\5.4\msvc2013\include\QtCore\qregularexpression.h \
+		E:\Qt\5.4\msvc2013\include\QtCore\qscopedvaluerollback.h \
+		E:\Qt\5.4\msvc2013\include\QtCore\qstack.h \
+		E:\Qt\5.4\msvc2013\include\QtCore\qtextboundaryfinder.h \
+		E:\Qt\5.4\msvc2013\include\QtCore\qtimeline.h \
+		E:\Qt\5.4\msvc2013\include\QtCore\qtimezone.h \
+		E:\Qt\5.4\msvc2013\include\QtCore\qxmlstream.h \
+		E:\Qt\5.4\msvc2013\include\QtCore\qtcoreversion.h \
+		E:\Qt\5.4\msvc2013\include\QtConcurrent\qtconcurrentcompilertest.h \
+		E:\Qt\5.4\msvc2013\include\QtConcurrent\qtconcurrent_global.h \
+		E:\Qt\5.4\msvc2013\include\QtConcurrent\qtconcurrentexception.h \
+		E:\Qt\5.4\msvc2013\include\QtConcurrent\qtconcurrentfilter.h \
+		E:\Qt\5.4\msvc2013\include\QtConcurrent\qtconcurrentfilterkernel.h \
+		E:\Qt\5.4\msvc2013\include\QtConcurrent\qtconcurrentiteratekernel.h \
+		E:\Qt\5.4\msvc2013\include\QtConcurrent\qtconcurrentmedian.h \
+		E:\Qt\5.4\msvc2013\include\QtConcurrent\qtconcurrentthreadengine.h \
+		E:\Qt\5.4\msvc2013\include\QtConcurrent\qtconcurrentmapkernel.h \
+		E:\Qt\5.4\msvc2013\include\QtConcurrent\qtconcurrentreducekernel.h \
+		E:\Qt\5.4\msvc2013\include\QtConcurrent\qtconcurrentfunctionwrappers.h \
+		E:\Qt\5.4\msvc2013\include\QtConcurrent\qtconcurrentmap.h \
+		E:\Qt\5.4\msvc2013\include\QtConcurrent\qtconcurrentrun.h \
+		E:\Qt\5.4\msvc2013\include\QtConcurrent\qtconcurrentrunbase.h \
+		E:\Qt\5.4\msvc2013\include\QtConcurrent\qtconcurrentstoredfunctioncall.h \
+		E:\Qt\5.4\msvc2013\include\QtConcurrent\qtconcurrentversion.h \
 		plot.h
 	E:\Qt\5.4\msvc2013\bin\moc.exe $(DEFINES) -D_MSC_VER=1800 -D_WIN32 -IE:/Qt/5.4/msvc2013/mkspecs/win32-msvc2013 -I"C:/Users/Ave/Documents/Visual Studio 2013/Projects/learn/untitled2/untitled2" -I"C:/Users/Ave/Documents/Visual Studio 2013/Projects/learn/untitled2/untitled2/GeneratedFiles" -I"C:/Users/Ave/Documents/Visual Studio 2013/Projects/learn/untitled2/untitled2" -I"C:/Users/Ave/Documents/Visual Studio 2013/Projects/learn/untitled2/untitled2/GeneratedFiles/Debug" -IC:/../Program -I"C:/Users/Ave/Documents/Visual Studio 2013/Projects/learn/untitled2/untitled2/Files" -I"C:/Users/Ave/Documents/Visual Studio 2013/Projects/learn/untitled2/untitled2/(x86)/National" -I"C:/Users/Ave/Documents/Visual Studio 2013/Projects/learn/untitled2/untitled2/Instruments/Shared/ExternalCompilerSupport/C/include" -IC:/../Program -I"C:/Users/Ave/Documents/Visual Studio 2013/Projects/learn/untitled2/untitled2/Files" -I"C:/Users/Ave/Documents/Visual Studio 2013/Projects/learn/untitled2/untitled2/(x86)/National" -I"C:/Users/Ave/Documents/Visual Studio 2013/Projects/learn/untitled2/untitled2/Instruments/Shared/ExternalCompilerSupport/C/lib32/msvc" -I"C:/Program Files (x86)/National Instruments/Shared/ExternalCompilerSupport/C/include" -IE:/Qt/5.4/msvc2013/include -IE:/Qt/5.4/msvc2013/include/QtOpenGL -IE:/Qt/5.4/msvc2013/include/QtPrintSupport -IE:/Qt/5.4/msvc2013/include/QtWidgets -IE:/Qt/5.4/msvc2013/include/QtGui -IE:/Qt/5.4/msvc2013/include/QtANGLE -IE:/Qt/5.4/msvc2013/include/QtCore plot.h -o GeneratedFiles\debug\moc_plot.cpp
 
@@ -1761,6 +2165,127 @@ debug\main.obj: main.cpp untitled2.h \
 		calibration.h \
 		E:\Qt\5.4\msvc2013\include\QtCore\QObject \
 		acquisition.h \
+		E:\Qt\5.4\msvc2013\include\QtConcurrent\QtConcurrent \
+		E:\Qt\5.4\msvc2013\include\QtConcurrent\QtConcurrentDepends \
+		E:\Qt\5.4\msvc2013\include\QtCore\QtCore \
+		E:\Qt\5.4\msvc2013\include\QtCore\QtCoreDepends \
+		E:\Qt\5.4\msvc2013\include\QtCore\qabstractanimation.h \
+		E:\Qt\5.4\msvc2013\include\QtCore\qanimationgroup.h \
+		E:\Qt\5.4\msvc2013\include\QtCore\qparallelanimationgroup.h \
+		E:\Qt\5.4\msvc2013\include\QtCore\qpauseanimation.h \
+		E:\Qt\5.4\msvc2013\include\QtCore\qpropertyanimation.h \
+		E:\Qt\5.4\msvc2013\include\QtCore\qvariantanimation.h \
+		E:\Qt\5.4\msvc2013\include\QtCore\qeasingcurve.h \
+		E:\Qt\5.4\msvc2013\include\QtCore\qsequentialanimationgroup.h \
+		E:\Qt\5.4\msvc2013\include\QtCore\qtextcodec.h \
+		E:\Qt\5.4\msvc2013\include\QtCore\qendian.h \
+		E:\Qt\5.4\msvc2013\include\QtCore\qlibraryinfo.h \
+		E:\Qt\5.4\msvc2013\include\QtCore\qdatetime.h \
+		E:\Qt\5.4\msvc2013\include\QtCore\qbuffer.h \
+		E:\Qt\5.4\msvc2013\include\QtCore\qdir.h \
+		E:\Qt\5.4\msvc2013\include\QtCore\qfileinfo.h \
+		E:\Qt\5.4\msvc2013\include\QtCore\qdiriterator.h \
+		E:\Qt\5.4\msvc2013\include\QtCore\qfileselector.h \
+		E:\Qt\5.4\msvc2013\include\QtCore\QStringList \
+		E:\Qt\5.4\msvc2013\include\QtCore\qfilesystemwatcher.h \
+		E:\Qt\5.4\msvc2013\include\QtCore\qlockfile.h \
+		E:\Qt\5.4\msvc2013\include\QtCore\qloggingcategory.h \
+		E:\Qt\5.4\msvc2013\include\QtCore\qprocess.h \
+		E:\Qt\5.4\msvc2013\include\QtCore\qresource.h \
+		E:\Qt\5.4\msvc2013\include\QtCore\qsavefile.h \
+		E:\Qt\5.4\msvc2013\include\QtCore\qsettings.h \
+		E:\Qt\5.4\msvc2013\include\QtCore\qstandardpaths.h \
+		E:\Qt\5.4\msvc2013\include\QtCore\qstorageinfo.h \
+		E:\Qt\5.4\msvc2013\include\QtCore\qtemporarydir.h \
+		E:\Qt\5.4\msvc2013\include\QtCore\QScopedPointer \
+		E:\Qt\5.4\msvc2013\include\QtCore\qtemporaryfile.h \
+		E:\Qt\5.4\msvc2013\include\QtCore\qabstractproxymodel.h \
+		E:\Qt\5.4\msvc2013\include\QtCore\qidentityproxymodel.h \
+		E:\Qt\5.4\msvc2013\include\QtCore\qsortfilterproxymodel.h \
+		E:\Qt\5.4\msvc2013\include\QtCore\qstringlistmodel.h \
+		E:\Qt\5.4\msvc2013\include\QtCore\qjsonarray.h \
+		E:\Qt\5.4\msvc2013\include\QtCore\qjsonvalue.h \
+		E:\Qt\5.4\msvc2013\include\QtCore\qjsondocument.h \
+		E:\Qt\5.4\msvc2013\include\QtCore\qjsonobject.h \
+		E:\Qt\5.4\msvc2013\include\QtCore\qabstracteventdispatcher.h \
+		E:\Qt\5.4\msvc2013\include\QtCore\qabstractnativeeventfilter.h \
+		E:\Qt\5.4\msvc2013\include\QtCore\qbasictimer.h \
+		E:\Qt\5.4\msvc2013\include\QtCore\qmath.h \
+		E:\Qt\5.4\msvc2013\include\QtCore\qmetaobject.h \
+		E:\Qt\5.4\msvc2013\include\QtCore\qmimedata.h \
+		E:\Qt\5.4\msvc2013\include\QtCore\qobjectcleanuphandler.h \
+		E:\Qt\5.4\msvc2013\include\QtCore\qpointer.h \
+		E:\Qt\5.4\msvc2013\include\QtCore\qsharedmemory.h \
+		E:\Qt\5.4\msvc2013\include\QtCore\qsignalmapper.h \
+		E:\Qt\5.4\msvc2013\include\QtCore\qsocketnotifier.h \
+		E:\Qt\5.4\msvc2013\include\QtCore\qsystemsemaphore.h \
+		E:\Qt\5.4\msvc2013\include\QtCore\qtimer.h \
+		E:\Qt\5.4\msvc2013\include\QtCore\qtranslator.h \
+		E:\Qt\5.4\msvc2013\include\QtCore\qwineventnotifier.h \
+		E:\Qt\5.4\msvc2013\include\QtCore\qmimedatabase.h \
+		E:\Qt\5.4\msvc2013\include\QtCore\qmimetype.h \
+		E:\Qt\5.4\msvc2013\include\QtCore\qfactoryinterface.h \
+		E:\Qt\5.4\msvc2013\include\QtCore\qlibrary.h \
+		E:\Qt\5.4\msvc2013\include\QtCore\qplugin.h \
+		E:\Qt\5.4\msvc2013\include\QtCore\qpluginloader.h \
+		E:\Qt\5.4\msvc2013\include\QtCore\quuid.h \
+		E:\Qt\5.4\msvc2013\include\QtCore\qabstractstate.h \
+		E:\Qt\5.4\msvc2013\include\QtCore\qabstracttransition.h \
+		E:\Qt\5.4\msvc2013\include\QtCore\qeventtransition.h \
+		E:\Qt\5.4\msvc2013\include\QtCore\qfinalstate.h \
+		E:\Qt\5.4\msvc2013\include\QtCore\qhistorystate.h \
+		E:\Qt\5.4\msvc2013\include\QtCore\qsignaltransition.h \
+		E:\Qt\5.4\msvc2013\include\QtCore\qstate.h \
+		E:\Qt\5.4\msvc2013\include\QtCore\qstatemachine.h \
+		E:\Qt\5.4\msvc2013\include\QtCore\qexception.h \
+		E:\Qt\5.4\msvc2013\include\QtCore\qfuture.h \
+		E:\Qt\5.4\msvc2013\include\QtCore\qfutureinterface.h \
+		E:\Qt\5.4\msvc2013\include\QtCore\qrunnable.h \
+		E:\Qt\5.4\msvc2013\include\QtCore\qresultstore.h \
+		E:\Qt\5.4\msvc2013\include\QtCore\qfuturesynchronizer.h \
+		E:\Qt\5.4\msvc2013\include\QtCore\qfuturewatcher.h \
+		E:\Qt\5.4\msvc2013\include\QtCore\qreadwritelock.h \
+		E:\Qt\5.4\msvc2013\include\QtCore\qsemaphore.h \
+		E:\Qt\5.4\msvc2013\include\QtCore\qthread.h \
+		E:\Qt\5.4\msvc2013\include\QtCore\qthreadpool.h \
+		E:\Qt\5.4\msvc2013\include\QtCore\qthreadstorage.h \
+		E:\Qt\5.4\msvc2013\include\QtCore\qwaitcondition.h \
+		E:\Qt\5.4\msvc2013\include\QtCore\qarraydataops.h \
+		E:\Qt\5.4\msvc2013\include\QtCore\qarraydatapointer.h \
+		E:\Qt\5.4\msvc2013\include\QtCore\qbitarray.h \
+		E:\Qt\5.4\msvc2013\include\QtCore\qbytearraymatcher.h \
+		E:\Qt\5.4\msvc2013\include\QtCore\qcache.h \
+		E:\Qt\5.4\msvc2013\include\QtCore\qcollator.h \
+		E:\Qt\5.4\msvc2013\include\QtCore\qcommandlineoption.h \
+		E:\Qt\5.4\msvc2013\include\QtCore\qcommandlineparser.h \
+		E:\Qt\5.4\msvc2013\include\QtCore\qcryptographichash.h \
+		E:\Qt\5.4\msvc2013\include\QtCore\qelapsedtimer.h \
+		E:\Qt\5.4\msvc2013\include\QtCore\qlinkedlist.h \
+		E:\Qt\5.4\msvc2013\include\QtCore\qmessageauthenticationcode.h \
+		E:\Qt\5.4\msvc2013\include\QtCore\qqueue.h \
+		E:\Qt\5.4\msvc2013\include\QtCore\qscopedvaluerollback.h \
+		E:\Qt\5.4\msvc2013\include\QtCore\qstack.h \
+		E:\Qt\5.4\msvc2013\include\QtCore\qtextboundaryfinder.h \
+		E:\Qt\5.4\msvc2013\include\QtCore\qtimeline.h \
+		E:\Qt\5.4\msvc2013\include\QtCore\qtimezone.h \
+		E:\Qt\5.4\msvc2013\include\QtCore\qxmlstream.h \
+		E:\Qt\5.4\msvc2013\include\QtCore\qtcoreversion.h \
+		E:\Qt\5.4\msvc2013\include\QtConcurrent\qtconcurrentcompilertest.h \
+		E:\Qt\5.4\msvc2013\include\QtConcurrent\qtconcurrent_global.h \
+		E:\Qt\5.4\msvc2013\include\QtConcurrent\qtconcurrentexception.h \
+		E:\Qt\5.4\msvc2013\include\QtConcurrent\qtconcurrentfilter.h \
+		E:\Qt\5.4\msvc2013\include\QtConcurrent\qtconcurrentfilterkernel.h \
+		E:\Qt\5.4\msvc2013\include\QtConcurrent\qtconcurrentiteratekernel.h \
+		E:\Qt\5.4\msvc2013\include\QtConcurrent\qtconcurrentmedian.h \
+		E:\Qt\5.4\msvc2013\include\QtConcurrent\qtconcurrentthreadengine.h \
+		E:\Qt\5.4\msvc2013\include\QtConcurrent\qtconcurrentmapkernel.h \
+		E:\Qt\5.4\msvc2013\include\QtConcurrent\qtconcurrentreducekernel.h \
+		E:\Qt\5.4\msvc2013\include\QtConcurrent\qtconcurrentfunctionwrappers.h \
+		E:\Qt\5.4\msvc2013\include\QtConcurrent\qtconcurrentmap.h \
+		E:\Qt\5.4\msvc2013\include\QtConcurrent\qtconcurrentrun.h \
+		E:\Qt\5.4\msvc2013\include\QtConcurrent\qtconcurrentrunbase.h \
+		E:\Qt\5.4\msvc2013\include\QtConcurrent\qtconcurrentstoredfunctioncall.h \
+		E:\Qt\5.4\msvc2013\include\QtConcurrent\qtconcurrentversion.h \
 		E:\Qt\5.4\msvc2013\include\QtGui\QStandardItemModel \
 		E:\Qt\5.4\msvc2013\include\QtGui\qstandarditemmodel.h \
 		E:\Qt\5.4\msvc2013\include\QtGui\QStandardItem \
@@ -1933,51 +2458,8 @@ debug\untitled2.obj: untitled2.cpp untitled2.h \
 		calibration.h \
 		E:\Qt\5.4\msvc2013\include\QtCore\QObject \
 		acquisition.h \
-		E:\Qt\5.4\msvc2013\include\QtGui\QStandardItemModel \
-		E:\Qt\5.4\msvc2013\include\QtGui\qstandarditemmodel.h \
-		E:\Qt\5.4\msvc2013\include\QtGui\QStandardItem \
-		plot.h \
-		E:\Qt\5.4\msvc2013\include\QtWidgets\qmessagebox.h \
-		E:\Qt\5.4\msvc2013\include\QtWidgets\qdialog.h \
-		E:\Qt\5.4\msvc2013\include\QtWidgets\QFileDialog \
-		E:\Qt\5.4\msvc2013\include\QtWidgets\qfiledialog.h \
-		E:\Qt\5.4\msvc2013\include\QtCore\qdir.h \
-		E:\Qt\5.4\msvc2013\include\QtCore\qfileinfo.h \
-		qcustomplot.h \
-		E:\Qt\5.4\msvc2013\include\QtCore\QPointer \
-		E:\Qt\5.4\msvc2013\include\QtCore\qpointer.h \
-		E:\Qt\5.4\msvc2013\include\QtGui\QPainter \
-		E:\Qt\5.4\msvc2013\include\QtGui\qpainter.h \
-		E:\Qt\5.4\msvc2013\include\QtGui\qtextoption.h \
-		E:\Qt\5.4\msvc2013\include\QtGui\qpen.h \
-		E:\Qt\5.4\msvc2013\include\QtGui\QPaintEvent \
-		E:\Qt\5.4\msvc2013\include\QtGui\QMouseEvent \
-		E:\Qt\5.4\msvc2013\include\QtGui\QPixmap \
-		E:\Qt\5.4\msvc2013\include\QtCore\QVector \
-		E:\Qt\5.4\msvc2013\include\QtCore\QString \
-		E:\Qt\5.4\msvc2013\include\QtCore\QDateTime \
-		E:\Qt\5.4\msvc2013\include\QtCore\qdatetime.h \
-		E:\Qt\5.4\msvc2013\include\QtCore\QMultiMap \
-		E:\Qt\5.4\msvc2013\include\QtCore\QFlags \
-		E:\Qt\5.4\msvc2013\include\QtCore\QDebug \
-		E:\Qt\5.4\msvc2013\include\QtGui\QVector2D \
-		E:\Qt\5.4\msvc2013\include\QtCore\QStack \
-		E:\Qt\5.4\msvc2013\include\QtCore\qstack.h \
-		E:\Qt\5.4\msvc2013\include\QtCore\QCache \
-		E:\Qt\5.4\msvc2013\include\QtCore\qcache.h \
-		E:\Qt\5.4\msvc2013\include\QtCore\QMargins \
-		E:\Qt\5.4\msvc2013\include\QtCore\qmath.h \
-		E:\Qt\5.4\msvc2013\include\QtPrintSupport\QPrinter \
-		E:\Qt\5.4\msvc2013\include\QtPrintSupport\qprinter.h \
-		E:\Qt\5.4\msvc2013\include\QtGui\qpagedpaintdevice.h \
-		E:\Qt\5.4\msvc2013\include\QtGui\qpagelayout.h \
-		E:\Qt\5.4\msvc2013\include\QtGui\qpagesize.h \
-		E:\Qt\5.4\msvc2013\include\QtPrintSupport\qtprintsupportglobal.h \
-		E:\Qt\5.4\msvc2013\include\QtPrintSupport\QPrintEngine \
-		E:\Qt\5.4\msvc2013\include\QtPrintSupport\qprintengine.h \
-		E:\Qt\5.4\msvc2013\include\QtCore\QtNumeric \
-		E:\Qt\5.4\msvc2013\include\QtPrintSupport\QtPrintSupport \
-		E:\Qt\5.4\msvc2013\include\QtPrintSupport\QtPrintSupportDepends \
+		E:\Qt\5.4\msvc2013\include\QtConcurrent\QtConcurrent \
+		E:\Qt\5.4\msvc2013\include\QtConcurrent\QtConcurrentDepends \
 		E:\Qt\5.4\msvc2013\include\QtCore\QtCore \
 		E:\Qt\5.4\msvc2013\include\QtCore\QtCoreDepends \
 		E:\Qt\5.4\msvc2013\include\QtCore\qabstractanimation.h \
@@ -1991,7 +2473,10 @@ debug\untitled2.obj: untitled2.cpp untitled2.h \
 		E:\Qt\5.4\msvc2013\include\QtCore\qtextcodec.h \
 		E:\Qt\5.4\msvc2013\include\QtCore\qendian.h \
 		E:\Qt\5.4\msvc2013\include\QtCore\qlibraryinfo.h \
+		E:\Qt\5.4\msvc2013\include\QtCore\qdatetime.h \
 		E:\Qt\5.4\msvc2013\include\QtCore\qbuffer.h \
+		E:\Qt\5.4\msvc2013\include\QtCore\qdir.h \
+		E:\Qt\5.4\msvc2013\include\QtCore\qfileinfo.h \
 		E:\Qt\5.4\msvc2013\include\QtCore\qdiriterator.h \
 		E:\Qt\5.4\msvc2013\include\QtCore\qfileselector.h \
 		E:\Qt\5.4\msvc2013\include\QtCore\QStringList \
@@ -2018,9 +2503,11 @@ debug\untitled2.obj: untitled2.cpp untitled2.h \
 		E:\Qt\5.4\msvc2013\include\QtCore\qabstracteventdispatcher.h \
 		E:\Qt\5.4\msvc2013\include\QtCore\qabstractnativeeventfilter.h \
 		E:\Qt\5.4\msvc2013\include\QtCore\qbasictimer.h \
+		E:\Qt\5.4\msvc2013\include\QtCore\qmath.h \
 		E:\Qt\5.4\msvc2013\include\QtCore\qmetaobject.h \
 		E:\Qt\5.4\msvc2013\include\QtCore\qmimedata.h \
 		E:\Qt\5.4\msvc2013\include\QtCore\qobjectcleanuphandler.h \
+		E:\Qt\5.4\msvc2013\include\QtCore\qpointer.h \
 		E:\Qt\5.4\msvc2013\include\QtCore\qsharedmemory.h \
 		E:\Qt\5.4\msvc2013\include\QtCore\qsignalmapper.h \
 		E:\Qt\5.4\msvc2013\include\QtCore\qsocketnotifier.h \
@@ -2060,6 +2547,7 @@ debug\untitled2.obj: untitled2.cpp untitled2.h \
 		E:\Qt\5.4\msvc2013\include\QtCore\qarraydatapointer.h \
 		E:\Qt\5.4\msvc2013\include\QtCore\qbitarray.h \
 		E:\Qt\5.4\msvc2013\include\QtCore\qbytearraymatcher.h \
+		E:\Qt\5.4\msvc2013\include\QtCore\qcache.h \
 		E:\Qt\5.4\msvc2013\include\QtCore\qcollator.h \
 		E:\Qt\5.4\msvc2013\include\QtCore\qcommandlineoption.h \
 		E:\Qt\5.4\msvc2013\include\QtCore\qcommandlineparser.h \
@@ -2069,11 +2557,66 @@ debug\untitled2.obj: untitled2.cpp untitled2.h \
 		E:\Qt\5.4\msvc2013\include\QtCore\qmessageauthenticationcode.h \
 		E:\Qt\5.4\msvc2013\include\QtCore\qqueue.h \
 		E:\Qt\5.4\msvc2013\include\QtCore\qscopedvaluerollback.h \
+		E:\Qt\5.4\msvc2013\include\QtCore\qstack.h \
 		E:\Qt\5.4\msvc2013\include\QtCore\qtextboundaryfinder.h \
 		E:\Qt\5.4\msvc2013\include\QtCore\qtimeline.h \
 		E:\Qt\5.4\msvc2013\include\QtCore\qtimezone.h \
 		E:\Qt\5.4\msvc2013\include\QtCore\qxmlstream.h \
 		E:\Qt\5.4\msvc2013\include\QtCore\qtcoreversion.h \
+		E:\Qt\5.4\msvc2013\include\QtConcurrent\qtconcurrentcompilertest.h \
+		E:\Qt\5.4\msvc2013\include\QtConcurrent\qtconcurrent_global.h \
+		E:\Qt\5.4\msvc2013\include\QtConcurrent\qtconcurrentexception.h \
+		E:\Qt\5.4\msvc2013\include\QtConcurrent\qtconcurrentfilter.h \
+		E:\Qt\5.4\msvc2013\include\QtConcurrent\qtconcurrentfilterkernel.h \
+		E:\Qt\5.4\msvc2013\include\QtConcurrent\qtconcurrentiteratekernel.h \
+		E:\Qt\5.4\msvc2013\include\QtConcurrent\qtconcurrentmedian.h \
+		E:\Qt\5.4\msvc2013\include\QtConcurrent\qtconcurrentthreadengine.h \
+		E:\Qt\5.4\msvc2013\include\QtConcurrent\qtconcurrentmapkernel.h \
+		E:\Qt\5.4\msvc2013\include\QtConcurrent\qtconcurrentreducekernel.h \
+		E:\Qt\5.4\msvc2013\include\QtConcurrent\qtconcurrentfunctionwrappers.h \
+		E:\Qt\5.4\msvc2013\include\QtConcurrent\qtconcurrentmap.h \
+		E:\Qt\5.4\msvc2013\include\QtConcurrent\qtconcurrentrun.h \
+		E:\Qt\5.4\msvc2013\include\QtConcurrent\qtconcurrentrunbase.h \
+		E:\Qt\5.4\msvc2013\include\QtConcurrent\qtconcurrentstoredfunctioncall.h \
+		E:\Qt\5.4\msvc2013\include\QtConcurrent\qtconcurrentversion.h \
+		E:\Qt\5.4\msvc2013\include\QtGui\QStandardItemModel \
+		E:\Qt\5.4\msvc2013\include\QtGui\qstandarditemmodel.h \
+		E:\Qt\5.4\msvc2013\include\QtGui\QStandardItem \
+		plot.h \
+		E:\Qt\5.4\msvc2013\include\QtWidgets\qmessagebox.h \
+		E:\Qt\5.4\msvc2013\include\QtWidgets\qdialog.h \
+		E:\Qt\5.4\msvc2013\include\QtWidgets\QFileDialog \
+		E:\Qt\5.4\msvc2013\include\QtWidgets\qfiledialog.h \
+		qcustomplot.h \
+		E:\Qt\5.4\msvc2013\include\QtCore\QPointer \
+		E:\Qt\5.4\msvc2013\include\QtGui\QPainter \
+		E:\Qt\5.4\msvc2013\include\QtGui\qpainter.h \
+		E:\Qt\5.4\msvc2013\include\QtGui\qtextoption.h \
+		E:\Qt\5.4\msvc2013\include\QtGui\qpen.h \
+		E:\Qt\5.4\msvc2013\include\QtGui\QPaintEvent \
+		E:\Qt\5.4\msvc2013\include\QtGui\QMouseEvent \
+		E:\Qt\5.4\msvc2013\include\QtGui\QPixmap \
+		E:\Qt\5.4\msvc2013\include\QtCore\QVector \
+		E:\Qt\5.4\msvc2013\include\QtCore\QString \
+		E:\Qt\5.4\msvc2013\include\QtCore\QDateTime \
+		E:\Qt\5.4\msvc2013\include\QtCore\QMultiMap \
+		E:\Qt\5.4\msvc2013\include\QtCore\QFlags \
+		E:\Qt\5.4\msvc2013\include\QtCore\QDebug \
+		E:\Qt\5.4\msvc2013\include\QtGui\QVector2D \
+		E:\Qt\5.4\msvc2013\include\QtCore\QStack \
+		E:\Qt\5.4\msvc2013\include\QtCore\QCache \
+		E:\Qt\5.4\msvc2013\include\QtCore\QMargins \
+		E:\Qt\5.4\msvc2013\include\QtPrintSupport\QPrinter \
+		E:\Qt\5.4\msvc2013\include\QtPrintSupport\qprinter.h \
+		E:\Qt\5.4\msvc2013\include\QtGui\qpagedpaintdevice.h \
+		E:\Qt\5.4\msvc2013\include\QtGui\qpagelayout.h \
+		E:\Qt\5.4\msvc2013\include\QtGui\qpagesize.h \
+		E:\Qt\5.4\msvc2013\include\QtPrintSupport\qtprintsupportglobal.h \
+		E:\Qt\5.4\msvc2013\include\QtPrintSupport\QPrintEngine \
+		E:\Qt\5.4\msvc2013\include\QtPrintSupport\qprintengine.h \
+		E:\Qt\5.4\msvc2013\include\QtCore\QtNumeric \
+		E:\Qt\5.4\msvc2013\include\QtPrintSupport\QtPrintSupport \
+		E:\Qt\5.4\msvc2013\include\QtPrintSupport\QtPrintSupportDepends \
 		E:\Qt\5.4\msvc2013\include\QtGui\QtGui \
 		E:\Qt\5.4\msvc2013\include\QtGui\QtGuiDepends \
 		E:\Qt\5.4\msvc2013\include\QtGui\qaccessible.h \
@@ -2330,40 +2873,177 @@ debug\acquisition.obj: acquisition.cpp acquisition.h \
 		E:\Qt\5.4\msvc2013\include\QtCore\qisenum.h \
 		E:\Qt\5.4\msvc2013\include\QtCore\qobject_impl.h \
 		"C:\Program Files (x86)\National Instruments\Shared\ExternalCompilerSupport\C\include\NIDAQmx.h" \
+		E:\Qt\5.4\msvc2013\include\QtConcurrent\QtConcurrent \
+		E:\Qt\5.4\msvc2013\include\QtConcurrent\QtConcurrentDepends \
+		E:\Qt\5.4\msvc2013\include\QtCore\QtCore \
+		E:\Qt\5.4\msvc2013\include\QtCore\QtCoreDepends \
+		E:\Qt\5.4\msvc2013\include\QtCore\qabstractanimation.h \
+		E:\Qt\5.4\msvc2013\include\QtCore\qanimationgroup.h \
+		E:\Qt\5.4\msvc2013\include\QtCore\qparallelanimationgroup.h \
+		E:\Qt\5.4\msvc2013\include\QtCore\qpauseanimation.h \
+		E:\Qt\5.4\msvc2013\include\QtCore\qpropertyanimation.h \
+		E:\Qt\5.4\msvc2013\include\QtCore\qvariantanimation.h \
+		E:\Qt\5.4\msvc2013\include\QtCore\qeasingcurve.h \
+		E:\Qt\5.4\msvc2013\include\QtCore\qvector.h \
+		E:\Qt\5.4\msvc2013\include\QtCore\qpoint.h \
+		E:\Qt\5.4\msvc2013\include\QtCore\qvariant.h \
+		E:\Qt\5.4\msvc2013\include\QtCore\qmap.h \
+		E:\Qt\5.4\msvc2013\include\QtCore\qpair.h \
+		E:\Qt\5.4\msvc2013\include\QtCore\qdebug.h \
+		E:\Qt\5.4\msvc2013\include\QtCore\qhash.h \
+		E:\Qt\5.4\msvc2013\include\QtCore\qtextstream.h \
+		E:\Qt\5.4\msvc2013\include\QtCore\qiodevice.h \
+		E:\Qt\5.4\msvc2013\include\QtCore\qlocale.h \
+		E:\Qt\5.4\msvc2013\include\QtCore\qshareddata.h \
+		E:\Qt\5.4\msvc2013\include\QtCore\qset.h \
+		E:\Qt\5.4\msvc2013\include\QtCore\qcontiguouscache.h \
+		E:\Qt\5.4\msvc2013\include\QtCore\qstringlist.h \
+		E:\Qt\5.4\msvc2013\include\QtCore\qdatastream.h \
+		E:\Qt\5.4\msvc2013\include\QtCore\qregexp.h \
+		E:\Qt\5.4\msvc2013\include\QtCore\qstringmatcher.h \
+		E:\Qt\5.4\msvc2013\include\QtCore\qsequentialanimationgroup.h \
+		E:\Qt\5.4\msvc2013\include\QtCore\qtextcodec.h \
+		E:\Qt\5.4\msvc2013\include\QtCore\qendian.h \
+		E:\Qt\5.4\msvc2013\include\QtCore\qlibraryinfo.h \
+		E:\Qt\5.4\msvc2013\include\QtCore\qdatetime.h \
+		E:\Qt\5.4\msvc2013\include\QtCore\qbuffer.h \
+		E:\Qt\5.4\msvc2013\include\QtCore\qdir.h \
+		E:\Qt\5.4\msvc2013\include\QtCore\qfileinfo.h \
+		E:\Qt\5.4\msvc2013\include\QtCore\qfile.h \
+		E:\Qt\5.4\msvc2013\include\QtCore\qfiledevice.h \
+		E:\Qt\5.4\msvc2013\include\QtCore\qdiriterator.h \
+		E:\Qt\5.4\msvc2013\include\QtCore\qfileselector.h \
+		E:\Qt\5.4\msvc2013\include\QtCore\QStringList \
+		E:\Qt\5.4\msvc2013\include\QtCore\qfilesystemwatcher.h \
+		E:\Qt\5.4\msvc2013\include\QtCore\qlockfile.h \
+		E:\Qt\5.4\msvc2013\include\QtCore\qloggingcategory.h \
+		E:\Qt\5.4\msvc2013\include\QtCore\qprocess.h \
+		E:\Qt\5.4\msvc2013\include\QtCore\qresource.h \
+		E:\Qt\5.4\msvc2013\include\QtCore\qsavefile.h \
+		E:\Qt\5.4\msvc2013\include\QtCore\qsettings.h \
+		E:\Qt\5.4\msvc2013\include\QtCore\qstandardpaths.h \
+		E:\Qt\5.4\msvc2013\include\QtCore\qstorageinfo.h \
+		E:\Qt\5.4\msvc2013\include\QtCore\qtemporarydir.h \
+		E:\Qt\5.4\msvc2013\include\QtCore\QScopedPointer \
+		E:\Qt\5.4\msvc2013\include\QtCore\qtemporaryfile.h \
+		E:\Qt\5.4\msvc2013\include\QtCore\qurl.h \
+		E:\Qt\5.4\msvc2013\include\QtCore\qurlquery.h \
+		E:\Qt\5.4\msvc2013\include\QtCore\qabstractitemmodel.h \
+		E:\Qt\5.4\msvc2013\include\QtCore\qabstractproxymodel.h \
+		E:\Qt\5.4\msvc2013\include\QtCore\qidentityproxymodel.h \
+		E:\Qt\5.4\msvc2013\include\QtCore\qitemselectionmodel.h \
+		E:\Qt\5.4\msvc2013\include\QtCore\qsortfilterproxymodel.h \
+		E:\Qt\5.4\msvc2013\include\QtCore\qstringlistmodel.h \
+		E:\Qt\5.4\msvc2013\include\QtCore\qjsonarray.h \
+		E:\Qt\5.4\msvc2013\include\QtCore\qjsonvalue.h \
+		E:\Qt\5.4\msvc2013\include\QtCore\qjsondocument.h \
+		E:\Qt\5.4\msvc2013\include\QtCore\qjsonobject.h \
+		E:\Qt\5.4\msvc2013\include\QtCore\qabstracteventdispatcher.h \
+		E:\Qt\5.4\msvc2013\include\QtCore\qeventloop.h \
+		E:\Qt\5.4\msvc2013\include\QtCore\qabstractnativeeventfilter.h \
+		E:\Qt\5.4\msvc2013\include\QtCore\qbasictimer.h \
+		E:\Qt\5.4\msvc2013\include\QtCore\qcoreapplication.h \
+		E:\Qt\5.4\msvc2013\include\QtCore\qmath.h \
+		E:\Qt\5.4\msvc2013\include\QtCore\qmetaobject.h \
+		E:\Qt\5.4\msvc2013\include\QtCore\qmimedata.h \
+		E:\Qt\5.4\msvc2013\include\QtCore\qobjectcleanuphandler.h \
+		E:\Qt\5.4\msvc2013\include\QtCore\qpointer.h \
+		E:\Qt\5.4\msvc2013\include\QtCore\qsharedpointer.h \
+		E:\Qt\5.4\msvc2013\include\QtCore\qsharedpointer_impl.h \
+		E:\Qt\5.4\msvc2013\include\QtCore\qsharedmemory.h \
+		E:\Qt\5.4\msvc2013\include\QtCore\qsignalmapper.h \
+		E:\Qt\5.4\msvc2013\include\QtCore\qsocketnotifier.h \
+		E:\Qt\5.4\msvc2013\include\QtCore\qsystemsemaphore.h \
+		E:\Qt\5.4\msvc2013\include\QtCore\qtimer.h \
+		E:\Qt\5.4\msvc2013\include\QtCore\qtranslator.h \
+		E:\Qt\5.4\msvc2013\include\QtCore\qwineventnotifier.h \
+		E:\Qt\5.4\msvc2013\include\QtCore\qmimedatabase.h \
+		E:\Qt\5.4\msvc2013\include\QtCore\qmimetype.h \
+		E:\Qt\5.4\msvc2013\include\QtCore\qfactoryinterface.h \
+		E:\Qt\5.4\msvc2013\include\QtCore\qlibrary.h \
+		E:\Qt\5.4\msvc2013\include\QtCore\qplugin.h \
+		E:\Qt\5.4\msvc2013\include\QtCore\qpluginloader.h \
+		E:\Qt\5.4\msvc2013\include\QtCore\quuid.h \
+		E:\Qt\5.4\msvc2013\include\QtCore\qabstractstate.h \
+		E:\Qt\5.4\msvc2013\include\QtCore\qabstracttransition.h \
+		E:\Qt\5.4\msvc2013\include\QtCore\qeventtransition.h \
+		E:\Qt\5.4\msvc2013\include\QtCore\qfinalstate.h \
+		E:\Qt\5.4\msvc2013\include\QtCore\qhistorystate.h \
+		E:\Qt\5.4\msvc2013\include\QtCore\qsignaltransition.h \
+		E:\Qt\5.4\msvc2013\include\QtCore\qstate.h \
+		E:\Qt\5.4\msvc2013\include\QtCore\qstatemachine.h \
+		E:\Qt\5.4\msvc2013\include\QtCore\qexception.h \
+		E:\Qt\5.4\msvc2013\include\QtCore\qfuture.h \
+		E:\Qt\5.4\msvc2013\include\QtCore\qfutureinterface.h \
+		E:\Qt\5.4\msvc2013\include\QtCore\qrunnable.h \
+		E:\Qt\5.4\msvc2013\include\QtCore\qresultstore.h \
+		E:\Qt\5.4\msvc2013\include\QtCore\qfuturesynchronizer.h \
+		E:\Qt\5.4\msvc2013\include\QtCore\qfuturewatcher.h \
+		E:\Qt\5.4\msvc2013\include\QtCore\qreadwritelock.h \
+		E:\Qt\5.4\msvc2013\include\QtCore\qsemaphore.h \
+		E:\Qt\5.4\msvc2013\include\QtCore\qthread.h \
+		E:\Qt\5.4\msvc2013\include\QtCore\qthreadpool.h \
+		E:\Qt\5.4\msvc2013\include\QtCore\qthreadstorage.h \
+		E:\Qt\5.4\msvc2013\include\QtCore\qwaitcondition.h \
+		E:\Qt\5.4\msvc2013\include\QtCore\qarraydataops.h \
+		E:\Qt\5.4\msvc2013\include\QtCore\qarraydatapointer.h \
+		E:\Qt\5.4\msvc2013\include\QtCore\qbitarray.h \
+		E:\Qt\5.4\msvc2013\include\QtCore\qbytearraymatcher.h \
+		E:\Qt\5.4\msvc2013\include\QtCore\qcache.h \
+		E:\Qt\5.4\msvc2013\include\QtCore\qcollator.h \
+		E:\Qt\5.4\msvc2013\include\QtCore\qcommandlineoption.h \
+		E:\Qt\5.4\msvc2013\include\QtCore\qcommandlineparser.h \
+		E:\Qt\5.4\msvc2013\include\QtCore\qcryptographichash.h \
+		E:\Qt\5.4\msvc2013\include\QtCore\qelapsedtimer.h \
+		E:\Qt\5.4\msvc2013\include\QtCore\qline.h \
+		E:\Qt\5.4\msvc2013\include\QtCore\qlinkedlist.h \
+		E:\Qt\5.4\msvc2013\include\QtCore\qmargins.h \
+		E:\Qt\5.4\msvc2013\include\QtCore\qmessageauthenticationcode.h \
+		E:\Qt\5.4\msvc2013\include\QtCore\qqueue.h \
+		E:\Qt\5.4\msvc2013\include\QtCore\qrect.h \
+		E:\Qt\5.4\msvc2013\include\QtCore\qsize.h \
+		E:\Qt\5.4\msvc2013\include\QtCore\qregularexpression.h \
+		E:\Qt\5.4\msvc2013\include\QtCore\qscopedvaluerollback.h \
+		E:\Qt\5.4\msvc2013\include\QtCore\qstack.h \
+		E:\Qt\5.4\msvc2013\include\QtCore\qtextboundaryfinder.h \
+		E:\Qt\5.4\msvc2013\include\QtCore\qtimeline.h \
+		E:\Qt\5.4\msvc2013\include\QtCore\qtimezone.h \
+		E:\Qt\5.4\msvc2013\include\QtCore\qxmlstream.h \
+		E:\Qt\5.4\msvc2013\include\QtCore\qtcoreversion.h \
+		E:\Qt\5.4\msvc2013\include\QtConcurrent\qtconcurrentcompilertest.h \
+		E:\Qt\5.4\msvc2013\include\QtConcurrent\qtconcurrent_global.h \
+		E:\Qt\5.4\msvc2013\include\QtConcurrent\qtconcurrentexception.h \
+		E:\Qt\5.4\msvc2013\include\QtConcurrent\qtconcurrentfilter.h \
+		E:\Qt\5.4\msvc2013\include\QtConcurrent\qtconcurrentfilterkernel.h \
+		E:\Qt\5.4\msvc2013\include\QtConcurrent\qtconcurrentiteratekernel.h \
+		E:\Qt\5.4\msvc2013\include\QtConcurrent\qtconcurrentmedian.h \
+		E:\Qt\5.4\msvc2013\include\QtConcurrent\qtconcurrentthreadengine.h \
+		E:\Qt\5.4\msvc2013\include\QtConcurrent\qtconcurrentmapkernel.h \
+		E:\Qt\5.4\msvc2013\include\QtConcurrent\qtconcurrentreducekernel.h \
+		E:\Qt\5.4\msvc2013\include\QtConcurrent\qtconcurrentfunctionwrappers.h \
+		E:\Qt\5.4\msvc2013\include\QtConcurrent\qtconcurrentmap.h \
+		E:\Qt\5.4\msvc2013\include\QtConcurrent\qtconcurrentrun.h \
+		E:\Qt\5.4\msvc2013\include\QtConcurrent\qtconcurrentrunbase.h \
+		E:\Qt\5.4\msvc2013\include\QtConcurrent\qtconcurrentstoredfunctioncall.h \
+		E:\Qt\5.4\msvc2013\include\QtConcurrent\qtconcurrentversion.h \
 		E:\Qt\5.4\msvc2013\include\QtWidgets\qmessagebox.h \
 		E:\Qt\5.4\msvc2013\include\QtWidgets\qdialog.h \
 		E:\Qt\5.4\msvc2013\include\QtWidgets\qwidget.h \
 		E:\Qt\5.4\msvc2013\include\QtGui\qwindowdefs.h \
 		E:\Qt\5.4\msvc2013\include\QtGui\qwindowdefs_win.h \
-		E:\Qt\5.4\msvc2013\include\QtCore\qmargins.h \
 		E:\Qt\5.4\msvc2013\include\QtGui\qpaintdevice.h \
-		E:\Qt\5.4\msvc2013\include\QtCore\qrect.h \
-		E:\Qt\5.4\msvc2013\include\QtCore\qsize.h \
-		E:\Qt\5.4\msvc2013\include\QtCore\qpoint.h \
 		E:\Qt\5.4\msvc2013\include\QtGui\qpalette.h \
 		E:\Qt\5.4\msvc2013\include\QtGui\qcolor.h \
 		E:\Qt\5.4\msvc2013\include\QtGui\qrgb.h \
-		E:\Qt\5.4\msvc2013\include\QtCore\qstringlist.h \
-		E:\Qt\5.4\msvc2013\include\QtCore\qdatastream.h \
-		E:\Qt\5.4\msvc2013\include\QtCore\qiodevice.h \
-		E:\Qt\5.4\msvc2013\include\QtCore\qpair.h \
-		E:\Qt\5.4\msvc2013\include\QtCore\qregexp.h \
-		E:\Qt\5.4\msvc2013\include\QtCore\qstringmatcher.h \
 		E:\Qt\5.4\msvc2013\include\QtGui\qbrush.h \
-		E:\Qt\5.4\msvc2013\include\QtCore\qvector.h \
 		E:\Qt\5.4\msvc2013\include\QtGui\qmatrix.h \
 		E:\Qt\5.4\msvc2013\include\QtGui\qpolygon.h \
 		E:\Qt\5.4\msvc2013\include\QtGui\qregion.h \
-		E:\Qt\5.4\msvc2013\include\QtCore\qline.h \
 		E:\Qt\5.4\msvc2013\include\QtGui\qtransform.h \
 		E:\Qt\5.4\msvc2013\include\QtGui\qpainterpath.h \
 		E:\Qt\5.4\msvc2013\include\QtGui\qimage.h \
 		E:\Qt\5.4\msvc2013\include\QtGui\qpixelformat.h \
 		E:\Qt\5.4\msvc2013\include\QtGui\qpixmap.h \
-		E:\Qt\5.4\msvc2013\include\QtCore\qsharedpointer.h \
-		E:\Qt\5.4\msvc2013\include\QtCore\qshareddata.h \
-		E:\Qt\5.4\msvc2013\include\QtCore\qhash.h \
-		E:\Qt\5.4\msvc2013\include\QtCore\qsharedpointer_impl.h \
 		E:\Qt\5.4\msvc2013\include\QtGui\qfont.h \
 		E:\Qt\5.4\msvc2013\include\QtGui\qfontmetrics.h \
 		E:\Qt\5.4\msvc2013\include\QtGui\qfontinfo.h \
@@ -2371,17 +3051,6 @@ debug\acquisition.obj: acquisition.cpp acquisition.h \
 		E:\Qt\5.4\msvc2013\include\QtGui\qcursor.h \
 		E:\Qt\5.4\msvc2013\include\QtGui\qkeysequence.h \
 		E:\Qt\5.4\msvc2013\include\QtGui\qevent.h \
-		E:\Qt\5.4\msvc2013\include\QtCore\qvariant.h \
-		E:\Qt\5.4\msvc2013\include\QtCore\qmap.h \
-		E:\Qt\5.4\msvc2013\include\QtCore\qdebug.h \
-		E:\Qt\5.4\msvc2013\include\QtCore\qtextstream.h \
-		E:\Qt\5.4\msvc2013\include\QtCore\qlocale.h \
-		E:\Qt\5.4\msvc2013\include\QtCore\qset.h \
-		E:\Qt\5.4\msvc2013\include\QtCore\qcontiguouscache.h \
-		E:\Qt\5.4\msvc2013\include\QtCore\qurl.h \
-		E:\Qt\5.4\msvc2013\include\QtCore\qurlquery.h \
-		E:\Qt\5.4\msvc2013\include\QtCore\qfile.h \
-		E:\Qt\5.4\msvc2013\include\QtCore\qfiledevice.h \
 		E:\Qt\5.4\msvc2013\include\QtGui\qvector2d.h \
 		E:\Qt\5.4\msvc2013\include\QtGui\qtouchdevice.h
 
@@ -3080,76 +3749,11 @@ debug\plot.obj: plot.cpp plot.h \
 		E:\Qt\5.4\msvc2013\include\QtCore\qfiledevice.h \
 		E:\Qt\5.4\msvc2013\include\QtGui\qvector2d.h \
 		E:\Qt\5.4\msvc2013\include\QtGui\qtouchdevice.h \
-		calibration.h \
+		acquisition.h \
 		E:\Qt\5.4\msvc2013\include\QtCore\QObject \
-		GeneratedFiles\ui_plot.h \
-		E:\Qt\5.4\msvc2013\include\QtCore\QVariant \
-		E:\Qt\5.4\msvc2013\include\QtWidgets\QAction \
-		E:\Qt\5.4\msvc2013\include\QtWidgets\qaction.h \
-		E:\Qt\5.4\msvc2013\include\QtGui\qicon.h \
-		E:\Qt\5.4\msvc2013\include\QtWidgets\qactiongroup.h \
-		E:\Qt\5.4\msvc2013\include\QtWidgets\QApplication \
-		E:\Qt\5.4\msvc2013\include\QtWidgets\qapplication.h \
-		E:\Qt\5.4\msvc2013\include\QtCore\qcoreapplication.h \
-		E:\Qt\5.4\msvc2013\include\QtCore\qeventloop.h \
-		E:\Qt\5.4\msvc2013\include\QtWidgets\qdesktopwidget.h \
-		E:\Qt\5.4\msvc2013\include\QtGui\qguiapplication.h \
-		E:\Qt\5.4\msvc2013\include\QtGui\qinputmethod.h \
-		E:\Qt\5.4\msvc2013\include\QtWidgets\QButtonGroup \
-		E:\Qt\5.4\msvc2013\include\QtWidgets\qbuttongroup.h \
-		E:\Qt\5.4\msvc2013\include\QtWidgets\QHeaderView \
-		E:\Qt\5.4\msvc2013\include\QtWidgets\qheaderview.h \
-		E:\Qt\5.4\msvc2013\include\QtWidgets\qabstractitemview.h \
-		E:\Qt\5.4\msvc2013\include\QtWidgets\qabstractscrollarea.h \
-		E:\Qt\5.4\msvc2013\include\QtWidgets\qframe.h \
-		E:\Qt\5.4\msvc2013\include\QtCore\qabstractitemmodel.h \
-		E:\Qt\5.4\msvc2013\include\QtCore\qitemselectionmodel.h \
-		E:\Qt\5.4\msvc2013\include\QtWidgets\qabstractitemdelegate.h \
-		E:\Qt\5.4\msvc2013\include\QtWidgets\qstyleoption.h \
-		E:\Qt\5.4\msvc2013\include\QtWidgets\qabstractspinbox.h \
-		E:\Qt\5.4\msvc2013\include\QtGui\qvalidator.h \
-		E:\Qt\5.4\msvc2013\include\QtCore\qregularexpression.h \
-		E:\Qt\5.4\msvc2013\include\QtWidgets\qslider.h \
-		E:\Qt\5.4\msvc2013\include\QtWidgets\qabstractslider.h \
-		E:\Qt\5.4\msvc2013\include\QtWidgets\qstyle.h \
-		E:\Qt\5.4\msvc2013\include\QtWidgets\qtabbar.h \
-		E:\Qt\5.4\msvc2013\include\QtWidgets\qtabwidget.h \
-		E:\Qt\5.4\msvc2013\include\QtWidgets\qrubberband.h \
-		qcustomplot.h \
-		E:\Qt\5.4\msvc2013\include\QtCore\QPointer \
-		E:\Qt\5.4\msvc2013\include\QtCore\qpointer.h \
-		E:\Qt\5.4\msvc2013\include\QtGui\QPainter \
-		E:\Qt\5.4\msvc2013\include\QtGui\qpainter.h \
-		E:\Qt\5.4\msvc2013\include\QtGui\qtextoption.h \
-		E:\Qt\5.4\msvc2013\include\QtGui\qpen.h \
-		E:\Qt\5.4\msvc2013\include\QtGui\QPaintEvent \
-		E:\Qt\5.4\msvc2013\include\QtGui\QMouseEvent \
-		E:\Qt\5.4\msvc2013\include\QtGui\QPixmap \
-		E:\Qt\5.4\msvc2013\include\QtCore\QVector \
-		E:\Qt\5.4\msvc2013\include\QtCore\QString \
-		E:\Qt\5.4\msvc2013\include\QtCore\QDateTime \
-		E:\Qt\5.4\msvc2013\include\QtCore\qdatetime.h \
-		E:\Qt\5.4\msvc2013\include\QtCore\QMultiMap \
-		E:\Qt\5.4\msvc2013\include\QtCore\QFlags \
-		E:\Qt\5.4\msvc2013\include\QtCore\QDebug \
-		E:\Qt\5.4\msvc2013\include\QtGui\QVector2D \
-		E:\Qt\5.4\msvc2013\include\QtCore\QStack \
-		E:\Qt\5.4\msvc2013\include\QtCore\qstack.h \
-		E:\Qt\5.4\msvc2013\include\QtCore\QCache \
-		E:\Qt\5.4\msvc2013\include\QtCore\qcache.h \
-		E:\Qt\5.4\msvc2013\include\QtCore\QMargins \
-		E:\Qt\5.4\msvc2013\include\QtCore\qmath.h \
-		E:\Qt\5.4\msvc2013\include\QtPrintSupport\QPrinter \
-		E:\Qt\5.4\msvc2013\include\QtPrintSupport\qprinter.h \
-		E:\Qt\5.4\msvc2013\include\QtGui\qpagedpaintdevice.h \
-		E:\Qt\5.4\msvc2013\include\QtGui\qpagelayout.h \
-		E:\Qt\5.4\msvc2013\include\QtGui\qpagesize.h \
-		E:\Qt\5.4\msvc2013\include\QtPrintSupport\qtprintsupportglobal.h \
-		E:\Qt\5.4\msvc2013\include\QtPrintSupport\QPrintEngine \
-		E:\Qt\5.4\msvc2013\include\QtPrintSupport\qprintengine.h \
-		E:\Qt\5.4\msvc2013\include\QtCore\QtNumeric \
-		E:\Qt\5.4\msvc2013\include\QtPrintSupport\QtPrintSupport \
-		E:\Qt\5.4\msvc2013\include\QtPrintSupport\QtPrintSupportDepends \
+		"C:\Program Files (x86)\National Instruments\Shared\ExternalCompilerSupport\C\include\NIDAQmx.h" \
+		E:\Qt\5.4\msvc2013\include\QtConcurrent\QtConcurrent \
+		E:\Qt\5.4\msvc2013\include\QtConcurrent\QtConcurrentDepends \
 		E:\Qt\5.4\msvc2013\include\QtCore\QtCore \
 		E:\Qt\5.4\msvc2013\include\QtCore\QtCoreDepends \
 		E:\Qt\5.4\msvc2013\include\QtCore\qabstractanimation.h \
@@ -3163,6 +3767,7 @@ debug\plot.obj: plot.cpp plot.h \
 		E:\Qt\5.4\msvc2013\include\QtCore\qtextcodec.h \
 		E:\Qt\5.4\msvc2013\include\QtCore\qendian.h \
 		E:\Qt\5.4\msvc2013\include\QtCore\qlibraryinfo.h \
+		E:\Qt\5.4\msvc2013\include\QtCore\qdatetime.h \
 		E:\Qt\5.4\msvc2013\include\QtCore\qbuffer.h \
 		E:\Qt\5.4\msvc2013\include\QtCore\qdir.h \
 		E:\Qt\5.4\msvc2013\include\QtCore\qfileinfo.h \
@@ -3181,8 +3786,10 @@ debug\plot.obj: plot.cpp plot.h \
 		E:\Qt\5.4\msvc2013\include\QtCore\qtemporarydir.h \
 		E:\Qt\5.4\msvc2013\include\QtCore\QScopedPointer \
 		E:\Qt\5.4\msvc2013\include\QtCore\qtemporaryfile.h \
+		E:\Qt\5.4\msvc2013\include\QtCore\qabstractitemmodel.h \
 		E:\Qt\5.4\msvc2013\include\QtCore\qabstractproxymodel.h \
 		E:\Qt\5.4\msvc2013\include\QtCore\qidentityproxymodel.h \
+		E:\Qt\5.4\msvc2013\include\QtCore\qitemselectionmodel.h \
 		E:\Qt\5.4\msvc2013\include\QtCore\qsortfilterproxymodel.h \
 		E:\Qt\5.4\msvc2013\include\QtCore\qstringlistmodel.h \
 		E:\Qt\5.4\msvc2013\include\QtCore\qjsonarray.h \
@@ -3190,11 +3797,15 @@ debug\plot.obj: plot.cpp plot.h \
 		E:\Qt\5.4\msvc2013\include\QtCore\qjsondocument.h \
 		E:\Qt\5.4\msvc2013\include\QtCore\qjsonobject.h \
 		E:\Qt\5.4\msvc2013\include\QtCore\qabstracteventdispatcher.h \
+		E:\Qt\5.4\msvc2013\include\QtCore\qeventloop.h \
 		E:\Qt\5.4\msvc2013\include\QtCore\qabstractnativeeventfilter.h \
 		E:\Qt\5.4\msvc2013\include\QtCore\qbasictimer.h \
+		E:\Qt\5.4\msvc2013\include\QtCore\qcoreapplication.h \
+		E:\Qt\5.4\msvc2013\include\QtCore\qmath.h \
 		E:\Qt\5.4\msvc2013\include\QtCore\qmetaobject.h \
 		E:\Qt\5.4\msvc2013\include\QtCore\qmimedata.h \
 		E:\Qt\5.4\msvc2013\include\QtCore\qobjectcleanuphandler.h \
+		E:\Qt\5.4\msvc2013\include\QtCore\qpointer.h \
 		E:\Qt\5.4\msvc2013\include\QtCore\qsharedmemory.h \
 		E:\Qt\5.4\msvc2013\include\QtCore\qsignalmapper.h \
 		E:\Qt\5.4\msvc2013\include\QtCore\qsocketnotifier.h \
@@ -3234,6 +3845,7 @@ debug\plot.obj: plot.cpp plot.h \
 		E:\Qt\5.4\msvc2013\include\QtCore\qarraydatapointer.h \
 		E:\Qt\5.4\msvc2013\include\QtCore\qbitarray.h \
 		E:\Qt\5.4\msvc2013\include\QtCore\qbytearraymatcher.h \
+		E:\Qt\5.4\msvc2013\include\QtCore\qcache.h \
 		E:\Qt\5.4\msvc2013\include\QtCore\qcollator.h \
 		E:\Qt\5.4\msvc2013\include\QtCore\qcommandlineoption.h \
 		E:\Qt\5.4\msvc2013\include\QtCore\qcommandlineparser.h \
@@ -3242,12 +3854,91 @@ debug\plot.obj: plot.cpp plot.h \
 		E:\Qt\5.4\msvc2013\include\QtCore\qlinkedlist.h \
 		E:\Qt\5.4\msvc2013\include\QtCore\qmessageauthenticationcode.h \
 		E:\Qt\5.4\msvc2013\include\QtCore\qqueue.h \
+		E:\Qt\5.4\msvc2013\include\QtCore\qregularexpression.h \
 		E:\Qt\5.4\msvc2013\include\QtCore\qscopedvaluerollback.h \
+		E:\Qt\5.4\msvc2013\include\QtCore\qstack.h \
 		E:\Qt\5.4\msvc2013\include\QtCore\qtextboundaryfinder.h \
 		E:\Qt\5.4\msvc2013\include\QtCore\qtimeline.h \
 		E:\Qt\5.4\msvc2013\include\QtCore\qtimezone.h \
 		E:\Qt\5.4\msvc2013\include\QtCore\qxmlstream.h \
 		E:\Qt\5.4\msvc2013\include\QtCore\qtcoreversion.h \
+		E:\Qt\5.4\msvc2013\include\QtConcurrent\qtconcurrentcompilertest.h \
+		E:\Qt\5.4\msvc2013\include\QtConcurrent\qtconcurrent_global.h \
+		E:\Qt\5.4\msvc2013\include\QtConcurrent\qtconcurrentexception.h \
+		E:\Qt\5.4\msvc2013\include\QtConcurrent\qtconcurrentfilter.h \
+		E:\Qt\5.4\msvc2013\include\QtConcurrent\qtconcurrentfilterkernel.h \
+		E:\Qt\5.4\msvc2013\include\QtConcurrent\qtconcurrentiteratekernel.h \
+		E:\Qt\5.4\msvc2013\include\QtConcurrent\qtconcurrentmedian.h \
+		E:\Qt\5.4\msvc2013\include\QtConcurrent\qtconcurrentthreadengine.h \
+		E:\Qt\5.4\msvc2013\include\QtConcurrent\qtconcurrentmapkernel.h \
+		E:\Qt\5.4\msvc2013\include\QtConcurrent\qtconcurrentreducekernel.h \
+		E:\Qt\5.4\msvc2013\include\QtConcurrent\qtconcurrentfunctionwrappers.h \
+		E:\Qt\5.4\msvc2013\include\QtConcurrent\qtconcurrentmap.h \
+		E:\Qt\5.4\msvc2013\include\QtConcurrent\qtconcurrentrun.h \
+		E:\Qt\5.4\msvc2013\include\QtConcurrent\qtconcurrentrunbase.h \
+		E:\Qt\5.4\msvc2013\include\QtConcurrent\qtconcurrentstoredfunctioncall.h \
+		E:\Qt\5.4\msvc2013\include\QtConcurrent\qtconcurrentversion.h \
+		GeneratedFiles\ui_plot.h \
+		E:\Qt\5.4\msvc2013\include\QtCore\QVariant \
+		E:\Qt\5.4\msvc2013\include\QtWidgets\QAction \
+		E:\Qt\5.4\msvc2013\include\QtWidgets\qaction.h \
+		E:\Qt\5.4\msvc2013\include\QtGui\qicon.h \
+		E:\Qt\5.4\msvc2013\include\QtWidgets\qactiongroup.h \
+		E:\Qt\5.4\msvc2013\include\QtWidgets\QApplication \
+		E:\Qt\5.4\msvc2013\include\QtWidgets\qapplication.h \
+		E:\Qt\5.4\msvc2013\include\QtWidgets\qdesktopwidget.h \
+		E:\Qt\5.4\msvc2013\include\QtGui\qguiapplication.h \
+		E:\Qt\5.4\msvc2013\include\QtGui\qinputmethod.h \
+		E:\Qt\5.4\msvc2013\include\QtWidgets\QButtonGroup \
+		E:\Qt\5.4\msvc2013\include\QtWidgets\qbuttongroup.h \
+		E:\Qt\5.4\msvc2013\include\QtWidgets\QHeaderView \
+		E:\Qt\5.4\msvc2013\include\QtWidgets\qheaderview.h \
+		E:\Qt\5.4\msvc2013\include\QtWidgets\qabstractitemview.h \
+		E:\Qt\5.4\msvc2013\include\QtWidgets\qabstractscrollarea.h \
+		E:\Qt\5.4\msvc2013\include\QtWidgets\qframe.h \
+		E:\Qt\5.4\msvc2013\include\QtWidgets\qabstractitemdelegate.h \
+		E:\Qt\5.4\msvc2013\include\QtWidgets\qstyleoption.h \
+		E:\Qt\5.4\msvc2013\include\QtWidgets\qabstractspinbox.h \
+		E:\Qt\5.4\msvc2013\include\QtGui\qvalidator.h \
+		E:\Qt\5.4\msvc2013\include\QtWidgets\qslider.h \
+		E:\Qt\5.4\msvc2013\include\QtWidgets\qabstractslider.h \
+		E:\Qt\5.4\msvc2013\include\QtWidgets\qstyle.h \
+		E:\Qt\5.4\msvc2013\include\QtWidgets\qtabbar.h \
+		E:\Qt\5.4\msvc2013\include\QtWidgets\qtabwidget.h \
+		E:\Qt\5.4\msvc2013\include\QtWidgets\qrubberband.h \
+		E:\Qt\5.4\msvc2013\include\QtWidgets\QPushButton \
+		E:\Qt\5.4\msvc2013\include\QtWidgets\qpushbutton.h \
+		E:\Qt\5.4\msvc2013\include\QtWidgets\qabstractbutton.h \
+		qcustomplot.h \
+		E:\Qt\5.4\msvc2013\include\QtCore\QPointer \
+		E:\Qt\5.4\msvc2013\include\QtGui\QPainter \
+		E:\Qt\5.4\msvc2013\include\QtGui\qpainter.h \
+		E:\Qt\5.4\msvc2013\include\QtGui\qtextoption.h \
+		E:\Qt\5.4\msvc2013\include\QtGui\qpen.h \
+		E:\Qt\5.4\msvc2013\include\QtGui\QPaintEvent \
+		E:\Qt\5.4\msvc2013\include\QtGui\QMouseEvent \
+		E:\Qt\5.4\msvc2013\include\QtGui\QPixmap \
+		E:\Qt\5.4\msvc2013\include\QtCore\QVector \
+		E:\Qt\5.4\msvc2013\include\QtCore\QString \
+		E:\Qt\5.4\msvc2013\include\QtCore\QDateTime \
+		E:\Qt\5.4\msvc2013\include\QtCore\QMultiMap \
+		E:\Qt\5.4\msvc2013\include\QtCore\QFlags \
+		E:\Qt\5.4\msvc2013\include\QtCore\QDebug \
+		E:\Qt\5.4\msvc2013\include\QtGui\QVector2D \
+		E:\Qt\5.4\msvc2013\include\QtCore\QStack \
+		E:\Qt\5.4\msvc2013\include\QtCore\QCache \
+		E:\Qt\5.4\msvc2013\include\QtCore\QMargins \
+		E:\Qt\5.4\msvc2013\include\QtPrintSupport\QPrinter \
+		E:\Qt\5.4\msvc2013\include\QtPrintSupport\qprinter.h \
+		E:\Qt\5.4\msvc2013\include\QtGui\qpagedpaintdevice.h \
+		E:\Qt\5.4\msvc2013\include\QtGui\qpagelayout.h \
+		E:\Qt\5.4\msvc2013\include\QtGui\qpagesize.h \
+		E:\Qt\5.4\msvc2013\include\QtPrintSupport\qtprintsupportglobal.h \
+		E:\Qt\5.4\msvc2013\include\QtPrintSupport\QPrintEngine \
+		E:\Qt\5.4\msvc2013\include\QtPrintSupport\qprintengine.h \
+		E:\Qt\5.4\msvc2013\include\QtCore\QtNumeric \
+		E:\Qt\5.4\msvc2013\include\QtPrintSupport\QtPrintSupport \
+		E:\Qt\5.4\msvc2013\include\QtPrintSupport\QtPrintSupportDepends \
 		E:\Qt\5.4\msvc2013\include\QtGui\QtGui \
 		E:\Qt\5.4\msvc2013\include\QtGui\QtGuiDepends \
 		E:\Qt\5.4\msvc2013\include\QtGui\qaccessible.h \
@@ -3424,12 +4115,10 @@ debug\plot.obj: plot.cpp plot.h \
 		E:\Qt\5.4\msvc2013\include\QtWidgets\qundogroup.h \
 		E:\Qt\5.4\msvc2013\include\QtWidgets\qundostack.h \
 		E:\Qt\5.4\msvc2013\include\QtWidgets\qundoview.h \
-		E:\Qt\5.4\msvc2013\include\QtWidgets\qabstractbutton.h \
 		E:\Qt\5.4\msvc2013\include\QtWidgets\qcalendarwidget.h \
 		E:\Qt\5.4\msvc2013\include\QtWidgets\qcheckbox.h \
 		E:\Qt\5.4\msvc2013\include\QtWidgets\qcombobox.h \
 		E:\Qt\5.4\msvc2013\include\QtWidgets\qcommandlinkbutton.h \
-		E:\Qt\5.4\msvc2013\include\QtWidgets\qpushbutton.h \
 		E:\Qt\5.4\msvc2013\include\QtWidgets\qdatetimeedit.h \
 		E:\Qt\5.4\msvc2013\include\QtWidgets\qdial.h \
 		E:\Qt\5.4\msvc2013\include\QtWidgets\qdialogbuttonbox.h \
@@ -3468,6 +4157,239 @@ debug\plot.obj: plot.cpp plot.h \
 		E:\Qt\5.4\msvc2013\include\QtPrintSupport\qprinterinfo.h \
 		E:\Qt\5.4\msvc2013\include\QtPrintSupport\qprintpreviewwidget.h \
 		E:\Qt\5.4\msvc2013\include\QtPrintSupport\qtprintsupportversion.h
+
+debug\acquisition.obj: acquisition.cpp acquisition.h \
+		E:\Qt\5.4\msvc2013\include\QtCore\QObject \
+		E:\Qt\5.4\msvc2013\include\QtCore\qobject.h \
+		E:\Qt\5.4\msvc2013\include\QtCore\qobjectdefs.h \
+		E:\Qt\5.4\msvc2013\include\QtCore\qnamespace.h \
+		E:\Qt\5.4\msvc2013\include\QtCore\qglobal.h \
+		E:\Qt\5.4\msvc2013\include\QtCore\qconfig.h \
+		E:\Qt\5.4\msvc2013\include\QtCore\qfeatures.h \
+		E:\Qt\5.4\msvc2013\include\QtCore\qsystemdetection.h \
+		E:\Qt\5.4\msvc2013\include\QtCore\qprocessordetection.h \
+		E:\Qt\5.4\msvc2013\include\QtCore\qcompilerdetection.h \
+		E:\Qt\5.4\msvc2013\include\QtCore\qtypeinfo.h \
+		E:\Qt\5.4\msvc2013\include\QtCore\qtypetraits.h \
+		E:\Qt\5.4\msvc2013\include\QtCore\qsysinfo.h \
+		E:\Qt\5.4\msvc2013\include\QtCore\qlogging.h \
+		E:\Qt\5.4\msvc2013\include\QtCore\qflags.h \
+		E:\Qt\5.4\msvc2013\include\QtCore\qatomic.h \
+		E:\Qt\5.4\msvc2013\include\QtCore\qbasicatomic.h \
+		E:\Qt\5.4\msvc2013\include\QtCore\qatomic_bootstrap.h \
+		E:\Qt\5.4\msvc2013\include\QtCore\qgenericatomic.h \
+		E:\Qt\5.4\msvc2013\include\QtCore\qatomic_msvc.h \
+		E:\Qt\5.4\msvc2013\include\QtCore\qatomic_armv7.h \
+		E:\Qt\5.4\msvc2013\include\QtCore\qatomic_armv6.h \
+		E:\Qt\5.4\msvc2013\include\QtCore\qatomic_armv5.h \
+		E:\Qt\5.4\msvc2013\include\QtCore\qatomic_ia64.h \
+		E:\Qt\5.4\msvc2013\include\QtCore\qatomic_mips.h \
+		E:\Qt\5.4\msvc2013\include\QtCore\qatomic_x86.h \
+		E:\Qt\5.4\msvc2013\include\QtCore\qatomic_cxx11.h \
+		E:\Qt\5.4\msvc2013\include\QtCore\qatomic_gcc.h \
+		E:\Qt\5.4\msvc2013\include\QtCore\qatomic_unix.h \
+		E:\Qt\5.4\msvc2013\include\QtCore\qglobalstatic.h \
+		E:\Qt\5.4\msvc2013\include\QtCore\qmutex.h \
+		E:\Qt\5.4\msvc2013\include\QtCore\qnumeric.h \
+		E:\Qt\5.4\msvc2013\include\QtCore\qobjectdefs_impl.h \
+		E:\Qt\5.4\msvc2013\include\QtCore\qstring.h \
+		E:\Qt\5.4\msvc2013\include\QtCore\qchar.h \
+		E:\Qt\5.4\msvc2013\include\QtCore\qbytearray.h \
+		E:\Qt\5.4\msvc2013\include\QtCore\qrefcount.h \
+		E:\Qt\5.4\msvc2013\include\QtCore\qarraydata.h \
+		E:\Qt\5.4\msvc2013\include\QtCore\qstringbuilder.h \
+		E:\Qt\5.4\msvc2013\include\QtCore\qlist.h \
+		E:\Qt\5.4\msvc2013\include\QtCore\qalgorithms.h \
+		E:\Qt\5.4\msvc2013\include\QtCore\qiterator.h \
+		E:\Qt\5.4\msvc2013\include\QtCore\qbytearraylist.h \
+		E:\Qt\5.4\msvc2013\include\QtCore\qcoreevent.h \
+		E:\Qt\5.4\msvc2013\include\QtCore\qscopedpointer.h \
+		E:\Qt\5.4\msvc2013\include\QtCore\qmetatype.h \
+		E:\Qt\5.4\msvc2013\include\QtCore\qvarlengtharray.h \
+		E:\Qt\5.4\msvc2013\include\QtCore\qcontainerfwd.h \
+		E:\Qt\5.4\msvc2013\include\QtCore\qisenum.h \
+		E:\Qt\5.4\msvc2013\include\QtCore\qobject_impl.h \
+		"C:\Program Files (x86)\National Instruments\Shared\ExternalCompilerSupport\C\include\NIDAQmx.h" \
+		E:\Qt\5.4\msvc2013\include\QtConcurrent\QtConcurrent \
+		E:\Qt\5.4\msvc2013\include\QtConcurrent\QtConcurrentDepends \
+		E:\Qt\5.4\msvc2013\include\QtCore\QtCore \
+		E:\Qt\5.4\msvc2013\include\QtCore\QtCoreDepends \
+		E:\Qt\5.4\msvc2013\include\QtCore\qabstractanimation.h \
+		E:\Qt\5.4\msvc2013\include\QtCore\qanimationgroup.h \
+		E:\Qt\5.4\msvc2013\include\QtCore\qparallelanimationgroup.h \
+		E:\Qt\5.4\msvc2013\include\QtCore\qpauseanimation.h \
+		E:\Qt\5.4\msvc2013\include\QtCore\qpropertyanimation.h \
+		E:\Qt\5.4\msvc2013\include\QtCore\qvariantanimation.h \
+		E:\Qt\5.4\msvc2013\include\QtCore\qeasingcurve.h \
+		E:\Qt\5.4\msvc2013\include\QtCore\qvector.h \
+		E:\Qt\5.4\msvc2013\include\QtCore\qpoint.h \
+		E:\Qt\5.4\msvc2013\include\QtCore\qvariant.h \
+		E:\Qt\5.4\msvc2013\include\QtCore\qmap.h \
+		E:\Qt\5.4\msvc2013\include\QtCore\qpair.h \
+		E:\Qt\5.4\msvc2013\include\QtCore\qdebug.h \
+		E:\Qt\5.4\msvc2013\include\QtCore\qhash.h \
+		E:\Qt\5.4\msvc2013\include\QtCore\qtextstream.h \
+		E:\Qt\5.4\msvc2013\include\QtCore\qiodevice.h \
+		E:\Qt\5.4\msvc2013\include\QtCore\qlocale.h \
+		E:\Qt\5.4\msvc2013\include\QtCore\qshareddata.h \
+		E:\Qt\5.4\msvc2013\include\QtCore\qset.h \
+		E:\Qt\5.4\msvc2013\include\QtCore\qcontiguouscache.h \
+		E:\Qt\5.4\msvc2013\include\QtCore\qstringlist.h \
+		E:\Qt\5.4\msvc2013\include\QtCore\qdatastream.h \
+		E:\Qt\5.4\msvc2013\include\QtCore\qregexp.h \
+		E:\Qt\5.4\msvc2013\include\QtCore\qstringmatcher.h \
+		E:\Qt\5.4\msvc2013\include\QtCore\qsequentialanimationgroup.h \
+		E:\Qt\5.4\msvc2013\include\QtCore\qtextcodec.h \
+		E:\Qt\5.4\msvc2013\include\QtCore\qendian.h \
+		E:\Qt\5.4\msvc2013\include\QtCore\qlibraryinfo.h \
+		E:\Qt\5.4\msvc2013\include\QtCore\qdatetime.h \
+		E:\Qt\5.4\msvc2013\include\QtCore\qbuffer.h \
+		E:\Qt\5.4\msvc2013\include\QtCore\qdir.h \
+		E:\Qt\5.4\msvc2013\include\QtCore\qfileinfo.h \
+		E:\Qt\5.4\msvc2013\include\QtCore\qfile.h \
+		E:\Qt\5.4\msvc2013\include\QtCore\qfiledevice.h \
+		E:\Qt\5.4\msvc2013\include\QtCore\qdiriterator.h \
+		E:\Qt\5.4\msvc2013\include\QtCore\qfileselector.h \
+		E:\Qt\5.4\msvc2013\include\QtCore\QStringList \
+		E:\Qt\5.4\msvc2013\include\QtCore\qfilesystemwatcher.h \
+		E:\Qt\5.4\msvc2013\include\QtCore\qlockfile.h \
+		E:\Qt\5.4\msvc2013\include\QtCore\qloggingcategory.h \
+		E:\Qt\5.4\msvc2013\include\QtCore\qprocess.h \
+		E:\Qt\5.4\msvc2013\include\QtCore\qresource.h \
+		E:\Qt\5.4\msvc2013\include\QtCore\qsavefile.h \
+		E:\Qt\5.4\msvc2013\include\QtCore\qsettings.h \
+		E:\Qt\5.4\msvc2013\include\QtCore\qstandardpaths.h \
+		E:\Qt\5.4\msvc2013\include\QtCore\qstorageinfo.h \
+		E:\Qt\5.4\msvc2013\include\QtCore\qtemporarydir.h \
+		E:\Qt\5.4\msvc2013\include\QtCore\QScopedPointer \
+		E:\Qt\5.4\msvc2013\include\QtCore\qtemporaryfile.h \
+		E:\Qt\5.4\msvc2013\include\QtCore\qurl.h \
+		E:\Qt\5.4\msvc2013\include\QtCore\qurlquery.h \
+		E:\Qt\5.4\msvc2013\include\QtCore\qabstractitemmodel.h \
+		E:\Qt\5.4\msvc2013\include\QtCore\qabstractproxymodel.h \
+		E:\Qt\5.4\msvc2013\include\QtCore\qidentityproxymodel.h \
+		E:\Qt\5.4\msvc2013\include\QtCore\qitemselectionmodel.h \
+		E:\Qt\5.4\msvc2013\include\QtCore\qsortfilterproxymodel.h \
+		E:\Qt\5.4\msvc2013\include\QtCore\qstringlistmodel.h \
+		E:\Qt\5.4\msvc2013\include\QtCore\qjsonarray.h \
+		E:\Qt\5.4\msvc2013\include\QtCore\qjsonvalue.h \
+		E:\Qt\5.4\msvc2013\include\QtCore\qjsondocument.h \
+		E:\Qt\5.4\msvc2013\include\QtCore\qjsonobject.h \
+		E:\Qt\5.4\msvc2013\include\QtCore\qabstracteventdispatcher.h \
+		E:\Qt\5.4\msvc2013\include\QtCore\qeventloop.h \
+		E:\Qt\5.4\msvc2013\include\QtCore\qabstractnativeeventfilter.h \
+		E:\Qt\5.4\msvc2013\include\QtCore\qbasictimer.h \
+		E:\Qt\5.4\msvc2013\include\QtCore\qcoreapplication.h \
+		E:\Qt\5.4\msvc2013\include\QtCore\qmath.h \
+		E:\Qt\5.4\msvc2013\include\QtCore\qmetaobject.h \
+		E:\Qt\5.4\msvc2013\include\QtCore\qmimedata.h \
+		E:\Qt\5.4\msvc2013\include\QtCore\qobjectcleanuphandler.h \
+		E:\Qt\5.4\msvc2013\include\QtCore\qpointer.h \
+		E:\Qt\5.4\msvc2013\include\QtCore\qsharedpointer.h \
+		E:\Qt\5.4\msvc2013\include\QtCore\qsharedpointer_impl.h \
+		E:\Qt\5.4\msvc2013\include\QtCore\qsharedmemory.h \
+		E:\Qt\5.4\msvc2013\include\QtCore\qsignalmapper.h \
+		E:\Qt\5.4\msvc2013\include\QtCore\qsocketnotifier.h \
+		E:\Qt\5.4\msvc2013\include\QtCore\qsystemsemaphore.h \
+		E:\Qt\5.4\msvc2013\include\QtCore\qtimer.h \
+		E:\Qt\5.4\msvc2013\include\QtCore\qtranslator.h \
+		E:\Qt\5.4\msvc2013\include\QtCore\qwineventnotifier.h \
+		E:\Qt\5.4\msvc2013\include\QtCore\qmimedatabase.h \
+		E:\Qt\5.4\msvc2013\include\QtCore\qmimetype.h \
+		E:\Qt\5.4\msvc2013\include\QtCore\qfactoryinterface.h \
+		E:\Qt\5.4\msvc2013\include\QtCore\qlibrary.h \
+		E:\Qt\5.4\msvc2013\include\QtCore\qplugin.h \
+		E:\Qt\5.4\msvc2013\include\QtCore\qpluginloader.h \
+		E:\Qt\5.4\msvc2013\include\QtCore\quuid.h \
+		E:\Qt\5.4\msvc2013\include\QtCore\qabstractstate.h \
+		E:\Qt\5.4\msvc2013\include\QtCore\qabstracttransition.h \
+		E:\Qt\5.4\msvc2013\include\QtCore\qeventtransition.h \
+		E:\Qt\5.4\msvc2013\include\QtCore\qfinalstate.h \
+		E:\Qt\5.4\msvc2013\include\QtCore\qhistorystate.h \
+		E:\Qt\5.4\msvc2013\include\QtCore\qsignaltransition.h \
+		E:\Qt\5.4\msvc2013\include\QtCore\qstate.h \
+		E:\Qt\5.4\msvc2013\include\QtCore\qstatemachine.h \
+		E:\Qt\5.4\msvc2013\include\QtCore\qexception.h \
+		E:\Qt\5.4\msvc2013\include\QtCore\qfuture.h \
+		E:\Qt\5.4\msvc2013\include\QtCore\qfutureinterface.h \
+		E:\Qt\5.4\msvc2013\include\QtCore\qrunnable.h \
+		E:\Qt\5.4\msvc2013\include\QtCore\qresultstore.h \
+		E:\Qt\5.4\msvc2013\include\QtCore\qfuturesynchronizer.h \
+		E:\Qt\5.4\msvc2013\include\QtCore\qfuturewatcher.h \
+		E:\Qt\5.4\msvc2013\include\QtCore\qreadwritelock.h \
+		E:\Qt\5.4\msvc2013\include\QtCore\qsemaphore.h \
+		E:\Qt\5.4\msvc2013\include\QtCore\qthread.h \
+		E:\Qt\5.4\msvc2013\include\QtCore\qthreadpool.h \
+		E:\Qt\5.4\msvc2013\include\QtCore\qthreadstorage.h \
+		E:\Qt\5.4\msvc2013\include\QtCore\qwaitcondition.h \
+		E:\Qt\5.4\msvc2013\include\QtCore\qarraydataops.h \
+		E:\Qt\5.4\msvc2013\include\QtCore\qarraydatapointer.h \
+		E:\Qt\5.4\msvc2013\include\QtCore\qbitarray.h \
+		E:\Qt\5.4\msvc2013\include\QtCore\qbytearraymatcher.h \
+		E:\Qt\5.4\msvc2013\include\QtCore\qcache.h \
+		E:\Qt\5.4\msvc2013\include\QtCore\qcollator.h \
+		E:\Qt\5.4\msvc2013\include\QtCore\qcommandlineoption.h \
+		E:\Qt\5.4\msvc2013\include\QtCore\qcommandlineparser.h \
+		E:\Qt\5.4\msvc2013\include\QtCore\qcryptographichash.h \
+		E:\Qt\5.4\msvc2013\include\QtCore\qelapsedtimer.h \
+		E:\Qt\5.4\msvc2013\include\QtCore\qline.h \
+		E:\Qt\5.4\msvc2013\include\QtCore\qlinkedlist.h \
+		E:\Qt\5.4\msvc2013\include\QtCore\qmargins.h \
+		E:\Qt\5.4\msvc2013\include\QtCore\qmessageauthenticationcode.h \
+		E:\Qt\5.4\msvc2013\include\QtCore\qqueue.h \
+		E:\Qt\5.4\msvc2013\include\QtCore\qrect.h \
+		E:\Qt\5.4\msvc2013\include\QtCore\qsize.h \
+		E:\Qt\5.4\msvc2013\include\QtCore\qregularexpression.h \
+		E:\Qt\5.4\msvc2013\include\QtCore\qscopedvaluerollback.h \
+		E:\Qt\5.4\msvc2013\include\QtCore\qstack.h \
+		E:\Qt\5.4\msvc2013\include\QtCore\qtextboundaryfinder.h \
+		E:\Qt\5.4\msvc2013\include\QtCore\qtimeline.h \
+		E:\Qt\5.4\msvc2013\include\QtCore\qtimezone.h \
+		E:\Qt\5.4\msvc2013\include\QtCore\qxmlstream.h \
+		E:\Qt\5.4\msvc2013\include\QtCore\qtcoreversion.h \
+		E:\Qt\5.4\msvc2013\include\QtConcurrent\qtconcurrentcompilertest.h \
+		E:\Qt\5.4\msvc2013\include\QtConcurrent\qtconcurrent_global.h \
+		E:\Qt\5.4\msvc2013\include\QtConcurrent\qtconcurrentexception.h \
+		E:\Qt\5.4\msvc2013\include\QtConcurrent\qtconcurrentfilter.h \
+		E:\Qt\5.4\msvc2013\include\QtConcurrent\qtconcurrentfilterkernel.h \
+		E:\Qt\5.4\msvc2013\include\QtConcurrent\qtconcurrentiteratekernel.h \
+		E:\Qt\5.4\msvc2013\include\QtConcurrent\qtconcurrentmedian.h \
+		E:\Qt\5.4\msvc2013\include\QtConcurrent\qtconcurrentthreadengine.h \
+		E:\Qt\5.4\msvc2013\include\QtConcurrent\qtconcurrentmapkernel.h \
+		E:\Qt\5.4\msvc2013\include\QtConcurrent\qtconcurrentreducekernel.h \
+		E:\Qt\5.4\msvc2013\include\QtConcurrent\qtconcurrentfunctionwrappers.h \
+		E:\Qt\5.4\msvc2013\include\QtConcurrent\qtconcurrentmap.h \
+		E:\Qt\5.4\msvc2013\include\QtConcurrent\qtconcurrentrun.h \
+		E:\Qt\5.4\msvc2013\include\QtConcurrent\qtconcurrentrunbase.h \
+		E:\Qt\5.4\msvc2013\include\QtConcurrent\qtconcurrentstoredfunctioncall.h \
+		E:\Qt\5.4\msvc2013\include\QtConcurrent\qtconcurrentversion.h \
+		E:\Qt\5.4\msvc2013\include\QtWidgets\qmessagebox.h \
+		E:\Qt\5.4\msvc2013\include\QtWidgets\qdialog.h \
+		E:\Qt\5.4\msvc2013\include\QtWidgets\qwidget.h \
+		E:\Qt\5.4\msvc2013\include\QtGui\qwindowdefs.h \
+		E:\Qt\5.4\msvc2013\include\QtGui\qwindowdefs_win.h \
+		E:\Qt\5.4\msvc2013\include\QtGui\qpaintdevice.h \
+		E:\Qt\5.4\msvc2013\include\QtGui\qpalette.h \
+		E:\Qt\5.4\msvc2013\include\QtGui\qcolor.h \
+		E:\Qt\5.4\msvc2013\include\QtGui\qrgb.h \
+		E:\Qt\5.4\msvc2013\include\QtGui\qbrush.h \
+		E:\Qt\5.4\msvc2013\include\QtGui\qmatrix.h \
+		E:\Qt\5.4\msvc2013\include\QtGui\qpolygon.h \
+		E:\Qt\5.4\msvc2013\include\QtGui\qregion.h \
+		E:\Qt\5.4\msvc2013\include\QtGui\qtransform.h \
+		E:\Qt\5.4\msvc2013\include\QtGui\qpainterpath.h \
+		E:\Qt\5.4\msvc2013\include\QtGui\qimage.h \
+		E:\Qt\5.4\msvc2013\include\QtGui\qpixelformat.h \
+		E:\Qt\5.4\msvc2013\include\QtGui\qpixmap.h \
+		E:\Qt\5.4\msvc2013\include\QtGui\qfont.h \
+		E:\Qt\5.4\msvc2013\include\QtGui\qfontmetrics.h \
+		E:\Qt\5.4\msvc2013\include\QtGui\qfontinfo.h \
+		E:\Qt\5.4\msvc2013\include\QtWidgets\qsizepolicy.h \
+		E:\Qt\5.4\msvc2013\include\QtGui\qcursor.h \
+		E:\Qt\5.4\msvc2013\include\QtGui\qkeysequence.h \
+		E:\Qt\5.4\msvc2013\include\QtGui\qevent.h \
+		E:\Qt\5.4\msvc2013\include\QtGui\qvector2d.h \
+		E:\Qt\5.4\msvc2013\include\QtGui\qtouchdevice.h
 
 debug\qrc_untitled2.obj: GeneratedFiles\qrc_untitled2.cpp 
 
