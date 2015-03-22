@@ -9,6 +9,8 @@
 #include <iostream>
 #include <fstream>
 
+// "Andarci vicino conta solo a bocce" cit Carlo
+
 using namespace std;
 
 int main(int argc, char *argv[])

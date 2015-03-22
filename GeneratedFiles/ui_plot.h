@@ -13,6 +13,7 @@
 #include <QtWidgets/QAction>
 #include <QtWidgets/QApplication>
 #include <QtWidgets/QButtonGroup>
+#include <QtWidgets/QGridLayout>
 #include <QtWidgets/QHeaderView>
 #include <QtWidgets/QPushButton>
 #include <QtWidgets/QWidget>
@@ -23,6 +24,7 @@ QT_BEGIN_NAMESPACE
 class Ui_Plot
 {
 public:
+    QGridLayout *gridLayout_2;
     QCustomPlot *customplot;
     QPushButton *startButton;
     QPushButton *stopButton;
@@ -32,15 +34,23 @@ public:
         if (Plot->objectName().isEmpty())
             Plot->setObjectName(QStringLiteral("Plot"));
         Plot->resize(867, 577);
+        gridLayout_2 = new QGridLayout(Plot);
+        gridLayout_2->setObjectName(QStringLiteral("gridLayout_2"));
         customplot = new QCustomPlot(Plot);
         customplot->setObjectName(QStringLiteral("customplot"));
-        customplot->setGeometry(QRect(20, 10, 811, 501));
+
+        gridLayout_2->addWidget(customplot, 0, 0, 1, 2);
+
         startButton = new QPushButton(Plot);
         startButton->setObjectName(QStringLiteral("startButton"));
-        startButton->setGeometry(QRect(60, 530, 75, 23));
+
+        gridLayout_2->addWidget(startButton, 1, 0, 1, 1);
+
         stopButton = new QPushButton(Plot);
         stopButton->setObjectName(QStringLiteral("stopButton"));
-        stopButton->setGeometry(QRect(620, 540, 75, 23));
+
+        gridLayout_2->addWidget(stopButton, 1, 1, 1, 1);
+
 
         retranslateUi(Plot);
 

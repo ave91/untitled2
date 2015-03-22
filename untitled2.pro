@@ -34,7 +34,8 @@ HEADERS += \
     acquisition.h \
     calibration.h \
     qcustomplot.cpp \
-    plot.h
+    plot.h \
+    gnuplot.h
 
 SOURCES += \
     acquisition.cpp \

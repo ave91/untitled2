@@ -95,6 +95,7 @@ private:
     Plot *wdg;
 
     void closeEvent(QCloseEvent *event);
+    void threaded_save_stokes(const QString &filename_out);
 
 	public slots: void on_pushButton_clicked();
 
@@ -112,6 +113,9 @@ private slots:
     void on_plotButton_clicked();
     void on_contAcqButton_clicked();
     void on_stopacqButton_clicked();
+    void on_plotStokesButton_clicked();
+
+    void on_contStokesaveButton_clicked();
 };
 
 #endif // UNTITLED2_H

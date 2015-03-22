@@ -11,6 +11,8 @@ Plot::Plot(acquisition * acq_pointer,QWidget *parent) :
     ui->setupUi(this);
     acq_int_point=0;
     acq_int_point=acq_pointer;
+   // QGridLayout * layout1 = new QGridLayout(parent);
+   //   layout1->addWidget(ui->customplot,0, 0);
 
 }
 

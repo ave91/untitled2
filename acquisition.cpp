@@ -14,7 +14,7 @@ using namespace std;
  double acquisition::minVolt=-10.;
  double acquisition::rate=2000;
  double acquisition::samp_per_chan=1000;
- bool acquisition::stop=false;
+ bool acquisition::stop=true;
 
 
 
@@ -193,3 +193,4 @@ void acquisition::thread_cont_acq_stop(){
 
 
 }
+

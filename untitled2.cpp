@@ -7,6 +7,7 @@
 #include "QFileDialog"
 #include "qcustomplot.h"
 #include "plot.h"
+#include "gnuplot.h"
 
 #define DAQmxErrChk(functionCall) if( DAQmxFailed(error=(functionCall)) ) goto Error; else
 
@@ -15,6 +16,8 @@
 untitled2::untitled2(QWidget *parent)
 	: QMainWindow(parent)
 {	
+
+
     wdg=0;
     //Configure pointers reference not initialized yet
     daq_internal_pointer=0;
@@ -139,7 +142,9 @@ void untitled2::on_pushButton_clicked() {
 
     if(daq_internal_pointer!=0){
 
+    if(acquisition::stop==true){
     daq_internal_pointer->read_daq();
+    }
 
     ui.label_cvalue_1->setText(QString::number(daq_internal_pointer->mean(1)));
     ui.label_cvalue_2->setText(QString::number(daq_internal_pointer->mean(2)));
@@ -148,6 +153,7 @@ void untitled2::on_pushButton_clicked() {
     ui.label_cvalue_5->setText(QString::number(daq_internal_pointer->mean(5)));
     ui.label_cvalue_6->setText(QString::number(daq_internal_pointer->mean(6)));
     ui.label_cvalue_7->setText(QString::number(daq_internal_pointer->mean(7)));
+
     /*QMessageBox msgBox;
     msgBox.setText(QString::number(daq_internal_pointer->data[1]));
     msgBox.exec();
@@ -166,8 +172,9 @@ void untitled2::on_pushButton_clicked() {
 void untitled2::on_H_Button_clicked()
 {
     if(daq_internal_pointer!=0 && calib_internal_pointer!=0){
-
-    daq_internal_pointer->read_daq();
+        if(acquisition::stop==true){
+        daq_internal_pointer->read_daq();
+        }
 
     calib_internal_pointer->H_vector[0]=(daq_internal_pointer->mean(1));
     calib_internal_pointer->H_vector[1]=(daq_internal_pointer->mean(2));
@@ -241,7 +248,9 @@ void untitled2::on_V_Button_clicked()
 {
     if(daq_internal_pointer!=0){
 
-    daq_internal_pointer->read_daq();
+        if(acquisition::stop==true){
+        daq_internal_pointer->read_daq();
+        }
 
     calib_internal_pointer->V_vector[0]=(daq_internal_pointer->mean(1));
     calib_internal_pointer->V_vector[1]=(daq_internal_pointer->mean(2));
@@ -311,7 +320,9 @@ void untitled2::on_P_Button_clicked()
 {
     if(daq_internal_pointer!=0){
 
-    daq_internal_pointer->read_daq();
+        if(acquisition::stop==true){
+        daq_internal_pointer->read_daq();
+        }
 
     calib_internal_pointer->P_vector[0]=(daq_internal_pointer->mean(1));
     calib_internal_pointer->P_vector[1]=(daq_internal_pointer->mean(2));
@@ -380,9 +391,9 @@ void untitled2::on_P_Button_clicked()
 void untitled2::on_M_Button_clicked()
 {
     if(daq_internal_pointer!=0){
-
-    daq_internal_pointer->read_daq();
-
+        if(acquisition::stop==true){
+        daq_internal_pointer->read_daq();
+        }
     calib_internal_pointer->M_vector[0]=(daq_internal_pointer->mean(1));
     calib_internal_pointer->M_vector[1]=(daq_internal_pointer->mean(2));
     calib_internal_pointer->M_vector[2]=(daq_internal_pointer->mean(3));
@@ -451,7 +462,9 @@ void untitled2::on_L_Button_clicked()
 {
     if(daq_internal_pointer!=0){
 
-    daq_internal_pointer->read_daq();
+        if(acquisition::stop==true){
+        daq_internal_pointer->read_daq();
+        }
 
     calib_internal_pointer->L_vector[0]=(daq_internal_pointer->mean(1));
     calib_internal_pointer->L_vector[1]=(daq_internal_pointer->mean(2));
@@ -521,7 +534,9 @@ void untitled2::on_R_Button_clicked()
 {
     if(daq_internal_pointer!=0){
 
-    daq_internal_pointer->read_daq();
+        if(acquisition::stop==true){
+        daq_internal_pointer->read_daq();
+        }
 
     calib_internal_pointer->R_vector[0]=(daq_internal_pointer->mean(1));
     calib_internal_pointer->R_vector[1]=(daq_internal_pointer->mean(2));
@@ -619,7 +634,9 @@ void untitled2::on_stokesButton_clicked()
 {
     if(calib_internal_pointer!=0 && daq_internal_pointer!=0 ){
 
-      daq_internal_pointer->read_daq();
+        if(acquisition::stop==true){
+        daq_internal_pointer->read_daq();
+        }
 
       double itot=daq_internal_pointer->mean(7);
       double i1=(daq_internal_pointer->mean(1))/itot;
@@ -761,4 +778,66 @@ void untitled2::on_stopacqButton_clicked()
 void untitled2::closeEvent(QCloseEvent *event)
 {
  acquisition::stop=true;
+}
+
+void untitled2::on_plotStokesButton_clicked()
+{
+    Gnuplot plot;
+
+     string a,b,c;
+     a="a=";
+     a=a+to_string(calib_internal_pointer->stokes_dat[1]);
+     b="b=";
+     b=b+to_string(calib_internal_pointer->stokes_dat[2]);
+     c="c=";
+     c=c+to_string(calib_internal_pointer->stokes_dat[3]);
+    // cout<<a<<endl;
+     plot(a.c_str());
+     plot(b.c_str());
+     plot(c.c_str());
+     //plot("set arrow from 0,0,0 to a,b,c front nohead ls 2");
+     plot("load \"gnuplotscript.txt\"") ;
+     //system("pause");
+}
+
+void untitled2::on_contStokesaveButton_clicked()
+{
+    if(daq_internal_pointer!=0){
+       QString filename_out=QFileDialog::getSaveFileName(this, tr("Save File"),"./stokesoutput.txt",tr("Text files (*.txt)"));
+
+
+
+        daq_internal_pointer->thread_cont_acq();
+       QFuture <void> future = QtConcurrent::run(this,&untitled2::threaded_save_stokes,filename_out);
+
+    }
+
+}
+
+void untitled2::threaded_save_stokes(const QString &filename_out){
+
+    ofstream file_out;
+    file_out.open(filename_out.toUtf8().constData());
+    while(acquisition::stop==false) {
+        double itot=daq_internal_pointer->mean(7);
+        double i1=(daq_internal_pointer->mean(1))/itot;
+        double i2=(daq_internal_pointer->mean(2))/itot;
+        double i3=(daq_internal_pointer->mean(3))/itot;
+        double i4=(daq_internal_pointer->mean(4))/itot;
+        double i5=(daq_internal_pointer->mean(5))/itot;
+        double i6=(daq_internal_pointer->mean(6))/itot;
+
+
+
+        calib_internal_pointer->stokes_dat[0]=i1*calib_internal_pointer->matrix[0][0] + i2*calib_internal_pointer->matrix[0][1] + i3*calib_internal_pointer->matrix[0][2] + i4*calib_internal_pointer->matrix[0][3] + i5*calib_internal_pointer->matrix[0][4] + i6*calib_internal_pointer->matrix[0][5];
+        calib_internal_pointer->stokes_dat[1]=i1*calib_internal_pointer->matrix[1][0] + i2*calib_internal_pointer->matrix[1][1] + i3*calib_internal_pointer->matrix[1][2] + i4*calib_internal_pointer->matrix[1][3] + i5*calib_internal_pointer->matrix[1][4] + i6*calib_internal_pointer->matrix[1][5];
+        calib_internal_pointer->stokes_dat[2]=i1*calib_internal_pointer->matrix[2][0] + i2*calib_internal_pointer->matrix[2][1] + i3*calib_internal_pointer->matrix[2][2] + i4*calib_internal_pointer->matrix[2][3] + i5*calib_internal_pointer->matrix[2][4] + i6*calib_internal_pointer->matrix[2][5];
+        calib_internal_pointer->stokes_dat[3]=i1*calib_internal_pointer->matrix[3][0] + i2*calib_internal_pointer->matrix[3][1] + i3*calib_internal_pointer->matrix[3][2] + i4*calib_internal_pointer->matrix[3][3] + i5*calib_internal_pointer->matrix[3][4] + i6*calib_internal_pointer->matrix[3][5];
+
+
+        file_out<<calib_internal_pointer->stokes_dat[0]<<"\t"<<calib_internal_pointer->stokes_dat[1]<<"\t"<<calib_internal_pointer->stokes_dat[2]<<"\t"<<calib_internal_pointer->stokes_dat[3]<<endl;
+
+    }
+    file_out.close();
+    return;
 }
