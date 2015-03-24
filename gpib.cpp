@@ -174,3 +174,13 @@ else
  * After each GPIB call, the application checks whether the call succeeded. If an NI-488.2 call fails, the GPIB driver sets the corresponding bit in the global status variable. If the call failed, this procedure prints an error message, takes the PNA offline and exits.
  */
 
+int gpib::close(){
+    if (ibsta & ERR)
+    {
+    gpib::GPIBCleanup(Dev, "Unable to close");
+    }
+    else{
+        gpib::GPIBCleanup(Dev, "Closing");
+    }
+    return 0;
+}
