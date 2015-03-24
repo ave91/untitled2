@@ -35,14 +35,16 @@ HEADERS += \
     calibration.h \
     qcustomplot.cpp \
     plot.h \
-    gnuplot.h
+    gnuplot.h \
+    gpib.h
 
 SOURCES += \
     acquisition.cpp \
     calibration.cpp \
     qcustomplot.cpp \
     plot.cpp \
-    acquisition.cpp
+    acquisition.cpp \
+    gpib.cpp
 
 win32 {
     # aadimos la ruta para localizar la cabecera de la tarjeta
@@ -54,6 +56,8 @@ win32 {
     
     # aadimos la librera "NIDAQmx.lib" quitando partes del nombre del archivo, (opcin -l)
     LIBS += -lNIDAQmx
+   LIBS += ni4882.obj
+   # LIBS += gpib-32.obj
 }
 
 unix {

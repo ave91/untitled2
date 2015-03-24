@@ -20,13 +20,12 @@ int main(int argc, char *argv[])
 
 	
     acquisition * daq=new acquisition();
-
-
-
-
     w.daq_internal_pointer=(daq);
-    calibration calib;
-    w.calib_internal_pointer=&calib;
+    calibration * calib=new calibration();
+    w.calib_internal_pointer=calib;
+    gpib * communication=new gpib();
+    w.gpib_int_pointer=communication;
+
     w.show();
 
 

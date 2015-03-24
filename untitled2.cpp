@@ -22,6 +22,7 @@ untitled2::untitled2(QWidget *parent)
     //Configure pointers reference not initialized yet
     daq_internal_pointer=0;
     calib_internal_pointer=0;
+    gpib_int_pointer=0;
     ui.setupUi(this);
 
     //Reserve memory for C-like use of vectors
@@ -840,4 +841,12 @@ void untitled2::threaded_save_stokes(const QString &filename_out){
     }
     file_out.close();
     return;
+}
+
+void untitled2::on_polmodButton_clicked()
+{
+    if(gpib_int_pointer!=0){
+        gpib_int_pointer->init();
+
+    }
 }

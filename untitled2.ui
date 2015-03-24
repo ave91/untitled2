@@ -494,6 +494,19 @@
      <string>Cont Save Stokes</string>
     </property>
    </widget>
+   <widget class="QPushButton" name="polmodButton">
+    <property name="geometry">
+     <rect>
+      <x>680</x>
+      <y>300</y>
+      <width>111</width>
+      <height>23</height>
+     </rect>
+    </property>
+    <property name="text">
+     <string>Talk with Pol Mod</string>
+    </property>
+   </widget>
   </widget>
   <widget class="QMenuBar" name="menuBar">
    <property name="geometry">

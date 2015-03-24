@@ -11,7 +11,7 @@
 #include "QStandardItemModel"
 #include "QStandardItem"
 #include "plot.h"
-
+#include "gpib.h"
 
 
 class untitled2 : public QMainWindow
@@ -32,7 +32,7 @@ public:
 
     acquisition * daq_internal_pointer;
     calibration * calib_internal_pointer;
-
+    gpib * gpib_int_pointer;
 
 
 private:
@@ -116,6 +116,7 @@ private slots:
     void on_plotStokesButton_clicked();
 
     void on_contStokesaveButton_clicked();
+    void on_polmodButton_clicked();
 };
 
 #endif // UNTITLED2_H

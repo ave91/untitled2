@@ -83,6 +83,7 @@ public:
     QPushButton *stopacqButton;
     QPushButton *plotStokesButton;
     QPushButton *contStokesaveButton;
+    QPushButton *polmodButton;
     QMenuBar *menuBar;
     QToolBar *mainToolBar;
     QStatusBar *statusBar;
@@ -304,6 +305,9 @@ public:
         contStokesaveButton = new QPushButton(centralWidget);
         contStokesaveButton->setObjectName(QStringLiteral("contStokesaveButton"));
         contStokesaveButton->setGeometry(QRect(530, 300, 111, 23));
+        polmodButton = new QPushButton(centralWidget);
+        polmodButton->setObjectName(QStringLiteral("polmodButton"));
+        polmodButton->setGeometry(QRect(680, 300, 111, 23));
         untitled2Class->setCentralWidget(centralWidget);
         menuBar = new QMenuBar(untitled2Class);
         menuBar->setObjectName(QStringLiteral("menuBar"));
@@ -355,6 +359,7 @@ public:
         stopacqButton->setText(QApplication::translate("untitled2Class", "Stop Acq", 0));
         plotStokesButton->setText(QApplication::translate("untitled2Class", "PlotStokes", 0));
         contStokesaveButton->setText(QApplication::translate("untitled2Class", "Cont Save Stokes", 0));
+        polmodButton->setText(QApplication::translate("untitled2Class", "Talk with Pol Mod", 0));
     } // retranslateUi
 
 };
