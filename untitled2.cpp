@@ -847,6 +847,9 @@ void untitled2::on_polmodButton_clicked()
 {
     if(gpib_int_pointer!=0){
         gpib_int_pointer->init();
-
+         Sleep(60);
+        gpib_int_pointer->GPIBWrite("*IDN?\n");
+        Sleep(60);
+        cout<<gpib_int_pointer->GPIBRead()<<endl;
     }
 }
