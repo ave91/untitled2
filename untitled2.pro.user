@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE QtCreatorProject>
-<!-- Written by QtCreator 3.3.2, 2015-03-24T12:11:35. -->
+<!-- Written by QtCreator 3.3.2, 2015-03-29T16:31:58. -->
 <qtcreator>
  <data>
   <variable>EnvironmentId</variable>
@@ -118,7 +118,7 @@
     <value type="bool" key="ProjectExplorer.BuildConfiguration.ClearSystemEnvironment">false</value>
     <valuelist type="QVariantList" key="ProjectExplorer.BuildConfiguration.UserEnvironmentChanges">
      <value type="QString">&lt;VARIABLE&gt;=&lt;VALUE&gt;</value>
-     <value type="QString">INCLUDE=E:\Programmi (x86)\Microsoft Visual Studio 12.0\VC\INCLUDE;E:\Programmi (x86)\Microsoft Visual Studio 12.0\VC\ATLMFC\INCLUDE;C:\Program Files (x86)\Windows Kits\8.1\include\shared;C:\Program Files (x86)\Windows Kits\8.1\include\um;C:\Program Files (x86)\Windows Kits\8.1\include\winrt;C:\Program Files (x86)\National Instruments\Shared\ExternalCompilerSupport\C\include;</value>
+     <value type="QString">INCLUDE=E:\Programmi (x86)\Microsoft Visual Studio 12.0\VC\INCLUDE;E:\Programmi (x86)\Microsoft Visual Studio 12.0\VC\ATLMFC\INCLUDE;C:\Program Files (x86)\Windows Kits\8.1\include\shared;C:\Program Files (x86)\Windows Kits\8.1\include\um;C:\Program Files (x86)\Windows Kits\8.1\include\winrt;C:\Program Files (x86)\National Instruments\Shared\ExternalCompilerSupport\C\include;C:\Users\Public\Documents\Measurement Computing\DAQ\C;</value>
     </valuelist>
     <value type="QString" key="ProjectExplorer.ProjectConfiguration.DefaultDisplayName">Debug</value>
     <value type="QString" key="ProjectExplorer.ProjectConfiguration.DisplayName"></value>

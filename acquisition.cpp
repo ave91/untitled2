@@ -1,36 +1,61 @@
+#include "iostream"
 #include "acquisition.h"
 #include "NIDAQmx.h"
 #include "string"
 #include <vector>
 #include "qmessagebox.h"
+
 using namespace std;
 
 #define DAQmxErrChk(functionCall) if( DAQmxFailed(error=(functionCall)) ) goto Error; else
 
+
+
  vector <float64> acquisition::data;
- int acquisition::datasize=7000;
+ long acquisition::datasize;
  string acquisition::devices="Dev1/ai0:6";
  double acquisition:: maxVolt=10.;
  double acquisition::minVolt=-10.;
- double acquisition::rate=2000;
- double acquisition::samp_per_chan=1000;
+ long acquisition::rate=50000;
+ long acquisition::samp_per_chan=32768;
  bool acquisition::stop=true;
 
-
+  int acquisition::BoardNum=0;
+  int acquisition::ULStat=0;
+  int acquisition::LowChan=0;
+  int acquisition::HighChan=3;
+  int acquisition::Gain=BIP10VOLTS;
+  long acquisition::Count = 32736;
+  long acquisition::Rate = 50000;
+  vector <WORD> acquisition::ADData;
+  HANDLE acquisition::MemHandle = 0;
+ unsigned acquisition::Options=CONVERTDATA+BURSTIO;
+ int acquisition::total_num_chan;
+ bool acquisition::NI;
 
 acquisition::acquisition( QObject *parent) : QObject(parent)
 {
+     NI=false;
     //Variable init
+    if(NI==true){
+    datasize=7*samp_per_chan;
+    total_num_chan=7;
+    }
+    else{
+     datasize=Count;
+     total_num_chan=4;
+    }
+
     skip=50;
     error=0;
     taskHandle=0;
     errBuff=new char[2048]();
 
     file_err.open("C:\\Users\\Ave\\Desktop\\daq_filerr.txt");
-    data.reserve(datasize+1);
     data.resize(datasize+1);
-
+    ADData.resize(datasize+1);
     //Daq init
+    cbErrHandling (PRINTALL, DONTSTOP);
 
 
 Error:
@@ -78,14 +103,50 @@ Error:
 
 }
 
+void acquisition::read_daq_MC(){
+     cbErrHandling (PRINTALL, DONTSTOP);
+
+     Options=CONVERTDATA+BURSTIO;
+     Rate=50000;
+     //MemHandle = cbWinBufAlloc(Count);
+    //ADData = (WORD*) MemHandle;
+    float EngUnits;
+    ULStat = cbAInScan (BoardNum, LowChan, HighChan, Count, &Rate,Gain, &ADData[0], Options);
+    int temp=0;
+    for (int J = 0; J < 4 && !ULStat; J++)       /* loop through the channels */
+        {
+        for (int I = 0; I <= ((Count/4)-4); I++)   /* loop through the values & print */
+        {
+               {
+                ULStat = cbToEngUnits (BoardNum, Gain, ADData[I*4+J], &EngUnits);
+                data[temp]=EngUnits;
+                temp++;
+                }
+            }
+
+        }
+
+
+
+}
+
+
 double acquisition::mean( int channel){
     double mean_temp=0.;
     int n=channel-1;
-    for(int i=skip+n*samp_per_chan;i<=(samp_per_chan+n*samp_per_chan-skip);++i){
-     mean_temp+=data[i];
+    int size_chan=(data.size())/total_num_chan;
+    if(channel<=total_num_chan && channel>0){
+        for(int i=skip+n*size_chan;i<=(size_chan+n*size_chan-skip);++i){
+        mean_temp+=data[i];
+        }
+    }
+    else{
+        std::cout<<"ERROR: channel out of range"<<std::endl;
+        return 0;
     }
 
-    return ((mean_temp)/double(samp_per_chan-2*skip));
+
+    return ((mean_temp)/double(size_chan-2*skip));
 
 }
 
@@ -131,6 +192,40 @@ Error:
 
 
 }
+
+void acquisition::cont_acq_MC(){
+    Options=CONVERTDATA + BACKGROUND + CONTINUOUS + BLOCKIO;
+    Rate=25000;
+    ULStat = cbAInScan (BoardNum, LowChan, HighChan, Count, &Rate, Gain,
+                        &(ADData[0]), Options);
+    Q_FOREVER{
+
+        if(stop==true){
+          ULStat = cbStopBackground (BoardNum,AIFUNCTION);
+          return;
+        }
+        else{
+
+            int temp=0;
+            float EngUnits;
+            for (int J = 0; J < 4 && !ULStat; J++)       /* loop through the channels */
+                {
+                for (int I = 0; I <= ((Count/4)-4); I++)   /* loop through the values & print */
+                {
+                       {
+                        ULStat = cbToEngUnits (BoardNum, Gain, ADData[I*4+J], &EngUnits);
+                        data[temp]=EngUnits;
+                        temp++;
+                        }
+                    }
+
+                }
+
+        }
+
+    }
+}
+
 
 int32 CVICALLBACK acquisition::EveryNCallback(TaskHandle taskHandle, int32 everyNsamplesEventType, uInt32 nSamples, void *callbackData)
 {
@@ -185,6 +280,11 @@ Error:
 void acquisition::thread_cont_acq(){
     stop=false;
     newfuture = QtConcurrent::run(this,&acquisition::cont_acq);
+}
+
+void acquisition::thread_cont_acq_MC(){
+    stop=false;
+    newfuture = QtConcurrent::run(this,&acquisition::cont_acq_MC);
 }
 
 

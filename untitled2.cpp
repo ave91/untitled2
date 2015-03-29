@@ -144,9 +144,14 @@ void untitled2::on_pushButton_clicked() {
     if(daq_internal_pointer!=0){
 
     if(acquisition::stop==true){
+      if(acquisition::NI==true){
     daq_internal_pointer->read_daq();
+      }
+      else{
+       daq_internal_pointer->read_daq_MC();
+      }
     }
-
+    cout<<"PASSATALETTURA";
     ui.label_cvalue_1->setText(QString::number(daq_internal_pointer->mean(1)));
     ui.label_cvalue_2->setText(QString::number(daq_internal_pointer->mean(2)));
     ui.label_cvalue_3->setText(QString::number(daq_internal_pointer->mean(3)));
@@ -174,7 +179,12 @@ void untitled2::on_H_Button_clicked()
 {
     if(daq_internal_pointer!=0 && calib_internal_pointer!=0){
         if(acquisition::stop==true){
+          if(acquisition::NI==true){
         daq_internal_pointer->read_daq();
+          }
+          else{
+           daq_internal_pointer->read_daq_MC();
+          }
         }
 
     calib_internal_pointer->H_vector[0]=(daq_internal_pointer->mean(1));
@@ -250,7 +260,12 @@ void untitled2::on_V_Button_clicked()
     if(daq_internal_pointer!=0){
 
         if(acquisition::stop==true){
+          if(acquisition::NI==true){
         daq_internal_pointer->read_daq();
+          }
+          else{
+           daq_internal_pointer->read_daq_MC();
+          }
         }
 
     calib_internal_pointer->V_vector[0]=(daq_internal_pointer->mean(1));
@@ -322,7 +337,12 @@ void untitled2::on_P_Button_clicked()
     if(daq_internal_pointer!=0){
 
         if(acquisition::stop==true){
+          if(acquisition::NI==true){
         daq_internal_pointer->read_daq();
+          }
+          else{
+           daq_internal_pointer->read_daq_MC();
+          }
         }
 
     calib_internal_pointer->P_vector[0]=(daq_internal_pointer->mean(1));
@@ -393,7 +413,12 @@ void untitled2::on_M_Button_clicked()
 {
     if(daq_internal_pointer!=0){
         if(acquisition::stop==true){
+          if(acquisition::NI==true){
         daq_internal_pointer->read_daq();
+          }
+          else{
+           daq_internal_pointer->read_daq_MC();
+          }
         }
     calib_internal_pointer->M_vector[0]=(daq_internal_pointer->mean(1));
     calib_internal_pointer->M_vector[1]=(daq_internal_pointer->mean(2));
@@ -464,7 +489,12 @@ void untitled2::on_L_Button_clicked()
     if(daq_internal_pointer!=0){
 
         if(acquisition::stop==true){
+          if(acquisition::NI==true){
         daq_internal_pointer->read_daq();
+          }
+          else{
+           daq_internal_pointer->read_daq_MC();
+          }
         }
 
     calib_internal_pointer->L_vector[0]=(daq_internal_pointer->mean(1));
@@ -536,7 +566,12 @@ void untitled2::on_R_Button_clicked()
     if(daq_internal_pointer!=0){
 
         if(acquisition::stop==true){
+          if(acquisition::NI==true){
         daq_internal_pointer->read_daq();
+          }
+          else{
+           daq_internal_pointer->read_daq_MC();
+          }
         }
 
     calib_internal_pointer->R_vector[0]=(daq_internal_pointer->mean(1));
@@ -606,7 +641,12 @@ void untitled2::on_R_Button_clicked()
 void untitled2::on_CalibrateButton_clicked()
 {
     if(calib_internal_pointer!=0){
+        if(acquisition::NI==true){
         calib_internal_pointer->compute_calibration();
+        }
+        else{
+            calib_internal_pointer->compute_calibration_4_det();
+        }
 
         for(int i=0;i<4;i++){
             for(int j=0;j<6;j++){
@@ -636,7 +676,12 @@ void untitled2::on_stokesButton_clicked()
     if(calib_internal_pointer!=0 && daq_internal_pointer!=0 ){
 
         if(acquisition::stop==true){
+          if(acquisition::NI==true){
         daq_internal_pointer->read_daq();
+          }
+          else{
+           daq_internal_pointer->read_daq_MC();
+          }
         }
 
       double itot=daq_internal_pointer->mean(7);
@@ -768,7 +813,12 @@ void untitled2::on_plotButton_clicked()
 
 void untitled2::on_contAcqButton_clicked()
 {
+    if(acquisition::NI==true){
     daq_internal_pointer->thread_cont_acq();
+    }
+    else{
+        daq_internal_pointer->thread_cont_acq_MC();
+    }
 }
 
 void untitled2::on_stopacqButton_clicked()

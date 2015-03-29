@@ -23,6 +23,7 @@ public:
 
     static void GPIBCleanup(int Dev, const char * ErrorMsg);
     int init ();
+    int close();
     int send_data(std::string datastring );
     int receive_data();
 
