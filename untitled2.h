@@ -96,6 +96,10 @@ private:
 
     void closeEvent(QCloseEvent *event);
     void threaded_save_stokes(const QString &filename_out);
+    void keyPressEvent(QKeyEvent* event);
+
+    double matrix_NI_temp[4][6];
+    double matrix_MC_temp[4][4];
 
 	public slots: void on_pushButton_clicked();
 
@@ -117,6 +121,8 @@ private slots:
 
     void on_contStokesaveButton_clicked();
     void on_polmodButton_clicked();
+    void on_fideltyButton_clicked();
+    void on_setfidelButton_clicked();
 };
 
 #endif // UNTITLED2_H

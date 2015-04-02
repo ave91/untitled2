@@ -151,7 +151,7 @@ void untitled2::on_pushButton_clicked() {
        daq_internal_pointer->read_daq_MC();
       }
     }
-    cout<<"PASSATALETTURA";
+   // cout<<"PASSATALETTURA";
     ui.label_cvalue_1->setText(QString::number(daq_internal_pointer->mean(1)));
     ui.label_cvalue_2->setText(QString::number(daq_internal_pointer->mean(2)));
     ui.label_cvalue_3->setText(QString::number(daq_internal_pointer->mean(3)));
@@ -685,6 +685,10 @@ void untitled2::on_stokesButton_clicked()
         }
 
       double itot=daq_internal_pointer->mean(7);
+      if(acquisition::NI==false){
+          itot=daq_internal_pointer->mean(1)+daq_internal_pointer->mean(2)+daq_internal_pointer->mean(3)+daq_internal_pointer->mean(4);
+      }
+
       double i1=(daq_internal_pointer->mean(1))/itot;
       double i2=(daq_internal_pointer->mean(2))/itot;
       double i3=(daq_internal_pointer->mean(3))/itot;
@@ -901,5 +905,152 @@ void untitled2::on_polmodButton_clicked()
         gpib_int_pointer->GPIBWrite("*IDN?\n");
         Sleep(60);
         cout<<gpib_int_pointer->GPIBRead()<<endl;
+    }
+}
+
+void untitled2::on_fideltyButton_clicked()
+{
+    ofstream fileout("fidelty.txt", ios::app);
+    double stkNI[4];
+    double stkMC[4];
+    double fidelty=0.;
+    acquisition::NI=true;
+    acquisition::datasize=7*acquisition::samp_per_chan;
+    acquisition::total_num_chan=7;
+    acquisition::data.resize(acquisition::datasize+1);
+    daq_internal_pointer->read_daq();
+    for(int i=0;i<4;i++){
+        for (int j=0;j<6;++j){
+            calib_internal_pointer->matrix[i][j]=matrix_NI_temp[i][j];
+        }
+    }
+    untitled2::on_stokesButton_clicked();
+    stkNI[0]=calib_internal_pointer->stokes_dat[0];
+    stkNI[1]=calib_internal_pointer->stokes_dat[1];
+    stkNI[2]=calib_internal_pointer->stokes_dat[2];
+    stkNI[3]=calib_internal_pointer->stokes_dat[3];
+
+    acquisition::NI=false;
+    acquisition::datasize=acquisition::Count;
+    acquisition::total_num_chan=4;
+    acquisition::data.resize(acquisition::datasize+1);
+    acquisition::ADData.resize(acquisition::datasize+1);
+    daq_internal_pointer->read_daq();
+    for(int i=0;i<4;i++){
+        for (int j=0;j<6;++j){
+            calib_internal_pointer->matrix[i][j]=matrix_MC_temp[i][j];
+        }
+    }
+    untitled2::on_stokesButton_clicked();
+    stkMC[0]=calib_internal_pointer->stokes_dat[0];
+    stkMC[1]=calib_internal_pointer->stokes_dat[1];
+    stkMC[2]=calib_internal_pointer->stokes_dat[2];
+    stkMC[3]=calib_internal_pointer->stokes_dat[3];
+
+    fidelty=stkNI[1]*stkMC[1]+stkNI[2]*stkMC[2]+stkNI[3]*stkMC[3];
+
+    fileout<<stkMC[0]<<"\t"<<stkNI[0]<<"\t"<<fidelty<<endl;
+    fileout<<stkMC[1]<<"\t"<<stkNI[1]<<"\t"<<endl;
+    fileout<<stkMC[2]<<"\t"<<stkNI[2]<<"\t"<<endl;
+    fileout<<stkMC[3]<<"\t"<<stkNI[3]<<"\t"<<endl;
+
+    fileout.close();
+
+
+}
+
+void untitled2::on_setfidelButton_clicked()
+{
+    QString filename=QFileDialog::getOpenFileName(this, tr("Open File"),"./calibration_NI.txt",tr("Text files (*.txt)"));
+    ifstream filein;
+    filein.open(filename.toUtf8().constData());
+
+    double temp0=0;
+    double temp1=0;
+    double temp2=0;
+    double temp3=0;
+    double temp4=0;
+    double temp5=0;
+
+
+        for(int i=0;i<4;++i){
+            filein>>temp0;
+            filein>>temp1;
+            filein>>temp2;
+            filein>>temp3;
+            filein>>temp4;
+            filein>>temp5;
+
+            matrix_NI_temp[i][0]=temp0;
+            matrix_NI_temp[i][1]=temp1;
+            matrix_NI_temp[i][2]=temp2;
+            matrix_NI_temp[i][3]=temp3;
+            matrix_NI_temp[i][4]=temp4;
+            matrix_NI_temp[i][5]=temp5;
+
+
+    }
+    filein.close();
+    QString filename2=QFileDialog::getOpenFileName(this, tr("Open File"),"./calibration_MC.txt",tr("Text files (*.txt)"));
+    ifstream filein2;
+    filein2.open(filename2.toUtf8().constData());
+
+     temp0=0;
+     temp1=0;
+     temp2=0;
+     temp3=0;
+     temp4=0;
+     temp5=0;
+
+
+        for(int i=0;i<4;++i){
+            filein2>>temp0;
+            filein2>>temp1;
+            filein2>>temp2;
+            filein2>>temp3;
+
+
+            matrix_MC_temp[i][0]=temp0;
+            matrix_MC_temp[i][1]=temp1;
+            matrix_MC_temp[i][2]=temp2;
+            matrix_MC_temp[i][3]=temp3;
+            matrix_MC_temp[i][4]=0;
+            matrix_MC_temp[i][5]=0;
+
+
+    }
+    filein2.close();
+
+
+
+}
+void untitled2::keyPressEvent(QKeyEvent* event) {
+    // If Ctrl-C typed
+    // Or use event->matches(QKeySequence::Copy)
+    if (event->key() == Qt::Key_C && (event->modifiers() & Qt::ControlModifier))
+    {
+
+        QAbstractItemModel * model = ui.tableView_3->model();
+        QItemSelectionModel * selection = ui.tableView_3->selectionModel();
+        QModelIndexList cells = selection->selectedIndexes();
+        qSort(cells); // Necessary, otherwise they are in column order
+
+        QString text;
+        int currentRow = 0; // To determine when to insert newlines
+        foreach (const QModelIndex& cell, cells) {
+            if (text.length() == 0) {
+                // First item
+            } else if (cell.row() != currentRow) {
+                // New row
+                text += '\n';
+            } else {
+                // Next cell
+                text += '\t';
+            }
+            currentRow = cell.row();
+            text += cell.data().toString();
+        }
+
+        QApplication::clipboard()->setText(text);
     }
 }

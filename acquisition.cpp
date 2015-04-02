@@ -16,8 +16,8 @@ using namespace std;
  string acquisition::devices="Dev1/ai0:6";
  double acquisition:: maxVolt=10.;
  double acquisition::minVolt=-10.;
- long acquisition::rate=50000;
- long acquisition::samp_per_chan=32768;
+ long acquisition::rate=2800;
+ long acquisition::samp_per_chan=1000;
  bool acquisition::stop=true;
 
   int acquisition::BoardNum=0;
@@ -35,7 +35,7 @@ using namespace std;
 
 acquisition::acquisition( QObject *parent) : QObject(parent)
 {
-     NI=false;
+     NI=true;
     //Variable init
     if(NI==true){
     datasize=7*samp_per_chan;

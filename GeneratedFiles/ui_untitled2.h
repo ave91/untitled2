@@ -84,6 +84,8 @@ public:
     QPushButton *plotStokesButton;
     QPushButton *contStokesaveButton;
     QPushButton *polmodButton;
+    QPushButton *fideltyButton;
+    QPushButton *setfidelButton;
     QMenuBar *menuBar;
     QToolBar *mainToolBar;
     QStatusBar *statusBar;
@@ -308,6 +310,12 @@ public:
         polmodButton = new QPushButton(centralWidget);
         polmodButton->setObjectName(QStringLiteral("polmodButton"));
         polmodButton->setGeometry(QRect(680, 300, 111, 23));
+        fideltyButton = new QPushButton(centralWidget);
+        fideltyButton->setObjectName(QStringLiteral("fideltyButton"));
+        fideltyButton->setGeometry(QRect(150, 330, 91, 23));
+        setfidelButton = new QPushButton(centralWidget);
+        setfidelButton->setObjectName(QStringLiteral("setfidelButton"));
+        setfidelButton->setGeometry(QRect(300, 330, 75, 23));
         untitled2Class->setCentralWidget(centralWidget);
         menuBar = new QMenuBar(untitled2Class);
         menuBar->setObjectName(QStringLiteral("menuBar"));
@@ -360,6 +368,8 @@ public:
         plotStokesButton->setText(QApplication::translate("untitled2Class", "PlotStokes", 0));
         contStokesaveButton->setText(QApplication::translate("untitled2Class", "Cont Save Stokes", 0));
         polmodButton->setText(QApplication::translate("untitled2Class", "Talk with Pol Mod", 0));
+        fideltyButton->setText(QApplication::translate("untitled2Class", "Acquire Fildelty", 0));
+        setfidelButton->setText(QApplication::translate("untitled2Class", "Setup Fidelty", 0));
     } // retranslateUi
 
 };
