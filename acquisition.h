@@ -26,12 +26,15 @@ public:
     void cont_acq_MC();
     void thread_cont_acq_MC();
     void thread_cont_acq_stop_MC();
-
+    void setsize(int size,int skipp);
     static int32 CVICALLBACK EveryNCallback(TaskHandle taskHandle, int32 everyNsamplesEventType, uInt32 nSamples, void *callbackData);
     static int32 CVICALLBACK DoneCallback(TaskHandle taskHandle, int32 status, void *callbackData);
     static vector <float64> data;
 
+    double offset_volt_NI[7];
+    double offset_volt_MC[7];
 
+   void setOffsetVoltage();
 
    static long datasize;
    static string devices;

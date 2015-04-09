@@ -8,6 +8,9 @@
 #include "qcustomplot.h"
 #include "plot.h"
 #include "gnuplot.h"
+#include <iomanip>      // std::setw
+#include "sstream"
+#include <cstdlib>
 
 #define DAQmxErrChk(functionCall) if( DAQmxFailed(error=(functionCall)) ) goto Error; else
 
@@ -1053,4 +1056,232 @@ void untitled2::keyPressEvent(QKeyEvent* event) {
 
         QApplication::clipboard()->setText(text);
     }
+}
+
+void untitled2::on_polContCalButton_clicked()
+{
+    double angle=0.;
+    string command;
+    ofstream fileout;
+    fileout.open("polarizationcontrollercalibration.txt");
+   if(gpib_int_pointer!=0){
+        gpib_int_pointer->init();
+         Sleep(60);
+         gpib_int_pointer->GPIBWrite("X=-99.00\n");
+         Sleep(60);
+         gpib_int_pointer->GPIBWrite("Y=00.00\n");
+         Sleep(60);
+         gpib_int_pointer->GPIBWrite("Z=00.00\n");
+         Sleep(60);
+         for (int i=0;i<=1320;i++){
+             angle =-99+ 0.15*i;       // number to be converted to a string
+             command="X=";          // string which will contain the result
+             ostringstream convert;   // stream used for the conversion
+             convert << std::setfill('0') << std::setw(4)<< setiosflags(ios::fixed) << setprecision(2) <<angle;      // insert the textual representation of 'Number' in the characters in the stream
+             command = command+convert.str();
+             command=command+"\n";
+             gpib_int_pointer->GPIBWrite(&(command[0]));
+             Sleep(60);
+             untitled2::on_stokesButton_clicked();
+             fileout<<angle<<"\t"<<calib_internal_pointer->stokes_dat[0]<<"\t"<<calib_internal_pointer->stokes_dat[1]<<"\t"<<calib_internal_pointer->stokes_dat[2]<<"\t"<<calib_internal_pointer->stokes_dat[3]<<endl;
+
+         }
+        fileout<<endl;
+        gpib_int_pointer->GPIBWrite("X=00.00\n");
+        Sleep(60);
+        gpib_int_pointer->GPIBWrite("Y=-99.00\n");
+        Sleep(60);
+        for (int i=0;i<=1320;i++){
+            angle =-99+ 0.15*i;       // number to be converted to a string
+            command="Y=";          // string which will contain the result
+            ostringstream convert;   // stream used for the conversion
+            convert << std::setfill('0') << std::setw(4)<< setiosflags(ios::fixed) << setprecision(2) <<angle;      // insert the textual representation of 'Number' in the characters in the stream
+            command = command+convert.str();
+            command=command+"\n";
+            gpib_int_pointer->GPIBWrite(&(command[0]));
+            Sleep(60);
+            untitled2::on_stokesButton_clicked();
+            fileout<<angle<<"\t"<<calib_internal_pointer->stokes_dat[0]<<"\t"<<calib_internal_pointer->stokes_dat[1]<<"\t"<<calib_internal_pointer->stokes_dat[2]<<"\t"<<calib_internal_pointer->stokes_dat[3]<<endl;
+            }
+        fileout<<endl;
+        gpib_int_pointer->GPIBWrite("Y=00.00\n");
+        Sleep(60);
+        gpib_int_pointer->GPIBWrite("Z=-99.00\n");
+        Sleep(60);
+        for (int i=0;i<=1320;i++){
+            angle =-99+ 0.15*i;       // number to be converted to a string
+            command="Z=";          // string which will contain the result
+            ostringstream convert;   // stream used for the conversion
+            convert << std::setfill('0') << std::setw(4)<< setiosflags(ios::fixed) << setprecision(2) <<angle;      // insert the textual representation of 'Number' in the characters in the stream
+            command = command+convert.str();
+            command=command+"\n";
+            gpib_int_pointer->GPIBWrite(&(command[0]));
+            Sleep(60);
+            untitled2::on_stokesButton_clicked();
+            fileout<<angle<<"\t"<<calib_internal_pointer->stokes_dat[0]<<"\t"<<calib_internal_pointer->stokes_dat[1]<<"\t"<<calib_internal_pointer->stokes_dat[2]<<"\t"<<calib_internal_pointer->stokes_dat[3]<<endl;
+            }
+}
+    fileout.close();
+
+
+
+
+
+
+}
+
+double untitled2::minimization_stabiliz(int waw,double &ang,double * reference){
+    double new_angle=ang;
+    double initial_difference;
+    double forward_difference;
+    double backward_difference;
+    double temp_difference;
+    string temp_command;
+    double step=0.15;
+
+
+    untitled2::on_stokesButton_clicked();
+    initial_difference=(  (reference[0]-calib_internal_pointer->stokes_dat[1])*(reference[0]-calib_internal_pointer->stokes_dat[1])+(reference[1]-calib_internal_pointer->stokes_dat[2])*(reference[1]-calib_internal_pointer->stokes_dat[2])+(reference[2]-calib_internal_pointer->stokes_dat[3])*(reference[2]-calib_internal_pointer->stokes_dat[3]) );
+    new_angle=ang+step;
+    temp_command=create_command(waw,new_angle);
+    gpib_int_pointer->GPIBWrite(&(temp_command[0]));
+    untitled2::on_stokesButton_clicked();
+    forward_difference=(  (reference[0]-calib_internal_pointer->stokes_dat[1])*(reference[0]-calib_internal_pointer->stokes_dat[1])+(reference[1]-calib_internal_pointer->stokes_dat[2])*(reference[1]-calib_internal_pointer->stokes_dat[2])+(reference[2]-calib_internal_pointer->stokes_dat[3])*(reference[2]-calib_internal_pointer->stokes_dat[3]) );
+
+    if(forward_difference<= initial_difference){
+
+        temp_difference=initial_difference;
+
+        while(forward_difference<=temp_difference){
+
+            temp_difference=forward_difference;
+            new_angle=new_angle+step;
+            if(new_angle>99){new_angle=-99;}
+            temp_command=create_command(waw,new_angle);
+            gpib_int_pointer->GPIBWrite(&(temp_command[0]));
+            untitled2::on_stokesButton_clicked();
+            forward_difference=(  (reference[0]-calib_internal_pointer->stokes_dat[1])*(reference[0]-calib_internal_pointer->stokes_dat[1])+(reference[1]-calib_internal_pointer->stokes_dat[2])*(reference[1]-calib_internal_pointer->stokes_dat[2])+(reference[2]-calib_internal_pointer->stokes_dat[3])*(reference[2]-calib_internal_pointer->stokes_dat[3]) );
+
+
+        }
+
+        new_angle=new_angle-step;
+        if(new_angle<-99){new_angle=+99;}
+        temp_command=create_command(waw,new_angle);
+        gpib_int_pointer->GPIBWrite(&(temp_command[0]));
+
+    }
+    else{
+        new_angle=ang-step;
+        temp_command=create_command(waw,new_angle);
+        gpib_int_pointer->GPIBWrite(&(temp_command[0]));
+        untitled2::on_stokesButton_clicked();
+        backward_difference=(  (reference[0]-calib_internal_pointer->stokes_dat[1])*(reference[0]-calib_internal_pointer->stokes_dat[1])+(reference[1]-calib_internal_pointer->stokes_dat[2])*(reference[1]-calib_internal_pointer->stokes_dat[2])+(reference[2]-calib_internal_pointer->stokes_dat[3])*(reference[2]-calib_internal_pointer->stokes_dat[3]) );
+            if(backward_difference<= initial_difference){
+
+            temp_difference=initial_difference;
+
+            while(backward_difference<=temp_difference){
+
+                temp_difference=backward_difference;
+                new_angle=new_angle-step;
+                if(new_angle<-99){new_angle=99;}
+                temp_command=create_command(waw,new_angle);
+                gpib_int_pointer->GPIBWrite(&(temp_command[0]));
+                untitled2::on_stokesButton_clicked();
+                backward_difference=(  (reference[0]-calib_internal_pointer->stokes_dat[1])*(reference[0]-calib_internal_pointer->stokes_dat[1])+(reference[1]-calib_internal_pointer->stokes_dat[2])*(reference[1]-calib_internal_pointer->stokes_dat[2])+(reference[2]-calib_internal_pointer->stokes_dat[3])*(reference[2]-calib_internal_pointer->stokes_dat[3]) );
+
+
+            }
+
+            new_angle=new_angle+step;
+            if(new_angle>99){new_angle=-99;}
+            temp_command=create_command(waw,new_angle);
+            gpib_int_pointer->GPIBWrite(&(temp_command[0]));
+
+            }
+
+
+    }
+
+    ang=new_angle;
+    return temp_difference;
+
+
+}
+
+void untitled2::on_stabilizationButton_clicked(){
+    stabilizatio_loop=true;
+    QFuture <void> future = QtConcurrent::run(this,&untitled2::stabilization_thread);
+
+
+}
+
+void untitled2::stabilization_thread()
+{
+    double angle1=0.;
+    double angle2=0.;
+    double angle3=0.;
+    double difference;
+    double tollerance=0.01;
+    //bool loop_total=true;
+    double reference_stokes[3]={1,0,0};
+
+
+   if(gpib_int_pointer!=0){
+        gpib_int_pointer->init();
+         Sleep(60);
+         gpib_int_pointer->GPIBWrite("X?\n");
+         Sleep(60);
+         angle1=atof(gpib_int_pointer->GPIBRead());
+         Sleep(60);
+         gpib_int_pointer->GPIBWrite("Y?\n");
+         Sleep(60);
+         angle2=atof(gpib_int_pointer->GPIBRead());
+         Sleep(60);
+         gpib_int_pointer->GPIBWrite("Z?\n");
+         Sleep(60);
+         angle3=atof(gpib_int_pointer->GPIBRead());
+         Sleep(60);
+
+         cout<<angle1<<endl<<angle2<<endl<<angle3<<endl;
+         while(stabilizatio_loop){
+            difference=minimization_stabiliz(1,angle1,reference_stokes);
+                if(difference<tollerance){
+                    break;}
+            difference=minimization_stabiliz(2,angle2,reference_stokes);
+                if(difference<tollerance){
+                    break;}
+            difference=minimization_stabiliz(3,angle3,reference_stokes);
+                if(difference<tollerance){
+                    break;}
+         }
+
+
+   }
+}
+
+
+   string untitled2::create_command(int i,double value){
+      string command;
+      if(i==1){
+          command="X=";
+      }
+      else if(i==2){
+          command="Y=";
+      }
+      else if(i==3){
+          command="Z=";
+
+      }
+      ostringstream convert;   // stream used for the conversion
+      convert << std::setfill('0') << std::setw(4)<< setiosflags(ios::fixed) << setprecision(2) <<value;
+      command = command+convert.str();
+      command=command+"\n";
+   return command;
+   }
+
+void untitled2::on_stabstopButton_clicked()
+{
+    stabilizatio_loop=false;
 }

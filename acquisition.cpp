@@ -46,6 +46,12 @@ acquisition::acquisition( QObject *parent) : QObject(parent)
      total_num_chan=4;
     }
 
+    for(int i=0;i<7;++i){
+        offset_volt_NI[i]=0.;
+        offset_volt_MC[i]=0.;
+    }
+
+    setOffsetVoltage();
     skip=50;
     error=0;
     taskHandle=0;
@@ -133,6 +139,7 @@ void acquisition::read_daq_MC(){
 
 double acquisition::mean( int channel){
     double mean_temp=0.;
+    double temp_return=0.;
     int n=channel-1;
     int size_chan=(data.size())/total_num_chan;
     if(channel<=total_num_chan && channel>0){
@@ -144,9 +151,15 @@ double acquisition::mean( int channel){
         std::cout<<"ERROR: channel out of range"<<std::endl;
         return 0;
     }
+    if(acquisition::NI==true){
+    temp_return=( ((mean_temp)/double(size_chan-2*skip))-offset_volt_NI[n]);
+    }
+    else{
+    temp_return=( ((mean_temp)/double(size_chan-2*skip))-offset_volt_MC[n]);
+    }
 
 
-    return ((mean_temp)/double(size_chan-2*skip));
+                  return temp_return;
 
 }
 
@@ -294,3 +307,39 @@ void acquisition::thread_cont_acq_stop(){
 
 }
 
+void acquisition::setOffsetVoltage(){
+
+        offset_volt_NI[0]=0.00814998;
+        offset_volt_NI[1]=0.0117947;
+        offset_volt_NI[2]=0.00263705;
+        offset_volt_NI[3]=0.0056605;
+        offset_volt_NI[4]=0.08825019;
+        offset_volt_NI[5]=0.00765609;
+        offset_volt_NI[6]=0.00923653;
+
+
+
+        offset_volt_MC[0]=0.;
+        offset_volt_MC[1]=0.;
+        offset_volt_MC[2]=0.;
+        offset_volt_MC[3]=0.;
+
+
+
+}
+void acquisition::setsize(int size,int skipp=10){
+
+    skip=skipp;
+    if(NI==true){
+    acquisition::samp_per_chan=size;
+    datasize=7*samp_per_chan;
+    total_num_chan=7;
+    }
+    else{
+     acquisition::Count=size;
+     datasize=Count;
+     total_num_chan=4;
+    }
+    data.resize(datasize+1);
+    ADData.resize(datasize+1);
+}

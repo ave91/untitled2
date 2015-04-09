@@ -533,6 +533,45 @@
      <string>Setup Fidelty</string>
     </property>
    </widget>
+   <widget class="QPushButton" name="polContCalButton">
+    <property name="geometry">
+     <rect>
+      <x>390</x>
+      <y>330</y>
+      <width>131</width>
+      <height>23</height>
+     </rect>
+    </property>
+    <property name="text">
+     <string>Calibration Pol controller</string>
+    </property>
+   </widget>
+   <widget class="QPushButton" name="stabilizationButton">
+    <property name="geometry">
+     <rect>
+      <x>570</x>
+      <y>330</y>
+      <width>75</width>
+      <height>23</height>
+     </rect>
+    </property>
+    <property name="text">
+     <string>Stabilization</string>
+    </property>
+   </widget>
+   <widget class="QPushButton" name="stabstopButton">
+    <property name="geometry">
+     <rect>
+      <x>680</x>
+      <y>330</y>
+      <width>75</width>
+      <height>23</height>
+     </rect>
+    </property>
+    <property name="text">
+     <string>Stab Stop</string>
+    </property>
+   </widget>
   </widget>
   <widget class="QMenuBar" name="menuBar">
    <property name="geometry">

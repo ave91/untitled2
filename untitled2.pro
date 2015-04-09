@@ -41,6 +41,7 @@ HEADERS += \
 SOURCES += \
     acquisition.cpp \
     calibration.cpp \
+    calibration2.cpp \
     qcustomplot.cpp \
     plot.cpp \
     acquisition.cpp \

@@ -86,6 +86,9 @@ public:
     QPushButton *polmodButton;
     QPushButton *fideltyButton;
     QPushButton *setfidelButton;
+    QPushButton *polContCalButton;
+    QPushButton *stabilizationButton;
+    QPushButton *stabstopButton;
     QMenuBar *menuBar;
     QToolBar *mainToolBar;
     QStatusBar *statusBar;
@@ -316,6 +319,15 @@ public:
         setfidelButton = new QPushButton(centralWidget);
         setfidelButton->setObjectName(QStringLiteral("setfidelButton"));
         setfidelButton->setGeometry(QRect(300, 330, 75, 23));
+        polContCalButton = new QPushButton(centralWidget);
+        polContCalButton->setObjectName(QStringLiteral("polContCalButton"));
+        polContCalButton->setGeometry(QRect(390, 330, 131, 23));
+        stabilizationButton = new QPushButton(centralWidget);
+        stabilizationButton->setObjectName(QStringLiteral("stabilizationButton"));
+        stabilizationButton->setGeometry(QRect(570, 330, 75, 23));
+        stabstopButton = new QPushButton(centralWidget);
+        stabstopButton->setObjectName(QStringLiteral("stabstopButton"));
+        stabstopButton->setGeometry(QRect(680, 330, 75, 23));
         untitled2Class->setCentralWidget(centralWidget);
         menuBar = new QMenuBar(untitled2Class);
         menuBar->setObjectName(QStringLiteral("menuBar"));
@@ -370,6 +382,9 @@ public:
         polmodButton->setText(QApplication::translate("untitled2Class", "Talk with Pol Mod", 0));
         fideltyButton->setText(QApplication::translate("untitled2Class", "Acquire Fildelty", 0));
         setfidelButton->setText(QApplication::translate("untitled2Class", "Setup Fidelty", 0));
+        polContCalButton->setText(QApplication::translate("untitled2Class", "Calibration Pol controller", 0));
+        stabilizationButton->setText(QApplication::translate("untitled2Class", "Stabilization", 0));
+        stabstopButton->setText(QApplication::translate("untitled2Class", "Stab Stop", 0));
     } // retranslateUi
 
 };
