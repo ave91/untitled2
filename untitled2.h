@@ -12,6 +12,8 @@
 #include "QStandardItem"
 #include "plot.h"
 #include "gpib.h"
+#include "matrix_inv.h"
+
 
 
 class untitled2 : public QMainWindow
@@ -34,6 +36,12 @@ public:
     calibration * calib_internal_pointer;
     gpib * gpib_int_pointer;
 
+    static vector < vector <double>> temp_data;
+    vector <double> S0fit;
+    static double untitled2::Q(const double *xx);
+    int NumericalMinimization(double avg,int nparam,const char * minName = "Minuit2",
+                              const char *algoName = "" ,
+                              int randomSeed = -1);
 
 private:
 	Ui::untitled2Class ui;
@@ -103,7 +111,7 @@ private:
     bool stabilizatio_loop;
     double matrix_NI_temp[4][6];
     double matrix_MC_temp[4][4];
-
+void dumpMatrixValues(matrix<double> &M);
 
 
 	public slots: void on_pushButton_clicked();
@@ -131,6 +139,7 @@ private slots:
     void on_polContCalButton_clicked();
     void on_stabilizationButton_clicked();
     void on_stabstopButton_clicked();
+    void on_referenceButton_clicked();
 };
 
 #endif // UNTITLED2_H

@@ -1,3 +1,4 @@
+#include <Windows4Root.h>
 #include "untitled2.h"
 #include "NIDAQmx.h"
 #include "qmessagebox.h"
@@ -11,10 +12,22 @@
 #include <iomanip>      // std::setw
 #include "sstream"
 #include <cstdlib>
-
+#include <random>
+#include "TH1F.h"
+#include "TApplication.h"
+#include "TCanvas.h"
+#include "Math/Minimizer.h"
+#include "TMinuitMinimizer.h"
+#include "Math/Factory.h"
+#include "Math/Functor.h"
+#include "TRandom2.h"
+#include "TError.h"
+#include "Minuit2/Minuit2Minimizer.h"
 #define DAQmxErrChk(functionCall) if( DAQmxFailed(error=(functionCall)) ) goto Error; else
 
+ TApplication theApp("A",0,0);
 
+vector < vector <double>> untitled2::temp_data;
 
 untitled2::untitled2(QWidget *parent)
 	: QMainWindow(parent)
@@ -1285,3 +1298,298 @@ void untitled2::on_stabstopButton_clicked()
 {
     stabilizatio_loop=false;
 }
+
+void untitled2::on_referenceButton_clicked()
+{
+    //Set up a source of pseudorandom number generator for taking the measurments
+    //I like mt so I'll use that
+    std::random_device rd;
+       std::mt19937 gen(rd());
+       std::uniform_real_distribution<> dis(-99, 99); // Range of the generation= range of PC (I know here range=[-99,99) but i don't care so much Unlikely {-99,-99,-99} will be an eigenstate so...
+    int total_data=40;
+
+    if(calib_internal_pointer!=0 && daq_internal_pointer!=0 ){
+        if(acquisition::NI==true){
+        temp_data;
+        vector <double> temp;
+        temp.resize(7);
+        string temp_command;
+        for(int i=0;i<total_data;++i){
+/*
+            temp_command=create_command(1,dis(gen));
+            gpib_int_pointer->GPIBWrite(&(temp_command[0]));
+            Sleep(60);
+            temp_command=create_command(2,dis(gen));
+            gpib_int_pointer->GPIBWrite(&(temp_command[0]));
+            Sleep(60);
+            temp_command=create_command(3,dis(gen));
+            gpib_int_pointer->GPIBWrite(&(temp_command[0]));
+            Sleep(100);
+
+            daq_internal_pointer->read_daq();
+
+
+
+
+             temp[0]=daq_internal_pointer->data[0];
+             temp[1]=daq_internal_pointer->data[1];
+             temp[2]=daq_internal_pointer->data[2];
+             temp[3]=daq_internal_pointer->data[3];
+             temp[4]=daq_internal_pointer->data[4];
+             temp[5]=daq_internal_pointer->data[5];
+             temp[6]=daq_internal_pointer->data[6];
+*/
+
+
+             temp[0]=dis(gen);
+             temp[1]=dis(gen);
+             temp[2]=dis(gen);
+             temp[3]=dis(gen);
+             temp[4]=dis(gen);
+             temp[5]=dis(gen);
+             temp[6]=dis(gen);
+
+
+
+
+
+
+
+
+
+
+            temp_data.push_back(temp);
+cout<<"lolo"<<endl;
+
+        }
+         //Generate First row of calibration
+
+    matrix <double> z(6,6);
+    matrix <double> x(6,1);
+    matrix <double> c(6,1);
+    for(int i=0;i<6;i++){
+        for(int j=0;j<6;j++){
+            for(int k=0;k<total_data;k++){
+
+                z.setvalue(i,j,temp_data[k][i]*temp_data[k][j]);
+
+            }
+          }
+         }
+
+    for(int j=0;j<6;j++){
+        for(int k=0;k<total_data;k++){
+
+            x.setvalue(j,0,temp_data[k][j]*temp_data[k][6]);
+
+        }
+      }
+    z.invert();
+    c.settoproduct(z,x);
+    bool success=false;
+    S0fit.resize(6);
+    for(int i=0;i<6;i++){
+
+    c.getvalue(i,0,S0fit[i],success);
+    cout<<S0fit[i]<<endl;
+    }
+    cout<<"lolo2"<<endl;
+    NumericalMinimization(temp_data[0][6],18,"Minuit2","Migrad");
+
+
+    //Ok so now c is a row vector and goes from 0 to 5 with each entry is the top entry of every column in the calibration matrix
+    //Now start the funny part... Need to build the functional to be minimized (20 dim!!!!! hope for it)
+
+
+
+
+}
+    }
+
+
+return;
+
+//
+
+//theApp.Run();
+}
+
+double untitled2::Q(const double *xx){
+
+  vector <Double_t> S0;
+  vector <Double_t> S1;
+  vector <Double_t> S2;
+  vector <Double_t> S3;
+
+  for (int j=0;j<temp_data.size();j++){
+   S0.push_back(temp_data[j][6]);
+  }
+
+
+  for (int j=0;j<temp_data.size();j++) {
+      Double_t temp=0.;
+      for(int k=0;k<6;k++){
+        temp=temp+(xx[k]*temp_data[j][k]);
+
+           }
+         S1.push_back(temp);
+  }
+
+  for (int j=0;j<temp_data.size();j++) {
+      Double_t temp=0.;
+      for(int k=0;k<6;k++){
+        temp=temp+(xx[k+6]*temp_data[j][k]);
+
+           }
+         S2.push_back(temp);
+  }
+
+  for (int j=0;j<temp_data.size();j++) {
+      Double_t temp=0.;
+      for(int k=0;k<6;k++){
+        temp=temp+(xx[k+12]*temp_data[j][k]);
+
+           }
+         S3.push_back(temp);
+  }
+
+
+
+  Double_t minimize=0.;
+
+  for(int k=0;k<temp_data.size();k++){
+      minimize=minimize+(S1[k]*S1[k]+S2[k]*S2[k]+S3[k]*S3[k]-S0[k]*S0[k])/(S0[k]*S0[k]*S0[k]*S0[k]);
+  }
+
+  return minimize;
+
+}
+
+
+
+void untitled2::dumpMatrixValues(matrix <double>& M)  {
+  bool xyz;
+  double rv;
+  for (int i=0; i < M.getactualsize(); i++)
+    {
+    cout << "i=" << i << ": ";
+    for (int j=0; j<M.getactualsize(); j++)
+      {
+        M.getvalue(i,j,rv,xyz);
+        cout << rv << " ";
+      }
+    cout << endl;
+    }
+  return;
+}
+
+int untitled2::NumericalMinimization(double avg,int nparam,const char * minName, const char *algoName ,
+                                     int randomSeed){
+  // create minimizer giving a name and a name (optionally) for the specific
+  // algorithm
+  // possible choices are:
+  //     minName                  algoName
+  // Minuit /Minuit2             Migrad, Simplex,Combined,Scan  (default is Migrad)
+  //  Minuit2                     Fumili2
+  //  Fumili
+  //  GSLMultiMin                ConjugateFR, ConjugatePR, BFGS,
+  //                              BFGS2, SteepestDescent
+  //  GSLMultiFit
+  //   GSLSimAn
+  //   Genetic
+    minName="Minuit";
+    algoName="Combined";
+    //ROOT::Math::Minimizer* min =ROOT::Math::Factory::CreateMinimizer(minName, algoName);
+    ROOT::Minuit2::Minuit2Minimizer* min=new ROOT::Minuit2::Minuit2Minimizer();
+    cout<<min<<endl;
+    // set tolerance , etc...
+
+
+
+min->SetMaxFunctionCalls(1000000); // for Minuit/Minuit2
+       min->SetMaxIterations(10000);  // for GSL
+       min->SetTolerance(0.001);
+       min->SetPrintLevel(1);
+       cout<<"lolo3"<<endl;
+  // create funciton wrapper for minmizer
+  // a IMultiGenFunction type
+
+  ROOT::Math::Functor f(&(untitled2::Q),18);
+
+  double stepp=0.01;
+  double step[18] = {stepp,stepp,stepp,stepp,stepp,stepp,stepp,stepp,stepp,stepp,stepp,stepp,stepp,stepp,stepp,stepp,stepp,stepp};
+  // starting point
+
+  double variable[18] = {avg,-avg,0,0,0,0,0,0,avg,-avg,0,0,0,0,0,0,avg,-avg};
+  if (randomSeed >= 0) {
+     TRandom2 r(randomSeed);
+     variable[0] = r.Uniform(-20,20);
+     variable[1] = r.Uniform(-20,20);
+     variable[2] = r.Uniform(-20,20);
+     variable[3] = r.Uniform(-20,20);
+     variable[4] = r.Uniform(-20,20);
+     variable[5] = r.Uniform(-20,20);
+     variable[6] = r.Uniform(-20,20);
+     variable[7] = r.Uniform(-20,20);
+     variable[8] = r.Uniform(-20,20);
+     variable[9] = r.Uniform(-20,20);
+     variable[10] = r.Uniform(-20,20);
+     variable[11] = r.Uniform(-20,20);
+     variable[12] = r.Uniform(-20,20);
+     variable[13] = r.Uniform(-20,20);
+     variable[14] = r.Uniform(-20,20);
+     variable[15] = r.Uniform(-20,20);
+     variable[16] = r.Uniform(-20,20);
+     variable[17] = r.Uniform(-20,20);
+
+  }
+  cout<<"lolo4"<<endl;
+
+  min->SetFunction(f);
+  // Set the free variables to be minimized!
+  min->SetVariable(0,"x",variable[0], step[0]);
+  min->SetVariable(1,"y",variable[1], step[1]);
+  min->SetVariable(2,"z",variable[2], step[2]);
+  min->SetVariable(3,"a",variable[3], step[3]);
+  min->SetVariable(4,"b",variable[4], step[4]);
+  min->SetVariable(5,"c",variable[5], step[5]);
+  min->SetVariable(6,"d",variable[6], step[6]);
+  min->SetVariable(7,"e",variable[7], step[7]);
+  min->SetVariable(8,"f",variable[8], step[8]);
+  min->SetVariable(9,"g",variable[9], step[9]);
+  min->SetVariable(10,"h",variable[10], step[10]);
+  min->SetVariable(11,"j",variable[11], step[11]);
+  min->SetVariable(12,"l",variable[12], step[12]);
+  min->SetVariable(13,"m",variable[13], step[13]);
+  min->SetVariable(14,"n",variable[14], step[14]);
+  min->SetVariable(15,"o",variable[15], step[15]);
+  min->SetVariable(16,"p",variable[16], step[16]);
+  min->SetVariable(17,"q",variable[17], step[17]);
+
+
+  // do the minimization
+  min->Minimize();
+
+  const double *xs = min->X();
+
+
+  std::cout << "Minimum: f(";
+    for(int i=0;i<nparam;i++){
+          cout  << xs[i] << ",";}
+            cout << "): " << min->MinValue()  << std::endl;
+
+  // expected minimum is 0
+  if ( min->MinValue()  < 1.E-4  && f(xs) < 1.E-4)
+     std::cout << "Minimizer " << minName << " - " << algoName
+               << "   converged to the right minimum" << std::endl;
+  else {
+     std::cout << "Minimizer " << minName << " - " << algoName
+               << "   failed to converge !!!" << std::endl;
+     Error("NumericalMinimization","fail to converge");
+  }
+
+  return 0;
+}
+
+
+

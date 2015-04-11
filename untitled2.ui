@@ -572,6 +572,19 @@
      <string>Stab Stop</string>
     </property>
    </widget>
+   <widget class="QPushButton" name="referenceButton">
+    <property name="geometry">
+     <rect>
+      <x>790</x>
+      <y>330</y>
+      <width>101</width>
+      <height>23</height>
+     </rect>
+    </property>
+    <property name="text">
+     <string>ReferenceFree</string>
+    </property>
+   </widget>
   </widget>
   <widget class="QMenuBar" name="menuBar">
    <property name="geometry">

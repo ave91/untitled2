@@ -89,6 +89,7 @@ public:
     QPushButton *polContCalButton;
     QPushButton *stabilizationButton;
     QPushButton *stabstopButton;
+    QPushButton *referenceButton;
     QMenuBar *menuBar;
     QToolBar *mainToolBar;
     QStatusBar *statusBar;
@@ -328,6 +329,9 @@ public:
         stabstopButton = new QPushButton(centralWidget);
         stabstopButton->setObjectName(QStringLiteral("stabstopButton"));
         stabstopButton->setGeometry(QRect(680, 330, 75, 23));
+        referenceButton = new QPushButton(centralWidget);
+        referenceButton->setObjectName(QStringLiteral("referenceButton"));
+        referenceButton->setGeometry(QRect(790, 330, 101, 23));
         untitled2Class->setCentralWidget(centralWidget);
         menuBar = new QMenuBar(untitled2Class);
         menuBar->setObjectName(QStringLiteral("menuBar"));
@@ -385,6 +389,7 @@ public:
         polContCalButton->setText(QApplication::translate("untitled2Class", "Calibration Pol controller", 0));
         stabilizationButton->setText(QApplication::translate("untitled2Class", "Stabilization", 0));
         stabstopButton->setText(QApplication::translate("untitled2Class", "Stab Stop", 0));
+        referenceButton->setText(QApplication::translate("untitled2Class", "ReferenceFree", 0));
     } // retranslateUi
 
 };

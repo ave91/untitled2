@@ -36,7 +36,9 @@ HEADERS += \
     qcustomplot.cpp \
     plot.h \
     gnuplot.h \
-    gpib.h
+    gpib.h \
+    matrix_inv.h \
+    minimiz_root.h
 
 SOURCES += \
     acquisition.cpp \
@@ -51,16 +53,101 @@ win32 {
     # aadimos la ruta para localizar la cabecera de la tarjeta
     INCLUDEPATH += "C:\Program Files (x86)\National Instruments\Shared\ExternalCompilerSupport\C\include"
     INCLUDEPATH += "C:\Users\Public\Documents\Measurement Computing\DAQ\C"
-    # aadimos la ruta de busqueda de las bibliotecas (opcin -L)
+    INCLUDEPATH += "E:\root\rootbuild\include"
+# aadimos la ruta de busqueda de las bibliotecas (opcin -L)
     LIBS += -L"C:\Program Files (x86)\National Instruments\Shared\ExternalCompilerSupport\C\lib32\msvc"
     LIBS += -L"C:\Users\Public\Documents\Measurement Computing\DAQ\C"
-    #LIBS += -L$$PWD # donde esta mi programa
+    LIBS += -L"E:\root\rootbuild\lib"
+
+#LIBS += -L$$PWD # donde esta mi programa
     
     # aadimos la librera "NIDAQmx.lib" quitando partes del nombre del archivo, (opcin -l)
     LIBS += -lNIDAQmx
     LIBS += ni4882.obj
     LIBS += -lcbw32
-   # LIBS += gpib-32.obj
+#LIBS += -lCint_static
+
+
+ # LIBS += gpib-32.obj
+    #LIBS += $$system(root-config --glibs) -lGQt
+
+
+LIBS += -lcomplexDict
+LIBS += -ldequeDict
+LIBS += -lfreetype
+LIBS += -llibASImage
+LIBS += -llibASImageGui
+LIBS += -llibCint
+LIBS += -llibCintex
+LIBS += -llibAfterImage
+LIBS += -llibCore
+LIBS += -llibEG
+LIBS += -llibEve
+LIBS += -llibFitPanel
+LIBS += -llibFoam
+LIBS += -llibFTGL
+LIBS += -llibFumili
+LIBS += -llibGed
+LIBS += -llibGenetic
+LIBS += -llibGenVector
+LIBS += -llibGeom
+LIBS += -llibGeomBuilder
+LIBS += -llibGeomPainter
+LIBS += -llibGLEW
+LIBS += -llibGpad
+LIBS += -llibGraf
+LIBS += -llibGraf3d
+LIBS += -llibGui
+LIBS += -llibGuiBld
+LIBS += -llibGuiHtml
+LIBS += -llibGviz3d
+LIBS += -llibHist
+LIBS += -llibHistPainter
+LIBS += -llibHtml
+LIBS += -llibMathCore
+LIBS += -llibMatrix
+LIBS += -llibMinuit
+LIBS += -llibMinuit2
+LIBS += -llibMLP
+LIBS += -llibNet
+LIBS += -llibPhysics
+LIBS += -llibPostscript
+LIBS += -llibProof
+LIBS += -llibProofBench
+LIBS += -llibProofDraw
+LIBS += -llibProofPlayer
+LIBS += -llibQuadp
+LIBS += -llibRecorder
+LIBS += -llibReflex
+LIBS += -llibReflexDict
+LIBS += -llibRGL
+LIBS += -llibRint
+LIBS += -llibRIO
+LIBS += -llibRODBC
+LIBS += -llibRooFit
+LIBS += -llibRooFitCore
+LIBS += -llibRooStats
+LIBS += -llibRootAuth
+LIBS += -llibSessionViewer
+LIBS += -llibSmatrix
+LIBS += -llibSpectrum
+LIBS += -llibSpectrumPainter
+LIBS += -llibSPlot
+LIBS += -llibSQLIO
+LIBS += -llibThread
+LIBS += -llibTMVA
+LIBS += -llibTree
+LIBS += -llibTreePlayer
+LIBS += -llibTreeViewer
+LIBS += -llibVMC
+LIBS += -llibWin32gdk
+LIBS += -llibXMLIO
+
+
+
+
+
+
 }
 
 unix {
