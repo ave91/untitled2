@@ -23,6 +23,12 @@
 #include "TRandom2.h"
 #include "TError.h"
 #include "Minuit2/Minuit2Minimizer.h"
+#include "Eigen/Core"
+#include "Eigen/LU"
+
+
+using namespace Eigen;
+
 #define DAQmxErrChk(functionCall) if( DAQmxFailed(error=(functionCall)) ) goto Error; else
 
  TApplication theApp("A",0,0);
@@ -1315,7 +1321,7 @@ void untitled2::on_referenceButton_clicked()
         temp.resize(7);
         string temp_command;
         for(int i=0;i<total_data;++i){
-/*
+
             temp_command=create_command(1,dis(gen));
             gpib_int_pointer->GPIBWrite(&(temp_command[0]));
             Sleep(60);
@@ -1338,17 +1344,21 @@ void untitled2::on_referenceButton_clicked()
              temp[4]=daq_internal_pointer->data[4];
              temp[5]=daq_internal_pointer->data[5];
              temp[6]=daq_internal_pointer->data[6];
+
+/*
+       for(int j=0;j<6;j++){
+            if(i%6==j){
+            temp[j]=1;
+           }
+            else{
+                temp[j]=0;
+            }
+       cout<<temp[j]<<" ";
+
+       }
+       cout<<endl;
+       temp[6]=1;
 */
-
-
-             temp[0]=dis(gen);
-             temp[1]=dis(gen);
-             temp[2]=dis(gen);
-             temp[3]=dis(gen);
-             temp[4]=dis(gen);
-             temp[5]=dis(gen);
-             temp[6]=dis(gen);
-
 
 
 
@@ -1359,19 +1369,24 @@ void untitled2::on_referenceButton_clicked()
 
 
             temp_data.push_back(temp);
-cout<<"lolo"<<endl;
+//cout<<"lolo"<<endl;
 
         }
          //Generate First row of calibration
+     MatrixXd z(6,6);
+     z= MatrixXd::Zero(6,6);
+      MatrixXd z1(6,6);
+      z1= MatrixXd::Zero(6,6);
+     VectorXd c(6);
+     VectorXd x(6);
+    c=VectorXd::Zero(6);
+    x= VectorXd::Zero(6);
 
-    matrix <double> z(6,6);
-    matrix <double> x(6,1);
-    matrix <double> c(6,1);
     for(int i=0;i<6;i++){
         for(int j=0;j<6;j++){
             for(int k=0;k<total_data;k++){
 
-                z.setvalue(i,j,temp_data[k][i]*temp_data[k][j]);
+                z(i,j)=z(i,j)+(temp_data[k][i]*temp_data[k][j]);
 
             }
           }
@@ -1380,21 +1395,26 @@ cout<<"lolo"<<endl;
     for(int j=0;j<6;j++){
         for(int k=0;k<total_data;k++){
 
-            x.setvalue(j,0,temp_data[k][j]*temp_data[k][6]);
+            x(j)=x(j)+(temp_data[k][j]*temp_data[k][6]);
 
         }
       }
-    z.invert();
-    c.settoproduct(z,x);
+
+   cout<<z<<endl<<x<<endl;
+
+    z1=z.inverse();
+  cout<<z1<<endl;
+  c=z1*x;
+  // c.settoproduct(z,x);
     bool success=false;
     S0fit.resize(6);
     for(int i=0;i<6;i++){
 
-    c.getvalue(i,0,S0fit[i],success);
-    cout<<S0fit[i]<<endl;
+    S0fit[i]=c(i);
+   // cout<<S0fit[i]<<endl;
     }
-    cout<<"lolo2"<<endl;
-    NumericalMinimization(temp_data[0][6],18,"Minuit2","Migrad");
+    //cout<<"lolo2"<<endl;
+    NumericalMinimization(S0fit[0],18,"Minuit2","Migrad");
 
 
     //Ok so now c is a row vector and goes from 0 to 5 with each entry is the top entry of every column in the calibration matrix
@@ -1458,7 +1478,7 @@ double untitled2::Q(const double *xx){
   Double_t minimize=0.;
 
   for(int k=0;k<temp_data.size();k++){
-      minimize=minimize+(S1[k]*S1[k]+S2[k]*S2[k]+S3[k]*S3[k]-S0[k]*S0[k])/(S0[k]*S0[k]*S0[k]*S0[k]);
+      minimize=minimize+((S1[k]*S1[k]+S2[k]*S2[k]+S3[k]*S3[k]-S0[k]*S0[k])/(S0[k]*S0[k]*S0[k]*S0[k]))*((S1[k]*S1[k]+S2[k]*S2[k]+S3[k]*S3[k]-S0[k]*S0[k])/(S0[k]*S0[k]*S0[k]*S0[k]));
   }
 
   return minimize;
@@ -1500,23 +1520,23 @@ int untitled2::NumericalMinimization(double avg,int nparam,const char * minName,
     minName="Minuit";
     algoName="Combined";
     //ROOT::Math::Minimizer* min =ROOT::Math::Factory::CreateMinimizer(minName, algoName);
-    ROOT::Minuit2::Minuit2Minimizer* min=new ROOT::Minuit2::Minuit2Minimizer();
-    cout<<min<<endl;
+    ROOT::Minuit2::Minuit2Minimizer* min=new ROOT::Minuit2::Minuit2Minimizer(ROOT::Minuit2::kCombined);
+    //cout<<min<<endl;
     // set tolerance , etc...
 
 
 
-min->SetMaxFunctionCalls(1000000); // for Minuit/Minuit2
+min->SetMaxFunctionCalls(100000000); // for Minuit/Minuit2
        min->SetMaxIterations(10000);  // for GSL
-       min->SetTolerance(0.001);
+       min->SetTolerance(0.0000001);
        min->SetPrintLevel(1);
-       cout<<"lolo3"<<endl;
+       //cout<<"lolo3"<<endl;
   // create funciton wrapper for minmizer
   // a IMultiGenFunction type
 
   ROOT::Math::Functor f(&(untitled2::Q),18);
 
-  double stepp=0.01;
+  double stepp=0.0000000001;
   double step[18] = {stepp,stepp,stepp,stepp,stepp,stepp,stepp,stepp,stepp,stepp,stepp,stepp,stepp,stepp,stepp,stepp,stepp,stepp};
   // starting point
 
@@ -1543,7 +1563,7 @@ min->SetMaxFunctionCalls(1000000); // for Minuit/Minuit2
      variable[17] = r.Uniform(-20,20);
 
   }
-  cout<<"lolo4"<<endl;
+ // cout<<"lolo4"<<endl;
 
   min->SetFunction(f);
   // Set the free variables to be minimized!

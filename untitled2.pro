@@ -54,6 +54,8 @@ win32 {
     INCLUDEPATH += "C:\Program Files (x86)\National Instruments\Shared\ExternalCompilerSupport\C\include"
     INCLUDEPATH += "C:\Users\Public\Documents\Measurement Computing\DAQ\C"
     INCLUDEPATH += "E:\root\rootbuild\include"
+    INCLUDEPATH += "E:\eigen"
+
 # aadimos la ruta de busqueda de las bibliotecas (opcin -L)
     LIBS += -L"C:\Program Files (x86)\National Instruments\Shared\ExternalCompilerSupport\C\lib32\msvc"
     LIBS += -L"C:\Users\Public\Documents\Measurement Computing\DAQ\C"
