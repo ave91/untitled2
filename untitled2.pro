@@ -107,6 +107,7 @@ LIBS += -llibHist
 LIBS += -llibHistPainter
 LIBS += -llibHtml
 LIBS += -llibMathCore
+LIBS += -llibMathMore
 LIBS += -llibMatrix
 LIBS += -llibMinuit
 LIBS += -llibMinuit2

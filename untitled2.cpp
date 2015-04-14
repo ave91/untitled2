@@ -25,6 +25,7 @@
 #include "Minuit2/Minuit2Minimizer.h"
 #include "Eigen/Core"
 #include "Eigen/LU"
+#include "Math/GSLSimAnMinimizer.h"
 
 
 using namespace Eigen;
@@ -664,7 +665,7 @@ void untitled2::on_CalibrateButton_clicked()
 {
     if(calib_internal_pointer!=0){
         if(acquisition::NI==true){
-        calib_internal_pointer->compute_calibration();
+        calib_internal_pointer->compute_calibration_Numeric();
         }
         else{
             calib_internal_pointer->compute_calibration_4_det();
@@ -710,7 +711,7 @@ void untitled2::on_stokesButton_clicked()
       if(acquisition::NI==false){
           itot=daq_internal_pointer->mean(1)+daq_internal_pointer->mean(2)+daq_internal_pointer->mean(3)+daq_internal_pointer->mean(4);
       }
-
+      itot=1;
       double i1=(daq_internal_pointer->mean(1))/itot;
       double i2=(daq_internal_pointer->mean(2))/itot;
       double i3=(daq_internal_pointer->mean(3))/itot;
@@ -724,6 +725,11 @@ void untitled2::on_stokesButton_clicked()
       calib_internal_pointer->stokes_dat[1]=i1*calib_internal_pointer->matrix[1][0] + i2*calib_internal_pointer->matrix[1][1] + i3*calib_internal_pointer->matrix[1][2] + i4*calib_internal_pointer->matrix[1][3] + i5*calib_internal_pointer->matrix[1][4] + i6*calib_internal_pointer->matrix[1][5];
       calib_internal_pointer->stokes_dat[2]=i1*calib_internal_pointer->matrix[2][0] + i2*calib_internal_pointer->matrix[2][1] + i3*calib_internal_pointer->matrix[2][2] + i4*calib_internal_pointer->matrix[2][3] + i5*calib_internal_pointer->matrix[2][4] + i6*calib_internal_pointer->matrix[2][5];
       calib_internal_pointer->stokes_dat[3]=i1*calib_internal_pointer->matrix[3][0] + i2*calib_internal_pointer->matrix[3][1] + i3*calib_internal_pointer->matrix[3][2] + i4*calib_internal_pointer->matrix[3][3] + i5*calib_internal_pointer->matrix[3][4] + i6*calib_internal_pointer->matrix[3][5];
+/*
+      calib_internal_pointer->stokes_dat[1]=calib_internal_pointer->stokes_dat[1]/calib_internal_pointer->stokes_dat[0];
+      calib_internal_pointer->stokes_dat[2]=calib_internal_pointer->stokes_dat[2]/calib_internal_pointer->stokes_dat[0];
+      calib_internal_pointer->stokes_dat[3]=calib_internal_pointer->stokes_dat[3]/calib_internal_pointer->stokes_dat[0];
+*/
 
       for(int i=0;i<4;i++){
              if(  stokesvect_qs[i]!=0){
@@ -1175,7 +1181,7 @@ double untitled2::minimization_stabiliz(int waw,double &ang,double * reference){
 
             temp_difference=forward_difference;
             new_angle=new_angle+step;
-            if(new_angle>99){new_angle=-99;}
+            if(new_angle>99){new_angle=-90;}
             temp_command=create_command(waw,new_angle);
             gpib_int_pointer->GPIBWrite(&(temp_command[0]));
             untitled2::on_stokesButton_clicked();
@@ -1185,7 +1191,7 @@ double untitled2::minimization_stabiliz(int waw,double &ang,double * reference){
         }
 
         new_angle=new_angle-step;
-        if(new_angle<-99){new_angle=+99;}
+        if(new_angle<-99){new_angle=+90;}
         temp_command=create_command(waw,new_angle);
         gpib_int_pointer->GPIBWrite(&(temp_command[0]));
 
@@ -1312,7 +1318,7 @@ void untitled2::on_referenceButton_clicked()
     std::random_device rd;
        std::mt19937 gen(rd());
        std::uniform_real_distribution<> dis(-99, 99); // Range of the generation= range of PC (I know here range=[-99,99) but i don't care so much Unlikely {-99,-99,-99} will be an eigenstate so...
-    int total_data=40;
+    int total_data=30;
 
     if(calib_internal_pointer!=0 && daq_internal_pointer!=0 ){
         if(acquisition::NI==true){
@@ -1320,6 +1326,7 @@ void untitled2::on_referenceButton_clicked()
         vector <double> temp;
         temp.resize(7);
         string temp_command;
+        ofstream fillee("referenceout.txt");
         for(int i=0;i<total_data;++i){
 
             temp_command=create_command(1,dis(gen));
@@ -1330,20 +1337,20 @@ void untitled2::on_referenceButton_clicked()
             Sleep(60);
             temp_command=create_command(3,dis(gen));
             gpib_int_pointer->GPIBWrite(&(temp_command[0]));
-            Sleep(100);
+            Sleep(200);
 
             daq_internal_pointer->read_daq();
 
 
+            temp[6]=daq_internal_pointer->mean(7);
 
+             temp[0]=daq_internal_pointer->mean(1);
+             temp[1]=daq_internal_pointer->mean(2);
+             temp[2]=daq_internal_pointer->mean(3);
+             temp[3]=daq_internal_pointer->mean(4);
+             temp[4]=daq_internal_pointer->mean(5);
+             temp[5]=daq_internal_pointer->mean(6);
 
-             temp[0]=daq_internal_pointer->data[0];
-             temp[1]=daq_internal_pointer->data[1];
-             temp[2]=daq_internal_pointer->data[2];
-             temp[3]=daq_internal_pointer->data[3];
-             temp[4]=daq_internal_pointer->data[4];
-             temp[5]=daq_internal_pointer->data[5];
-             temp[6]=daq_internal_pointer->data[6];
 
 /*
        for(int j=0;j<6;j++){
@@ -1361,7 +1368,12 @@ void untitled2::on_referenceButton_clicked()
 */
 
 
+             for(int j=0;j<7;j++){
 
+             fillee<<temp[j]<<"\t";
+
+             }
+             fillee<<endl;
 
 
 
@@ -1372,7 +1384,8 @@ void untitled2::on_referenceButton_clicked()
 //cout<<"lolo"<<endl;
 
         }
-         //Generate First row of calibration
+        fillee.close();
+        //Generate First row of calibration
      MatrixXd z(6,6);
      z= MatrixXd::Zero(6,6);
       MatrixXd z1(6,6);
@@ -1411,7 +1424,8 @@ void untitled2::on_referenceButton_clicked()
     for(int i=0;i<6;i++){
 
     S0fit[i]=c(i);
-   // cout<<S0fit[i]<<endl;
+    calib_internal_pointer->matrix[0][i]=c(i);
+    cout<<S0fit[i]<<endl;
     }
     //cout<<"lolo2"<<endl;
     NumericalMinimization(S0fit[0],18,"Minuit2","Migrad");
@@ -1478,7 +1492,8 @@ double untitled2::Q(const double *xx){
   Double_t minimize=0.;
 
   for(int k=0;k<temp_data.size();k++){
-      minimize=minimize+((S1[k]*S1[k]+S2[k]*S2[k]+S3[k]*S3[k]-S0[k]*S0[k])/(S0[k]*S0[k]*S0[k]*S0[k]))*((S1[k]*S1[k]+S2[k]*S2[k]+S3[k]*S3[k]-S0[k]*S0[k])/(S0[k]*S0[k]*S0[k]*S0[k]));
+      //minimize=minimize+((S1[k]*S1[k]+S2[k]*S2[k]+S3[k]*S3[k]-S0[k]*S0[k])/(S0[k]*S0[k]*S0[k]*S0[k]))*((S1[k]*S1[k]+S2[k]*S2[k]+S3[k]*S3[k]-S0[k]*S0[k])/(S0[k]*S0[k]*S0[k]*S0[k]));
+      minimize=minimize+((S1[k]*S1[k]+S2[k]*S2[k]+S3[k]*S3[k]-1))*((S1[k]*S1[k]+S2[k]*S2[k]+S3[k]*S3[k]-1));
   }
 
   return minimize;
@@ -1519,28 +1534,32 @@ int untitled2::NumericalMinimization(double avg,int nparam,const char * minName,
   //   Genetic
     minName="Minuit";
     algoName="Combined";
+   // gDebug=1;
     //ROOT::Math::Minimizer* min =ROOT::Math::Factory::CreateMinimizer(minName, algoName);
-    ROOT::Minuit2::Minuit2Minimizer* min=new ROOT::Minuit2::Minuit2Minimizer(ROOT::Minuit2::kCombined);
-    //cout<<min<<endl;
+   ROOT::Minuit2::Minuit2Minimizer* min=new ROOT::Minuit2::Minuit2Minimizer(ROOT::Minuit2::kCombined);
+   //ROOT::Math::GSLSimAnMinimizer * min=new ROOT::Math::GSLSimAnMinimizer();
+   cout<<min<<endl;
     // set tolerance , etc...
 
 
 
 min->SetMaxFunctionCalls(100000000); // for Minuit/Minuit2
-       min->SetMaxIterations(10000);  // for GSL
+       min->SetMaxIterations(10000000);  // for GSL
        min->SetTolerance(0.0000001);
        min->SetPrintLevel(1);
-       //cout<<"lolo3"<<endl;
+
   // create funciton wrapper for minmizer
   // a IMultiGenFunction type
 
   ROOT::Math::Functor f(&(untitled2::Q),18);
 
-  double stepp=0.0000000001;
+  double stepp=0.00000000001;
   double step[18] = {stepp,stepp,stepp,stepp,stepp,stepp,stepp,stepp,stepp,stepp,stepp,stepp,stepp,stepp,stepp,stepp,stepp,stepp};
   // starting point
 
-  double variable[18] = {avg,-avg,0,0,0,0,0,0,avg,-avg,0,0,0,0,0,0,avg,-avg};
+  //double variable[18] = {+avg,-avg,0,0,0,0,0,0,avg,-avg,0,0,0,0,0,0,-avg,+avg};
+  double mean=0.3;
+  double variable[18]={0.0324577,-0.784184,1.33234,0.70708,-1.33917,-0.784177,0.695335,0.472558,-0.437909,-0.356402,-0.0378962,-0.291313,1.17834,1.61196,-0.488954,-0.048198,-1.55931,-0.91889};
   if (randomSeed >= 0) {
      TRandom2 r(randomSeed);
      variable[0] = r.Uniform(-20,20);
@@ -1563,11 +1582,14 @@ min->SetMaxFunctionCalls(100000000); // for Minuit/Minuit2
      variable[17] = r.Uniform(-20,20);
 
   }
- // cout<<"lolo4"<<endl;
+
 
   min->SetFunction(f);
+    cout<<"lolo4"<<endl;
   // Set the free variables to be minimized!
-  min->SetVariable(0,"x",variable[0], step[0]);
+
+  min->SetVariable(0,"t",variable[0], step[0]);
+
   min->SetVariable(1,"y",variable[1], step[1]);
   min->SetVariable(2,"z",variable[2], step[2]);
   min->SetVariable(3,"a",variable[3], step[3]);
@@ -1577,6 +1599,7 @@ min->SetMaxFunctionCalls(100000000); // for Minuit/Minuit2
   min->SetVariable(7,"e",variable[7], step[7]);
   min->SetVariable(8,"f",variable[8], step[8]);
   min->SetVariable(9,"g",variable[9], step[9]);
+
   min->SetVariable(10,"h",variable[10], step[10]);
   min->SetVariable(11,"j",variable[11], step[11]);
   min->SetVariable(12,"l",variable[12], step[12]);
@@ -1586,16 +1609,19 @@ min->SetMaxFunctionCalls(100000000); // for Minuit/Minuit2
   min->SetVariable(16,"p",variable[16], step[16]);
   min->SetVariable(17,"q",variable[17], step[17]);
 
+cout<<"lolo3"<<endl;
 
   // do the minimization
   min->Minimize();
-
+  cout<<"lolo3"<<endl;
   const double *xs = min->X();
 
 
   std::cout << "Minimum: f(";
     for(int i=0;i<nparam;i++){
-          cout  << xs[i] << ",";}
+          cout  << xs[i] << ",";
+          calib_internal_pointer->matrix[1+int(i/6)][i%6]=xs[i];
+    }
             cout << "): " << min->MinValue()  << std::endl;
 
   // expected minimum is 0

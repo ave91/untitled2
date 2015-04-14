@@ -7,12 +7,20 @@ void calibration::compute_calibration( ){
 
 
     //Here detector 7 is used as total power
-        double ih_tot=H_vector[6];
+        /*double ih_tot=H_vector[6];
         double iv_tot=V_vector[6];
         double ip_tot=P_vector[6];
         double im_tot=M_vector[6];
         double il_tot=L_vector[6];
         double ir_tot=R_vector[6];
+*/
+
+    double ih_tot=1;
+    double iv_tot=1;
+    double ip_tot=1;
+    double im_tot=1;
+    double il_tot=1;
+    double ir_tot=1;
 
 
         double ihh=(H_vector[0])/(ih_tot);

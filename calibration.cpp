@@ -2,8 +2,12 @@
 #include "QMessageBox"
 #include "cmath"
 #include "vector"
+#include "Eigen/Core"
+#include "Eigen/LU"
+#include <iostream>
 
 
+using namespace Eigen;
 
 calibration::calibration(QObject *parent) : QObject(parent)
 {
@@ -36,12 +40,16 @@ void calibration::compute_calibration_4_det( ){
 
 
     //Here detector 7 is used as total power
+        /*
         double ih_tot=H_vector[6];
         double iv_tot=V_vector[6];
         double ip_tot=P_vector[6];
         double il_tot=L_vector[6];
-
-
+        */
+        double ih_tot=1;
+        double iv_tot=1;
+        double ip_tot=1;
+        double il_tot=1;
 
         double ihh=(H_vector[0])/(ih_tot);
         double ihv=(H_vector[1])/(ih_tot);
@@ -84,6 +92,35 @@ void calibration::compute_calibration_4_det( ){
 }
 
 
+void calibration::compute_calibration_Numeric( ){
+
+   MatrixXd Smat(4,6);
+    Smat<<1, 1, 1, 1, 1, 1, 1,-1, 0, 0, 0, 0, 0, 0, 1, -1, 0, 0, 0, 0, 0, 0, 1, -1;
+    //std::cout<<Smat<<std::endl;
+     MatrixXd Dmat(6,6);
+     MatrixXd Dmat_inv(6,6);
+      MatrixXd final(4,6);
+     for(int i=0;i<6;i++){
+        Dmat(i,0)=H_vector[i];
+        Dmat(i,1)=V_vector[i];
+        Dmat(i,2)=P_vector[i];
+        Dmat(i,3)=M_vector[i];
+        Dmat(i,4)=L_vector[i];
+        Dmat(i,5)=R_vector[i];
 
 
+     }
+    cout<<Dmat<<endl;
+     Dmat_inv=Dmat.inverse();
+    //Check
+    cout<<Dmat_inv*Dmat<<endl;
+    //
+    final=Smat*Dmat_inv;
+    for(int i=0;i<4;i++){
+        for(int j=0;j<6;j++){
+            matrix[i][j]=final(i,j);
+        }
 
+    }
+    cout<<final<<endl;
+}
