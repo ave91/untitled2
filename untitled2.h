@@ -39,6 +39,8 @@ public:
     static vector < vector <double>> temp_data;
     vector <double> S0fit;
     static double untitled2::Q(const double *xx);
+    static double untitled2::Q_over(const double *xx);
+    static double untitled2::Q_comb(const double *xx);
     int NumericalMinimization(double avg,int nparam,const char * minName = "Minuit2",
                               const char *algoName = "" ,
                               int randomSeed = -1);
@@ -107,7 +109,7 @@ private:
     void keyPressEvent(QKeyEvent* event);
     string create_command(int i,double value);
     double minimization_stabiliz(int waw, double &ang, double * reference);
-    void untitled2::stabilization_thread();
+    void untitled2::stabilization_thread(double s1, double s2, double s3);
     bool stabilizatio_loop;
     double matrix_NI_temp[4][6];
     double matrix_MC_temp[4][4];

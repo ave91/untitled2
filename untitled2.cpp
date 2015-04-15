@@ -725,11 +725,20 @@ void untitled2::on_stokesButton_clicked()
       calib_internal_pointer->stokes_dat[1]=i1*calib_internal_pointer->matrix[1][0] + i2*calib_internal_pointer->matrix[1][1] + i3*calib_internal_pointer->matrix[1][2] + i4*calib_internal_pointer->matrix[1][3] + i5*calib_internal_pointer->matrix[1][4] + i6*calib_internal_pointer->matrix[1][5];
       calib_internal_pointer->stokes_dat[2]=i1*calib_internal_pointer->matrix[2][0] + i2*calib_internal_pointer->matrix[2][1] + i3*calib_internal_pointer->matrix[2][2] + i4*calib_internal_pointer->matrix[2][3] + i5*calib_internal_pointer->matrix[2][4] + i6*calib_internal_pointer->matrix[2][5];
       calib_internal_pointer->stokes_dat[3]=i1*calib_internal_pointer->matrix[3][0] + i2*calib_internal_pointer->matrix[3][1] + i3*calib_internal_pointer->matrix[3][2] + i4*calib_internal_pointer->matrix[3][3] + i5*calib_internal_pointer->matrix[3][4] + i6*calib_internal_pointer->matrix[3][5];
-/*
-      calib_internal_pointer->stokes_dat[1]=calib_internal_pointer->stokes_dat[1]/calib_internal_pointer->stokes_dat[0];
-      calib_internal_pointer->stokes_dat[2]=calib_internal_pointer->stokes_dat[2]/calib_internal_pointer->stokes_dat[0];
-      calib_internal_pointer->stokes_dat[3]=calib_internal_pointer->stokes_dat[3]/calib_internal_pointer->stokes_dat[0];
-*/
+
+      double s0,s1,s2,s3=0.0;
+      s0=calib_internal_pointer->stokes_dat[0];
+      s1=calib_internal_pointer->stokes_dat[1]/s0;
+      s2=calib_internal_pointer->stokes_dat[2]/s0;
+      s3=calib_internal_pointer->stokes_dat[3]/s0;
+
+      cout<<s1<<s2<<s3<<endl;
+
+      calib_internal_pointer->stokes_dat[1]=s1;
+      calib_internal_pointer->stokes_dat[2]=s2;
+      calib_internal_pointer->stokes_dat[3]=s3;
+
+
 
       for(int i=0;i<4;i++){
              if(  stokesvect_qs[i]!=0){
@@ -1237,20 +1246,32 @@ double untitled2::minimization_stabiliz(int waw,double &ang,double * reference){
 
 void untitled2::on_stabilizationButton_clicked(){
     stabilizatio_loop=true;
-    QFuture <void> future = QtConcurrent::run(this,&untitled2::stabilization_thread);
+    bool ok;
+       double s1 = QInputDialog::getDouble(this, tr("QInputDialog::getDouble()"),
+                                          tr("S1:"), 1, -1, 1, 0.00001, &ok);
+       double s2 = QInputDialog::getDouble(this, tr("QInputDialog::getDouble()"),
+                                          tr("S2:"), 1, -1, 1, 0.00001, &ok);
+       double s3 = QInputDialog::getDouble(this, tr("QInputDialog::getDouble()"),
+                                          tr("S3:"), 1, -1, 1, 0.00001, &ok);
+    QFuture <void> future = QtConcurrent::run(this,&untitled2::stabilization_thread,s1,s2,s3);
 
 
 }
 
-void untitled2::stabilization_thread()
+void untitled2::stabilization_thread(double s1, double s2,double s3)
 {
     double angle1=0.;
     double angle2=0.;
     double angle3=0.;
     double difference;
-    double tollerance=0.01;
+    double tollerance=0.001;
     //bool loop_total=true;
-    double reference_stokes[3]={1,0,0};
+
+
+
+
+cout<<s1<<s2<<s3;
+    double reference_stokes[3]={s1,s2,s3};
 
 
    if(gpib_int_pointer!=0){
@@ -1284,6 +1305,7 @@ void untitled2::stabilization_thread()
 
 
    }
+
 }
 
 
@@ -1318,7 +1340,7 @@ void untitled2::on_referenceButton_clicked()
     std::random_device rd;
        std::mt19937 gen(rd());
        std::uniform_real_distribution<> dis(-99, 99); // Range of the generation= range of PC (I know here range=[-99,99) but i don't care so much Unlikely {-99,-99,-99} will be an eigenstate so...
-    int total_data=30;
+    int total_data=80;
 
     if(calib_internal_pointer!=0 && daq_internal_pointer!=0 ){
         if(acquisition::NI==true){
@@ -1367,14 +1389,14 @@ void untitled2::on_referenceButton_clicked()
        temp[6]=1;
 */
 
-
+/*
              for(int j=0;j<7;j++){
 
              fillee<<temp[j]<<"\t";
 
              }
              fillee<<endl;
-
+*/
 
 
 
@@ -1425,10 +1447,10 @@ void untitled2::on_referenceButton_clicked()
 
     S0fit[i]=c(i);
     calib_internal_pointer->matrix[0][i]=c(i);
-    cout<<S0fit[i]<<endl;
+    //cout<<S0fit[i]<<endl;
     }
     //cout<<"lolo2"<<endl;
-    NumericalMinimization(S0fit[0],18,"Minuit2","Migrad");
+    NumericalMinimization(temp_data[0][6],18,"Minuit2","Migrad");
 
 
     //Ok so now c is a row vector and goes from 0 to 5 with each entry is the top entry of every column in the calibration matrix
@@ -1448,57 +1470,6 @@ return;
 //theApp.Run();
 }
 
-double untitled2::Q(const double *xx){
-
-  vector <Double_t> S0;
-  vector <Double_t> S1;
-  vector <Double_t> S2;
-  vector <Double_t> S3;
-
-  for (int j=0;j<temp_data.size();j++){
-   S0.push_back(temp_data[j][6]);
-  }
-
-
-  for (int j=0;j<temp_data.size();j++) {
-      Double_t temp=0.;
-      for(int k=0;k<6;k++){
-        temp=temp+(xx[k]*temp_data[j][k]);
-
-           }
-         S1.push_back(temp);
-  }
-
-  for (int j=0;j<temp_data.size();j++) {
-      Double_t temp=0.;
-      for(int k=0;k<6;k++){
-        temp=temp+(xx[k+6]*temp_data[j][k]);
-
-           }
-         S2.push_back(temp);
-  }
-
-  for (int j=0;j<temp_data.size();j++) {
-      Double_t temp=0.;
-      for(int k=0;k<6;k++){
-        temp=temp+(xx[k+12]*temp_data[j][k]);
-
-           }
-         S3.push_back(temp);
-  }
-
-
-
-  Double_t minimize=0.;
-
-  for(int k=0;k<temp_data.size();k++){
-      //minimize=minimize+((S1[k]*S1[k]+S2[k]*S2[k]+S3[k]*S3[k]-S0[k]*S0[k])/(S0[k]*S0[k]*S0[k]*S0[k]))*((S1[k]*S1[k]+S2[k]*S2[k]+S3[k]*S3[k]-S0[k]*S0[k])/(S0[k]*S0[k]*S0[k]*S0[k]));
-      minimize=minimize+((S1[k]*S1[k]+S2[k]*S2[k]+S3[k]*S3[k]-1))*((S1[k]*S1[k]+S2[k]*S2[k]+S3[k]*S3[k]-1));
-  }
-
-  return minimize;
-
-}
 
 
 
@@ -1551,7 +1522,7 @@ min->SetMaxFunctionCalls(100000000); // for Minuit/Minuit2
   // create funciton wrapper for minmizer
   // a IMultiGenFunction type
 
-  ROOT::Math::Functor f(&(untitled2::Q),18);
+  ROOT::Math::Functor f(&(untitled2::Q_comb),18);
 
   double stepp=0.00000000001;
   double step[18] = {stepp,stepp,stepp,stepp,stepp,stepp,stepp,stepp,stepp,stepp,stepp,stepp,stepp,stepp,stepp,stepp,stepp,stepp};
@@ -1559,8 +1530,8 @@ min->SetMaxFunctionCalls(100000000); // for Minuit/Minuit2
 
   //double variable[18] = {+avg,-avg,0,0,0,0,0,0,avg,-avg,0,0,0,0,0,0,-avg,+avg};
   double mean=0.3;
-  double variable[18]={0.0324577,-0.784184,1.33234,0.70708,-1.33917,-0.784177,0.695335,0.472558,-0.437909,-0.356402,-0.0378962,-0.291313,1.17834,1.61196,-0.488954,-0.048198,-1.55931,-0.91889};
-  if (randomSeed >= 0) {
+   double variable[18]={0.0324577*avg,-0.784184*avg,1.33234*avg,0.70708*avg,-1.33917*avg,-0.784177*avg,0.695335*avg,0.472558*avg,-0.437909*avg,-0.356402*avg,-0.0378962*avg,-0.291313*avg,1.17834*avg,1.61196*avg,-0.488954*avg,-0.048198*avg,-1.55931*avg,-0.91889*avg};
+    if (randomSeed >= 0) {
      TRandom2 r(randomSeed);
      variable[0] = r.Uniform(-20,20);
      variable[1] = r.Uniform(-20,20);
@@ -1638,4 +1609,128 @@ cout<<"lolo3"<<endl;
 }
 
 
+double untitled2::Q(const double *xx){
 
+  vector <Double_t> S0;
+  vector <Double_t> S1;
+  vector <Double_t> S2;
+  vector <Double_t> S3;
+
+  for (int j=0;j<temp_data.size();j++){
+   S0.push_back(temp_data[j][6]);
+  }
+
+
+  for (int j=0;j<temp_data.size();j++) {
+      Double_t temp=0.;
+      for(int k=0;k<6;k++){
+        temp=temp+(xx[k]*temp_data[j][k]);
+
+           }
+         S1.push_back(temp);
+  }
+
+  for (int j=0;j<temp_data.size();j++) {
+      Double_t temp=0.;
+      for(int k=0;k<6;k++){
+        temp=temp+(xx[k+6]*temp_data[j][k]);
+
+           }
+         S2.push_back(temp);
+  }
+
+  for (int j=0;j<temp_data.size();j++) {
+      Double_t temp=0.;
+      for(int k=0;k<6;k++){
+        temp=temp+(xx[k+12]*temp_data[j][k]);
+
+           }
+         S3.push_back(temp);
+  }
+
+
+
+  Double_t minimize=0.;
+
+  for(int k=0;k<temp_data.size();k++){
+      //minimize=minimize+((S1[k]*S1[k]+S2[k]*S2[k]+S3[k]*S3[k]-S0[k]*S0[k])/(S0[k]*S0[k]*S0[k]*S0[k]))*((S1[k]*S1[k]+S2[k]*S2[k]+S3[k]*S3[k]-S0[k]*S0[k])/(S0[k]*S0[k]*S0[k]*S0[k]));
+      minimize=minimize+((S1[k]*S1[k]+S2[k]*S2[k]+S3[k]*S3[k]-S0[k]*S0[k]))*((S1[k]*S1[k]+S2[k]*S2[k]+S3[k]*S3[k]-S0[k]*S0[k]));
+  }
+
+  return minimize;
+
+}
+
+
+double untitled2::Q_over(const double *xx){
+
+  vector <Double_t> S0;
+  vector <Double_t> S1;
+  vector <Double_t> S2;
+  vector <Double_t> S3;
+
+
+  vector< vector <Double_t>>S1_tot;
+  vector< vector <Double_t>> S2_tot;
+  vector< vector <Double_t>> S3_tot;
+
+  for (int j=0;j<temp_data.size();j++){
+   S0.push_back(temp_data[j][6]);
+  }
+
+  for(int t=0;t<6;t++){
+
+  for (int j=0;j<temp_data.size();j++) {
+      Double_t temp=0.;
+      for(int k=0;k<5;k++){
+        temp=temp+(xx[k]*temp_data[j][(k+t)%6]);
+
+           }
+         S1.push_back(temp);
+  }
+
+  for (int j=0;j<temp_data.size();j++) {
+      Double_t temp=0.;
+      for(int k=0;k<5;k++){
+        temp=temp+(xx[k+6]*temp_data[j][(k+t)%6]);
+
+           }
+         S2.push_back(temp);
+  }
+
+  for (int j=0;j<temp_data.size();j++) {
+      Double_t temp=0.;
+      for(int k=0;k<5;k++){
+        temp=temp+(xx[k+12]*temp_data[j][(k+t)%6]);
+
+           }
+         S3.push_back(temp);
+  }
+
+  S1_tot.push_back(S1);
+  S2_tot.push_back(S2);
+  S3_tot.push_back(S3);
+
+
+}
+
+  Double_t minimize=0.;
+
+  for(int k=0;k<temp_data.size();k++){
+      for(int x=0;x<6;x++){
+        for(int y=0;y<6;y++){
+
+            //minimize=minimize+((S1[k]*S1[k]+S2[k]*S2[k]+S3[k]*S3[k]-S0[k]*S0[k])/(S0[k]*S0[k]*S0[k]*S0[k]))*((S1[k]*S1[k]+S2[k]*S2[k]+S3[k]*S3[k]-S0[k]*S0[k])/(S0[k]*S0[k]*S0[k]*S0[k]));
+      minimize=minimize+ fabs(S1_tot[x][k]-S1_tot[y][k])+fabs(S2_tot[x][k]-S2_tot[y][k])+fabs(S3_tot[x][k]-S3_tot[y][k]);
+  }
+      }
+}
+  return minimize;
+
+}
+
+double untitled2::Q_comb(const double *xx){
+
+    return (Q(xx)+Q_over(xx));
+
+}
