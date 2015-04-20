@@ -732,7 +732,7 @@ void untitled2::on_stokesButton_clicked()
       s2=calib_internal_pointer->stokes_dat[2]/s0;
       s3=calib_internal_pointer->stokes_dat[3]/s0;
 
-      cout<<s1<<s2<<s3<<endl;
+     // cout<<s1<<s2<<s3<<endl;
 
       calib_internal_pointer->stokes_dat[1]=s1;
       calib_internal_pointer->stokes_dat[2]=s2;
@@ -1343,14 +1343,16 @@ void untitled2::on_referenceButton_clicked()
     int total_data=80;
 
     if(calib_internal_pointer!=0 && daq_internal_pointer!=0 ){
+
         if(acquisition::NI==true){
-        temp_data;
+
+        gpib_int_pointer->init();
+        Sleep(60);
         vector <double> temp;
         temp.resize(7);
         string temp_command;
         ofstream fillee("referenceout.txt");
         for(int i=0;i<total_data;++i){
-
             temp_command=create_command(1,dis(gen));
             gpib_int_pointer->GPIBWrite(&(temp_command[0]));
             Sleep(60);
@@ -1389,14 +1391,14 @@ void untitled2::on_referenceButton_clicked()
        temp[6]=1;
 */
 
-/*
+
              for(int j=0;j<7;j++){
 
              fillee<<temp[j]<<"\t";
 
              }
              fillee<<endl;
-*/
+
 
 
 
@@ -1524,14 +1526,18 @@ min->SetMaxFunctionCalls(100000000); // for Minuit/Minuit2
 
   ROOT::Math::Functor f(&(untitled2::Q_comb),18);
 
-  double stepp=0.00000000001;
+  //double stepp=0.000000000001;
+  double stepp=0.0000001;
   double step[18] = {stepp,stepp,stepp,stepp,stepp,stepp,stepp,stepp,stepp,stepp,stepp,stepp,stepp,stepp,stepp,stepp,stepp,stepp};
   // starting point
 
   //double variable[18] = {+avg,-avg,0,0,0,0,0,0,avg,-avg,0,0,0,0,0,0,-avg,+avg};
   double mean=0.3;
-   double variable[18]={0.0324577*avg,-0.784184*avg,1.33234*avg,0.70708*avg,-1.33917*avg,-0.784177*avg,0.695335*avg,0.472558*avg,-0.437909*avg,-0.356402*avg,-0.0378962*avg,-0.291313*avg,1.17834*avg,1.61196*avg,-0.488954*avg,-0.048198*avg,-1.55931*avg,-0.91889*avg};
-    if (randomSeed >= 0) {
+  double variable[18]={0.0324577*avg,-0.784184*avg,1.33234*avg,0.70708*avg,-1.33917*avg,-0.784177*avg,0.695335*avg,0.472558*avg,-0.437909*avg,-0.356402*avg,-0.0378962*avg,-0.291313*avg,1.17834*avg,1.61196*avg,-0.488954*avg,-0.048198*avg,-1.55931*avg,-0.91889*avg};
+  //double variable[18]={0.924577*avg,-0.984184*avg,1.33234*avg,0.70708*avg,-1.33917*avg,-0.784177*avg,0.695335*avg,0.472558*avg,-0.437909*avg,-0.356402*avg,-0.0378962*avg,-0.291313*avg,1.17834*avg,1.61196*avg,-0.488954*avg,-0.048198*avg,-1.55931*avg,-0.91889*avg};
+
+
+  if (randomSeed >= 0) {
      TRandom2 r(randomSeed);
      variable[0] = r.Uniform(-20,20);
      variable[1] = r.Uniform(-20,20);
@@ -1729,8 +1735,313 @@ double untitled2::Q_over(const double *xx){
 
 }
 
+double untitled2::Q_sym(const double *xx){
+
+  vector <Double_t> S0;
+  vector <Double_t> S1;
+  vector <Double_t> S2;
+  vector <Double_t> S3;
+
+  MatrixXd corig(3,6);
+  MatrixXd rotation(3,3);
+  MatrixXd crot(3,6);
+
+  Double_t minimize=0.;
+  corig<<xx[1], xx[2], xx[3], xx[4], xx[5], xx[6], xx[7], xx[8], xx[9],xx[10], xx[11], xx[12], xx[13], xx[14], xx[15], xx[16], xx[17], xx[18];
+
+  for (int j=0;j<temp_data.size();j++){
+   S0.push_back(temp_data[j][6]);
+  }
+
+
+
+  for(double theta=0;theta<(2*M_PI);theta=theta+0.5){
+    for(double phi=0;phi<(2*M_PI);phi=phi+0.5){
+
+        rotation<<cos(theta),sin(theta),0,(-cos(phi)*sin(theta)),(cos(theta)*cos(phi)),sin(phi),(sin(theta)*sin(phi)),(-cos(theta)*sin(phi)),cos(phi);
+        crot=rotation*corig;
+
+        vector<double> xxx;
+        xxx.resize(18);
+
+        for(int i=0;i<3;i++){
+            for(int j=0;j<6;j++){
+                xxx.push_back((crot(i,j)));
+            }
+        }
+
+
+   for (int j=0;j<temp_data.size();j++) {
+      Double_t temp=0.;
+      for(int k=0;k<6;k++){
+        temp=temp+(xxx[k]*temp_data[j][k]);
+
+           }
+         S1.push_back(temp);
+  }
+
+  for (int j=0;j<temp_data.size();j++) {
+      Double_t temp=0.;
+      for(int k=0;k<6;k++){
+        temp=temp+(xxx[k+6]*temp_data[j][k]);
+
+           }
+         S2.push_back(temp);
+  }
+
+  for (int j=0;j<temp_data.size();j++) {
+      Double_t temp=0.;
+      for(int k=0;k<6;k++){
+        temp=temp+(xxx[k+12]*temp_data[j][k]);
+
+           }
+         S3.push_back(temp);
+  }
+
+
+
+
+
+  for(int k=0;k<temp_data.size();k++){
+      //minimize=minimize+((S1[k]*S1[k]+S2[k]*S2[k]+S3[k]*S3[k]-S0[k]*S0[k])/(S0[k]*S0[k]*S0[k]*S0[k]))*((S1[k]*S1[k]+S2[k]*S2[k]+S3[k]*S3[k]-S0[k]*S0[k])/(S0[k]*S0[k]*S0[k]*S0[k]));
+      minimize=minimize+((S1[k]*S1[k]+S2[k]*S2[k]+S3[k]*S3[k]-S0[k]*S0[k]))*((S1[k]*S1[k]+S2[k]*S2[k]+S3[k]*S3[k]-S0[k]*S0[k]));
+  }
+
+
+
+
+    }
+  }
+  return (minimize);
+
+}
+
+
+
+
+
+
 double untitled2::Q_comb(const double *xx){
 
-    return (Q(xx)+Q_over(xx));
+    return (Q(xx)+Q_over(xx));//+Q_sym(xx));
+
+}
+
+
+
+void untitled2::on_fixreferenceButton_clicked(){
+    stabilizatio_loop=true;
+     QFuture <void> future = QtConcurrent::run(this,&untitled2::fixreference_thread);
+}
+
+
+void untitled2::fixreference_thread()
+{
+
+    if(calib_internal_pointer!=0 && daq_internal_pointer!=0 ){
+    if(acquisition::NI==true){
+
+        double reference[3]={1,0,0};
+
+        double theta=0;
+        double phi=0;
+        double difference;
+        double tollerance=0.01;
+        untitled2::on_stokesButton_clicked();
+
+        while(stabilizatio_loop){
+           difference=fix_reference(1,theta,phi,reference);
+               if(difference<tollerance){
+                   break;}
+           difference=fix_reference(2,theta,phi,reference);
+               if(difference<tollerance){
+                   break;}
+
+        }
+
+
+
+
+
+
+
+    }
+    }
+
+
+}
+
+
+
+double untitled2::fix_reference(int angle,double &theta,double &phi,double * reference){
+
+    double initial_difference;
+    double forward_difference;
+    double backward_difference;
+    double temp_difference;
+
+    double step=0.0000001;
+    bool out=true;
+
+
+    initial_difference=(  (reference[0]-calib_internal_pointer->stokes_dat[1])*(reference[0]-calib_internal_pointer->stokes_dat[1])+(reference[1]-calib_internal_pointer->stokes_dat[2])*(reference[1]-calib_internal_pointer->stokes_dat[2])+(reference[2]-calib_internal_pointer->stokes_dat[3])*(reference[2]-calib_internal_pointer->stokes_dat[3]) );
+    untitled2::updatestokes(out);
+    if(initial_difference>0.1){
+       // step=0.00001;
+    }
+
+
+    if(angle==1) {
+    theta=theta+step;
+    }
+    else if(angle==2){
+    phi=phi+step;
+    }
+    calib_internal_pointer->rotate_calib_matrix(theta,phi);
+    untitled2::updatestokes(out);
+    forward_difference=(  (reference[0]-calib_internal_pointer->stokes_dat[1])*(reference[0]-calib_internal_pointer->stokes_dat[1])+(reference[1]-calib_internal_pointer->stokes_dat[2])*(reference[1]-calib_internal_pointer->stokes_dat[2])+(reference[2]-calib_internal_pointer->stokes_dat[3])*(reference[2]-calib_internal_pointer->stokes_dat[3]) );
+
+    if(forward_difference<= initial_difference){
+
+        temp_difference=initial_difference;
+
+        while(forward_difference<=temp_difference){
+
+            temp_difference=forward_difference;
+            if(angle==1) {
+            theta=theta+step;
+            }
+            else if(angle==2){
+            phi=phi+step;
+            }
+            calib_internal_pointer->rotate_calib_matrix(theta,phi);
+            untitled2::updatestokes(out);
+            forward_difference=(  (reference[0]-calib_internal_pointer->stokes_dat[1])*(reference[0]-calib_internal_pointer->stokes_dat[1])+(reference[1]-calib_internal_pointer->stokes_dat[2])*(reference[1]-calib_internal_pointer->stokes_dat[2])+(reference[2]-calib_internal_pointer->stokes_dat[3])*(reference[2]-calib_internal_pointer->stokes_dat[3]) );
+
+
+        }
+      /*
+        if(angle==1) {
+        theta=theta-step;
+        }
+        if(angle==2){
+        phi=phi-step;
+        }
+        calib_internal_pointer->rotate_calib_matrix(theta,phi);
+        untitled2::updatestokes(out);
+        */
+    }
+    else{
+        if(angle==1) {
+        theta=theta-step;
+        }
+        else if(angle==2){
+        phi=phi-step;
+        }
+        calib_internal_pointer->rotate_calib_matrix(theta,phi);
+        untitled2::updatestokes(out);
+        backward_difference=(  (reference[0]-calib_internal_pointer->stokes_dat[1])*(reference[0]-calib_internal_pointer->stokes_dat[1])+(reference[1]-calib_internal_pointer->stokes_dat[2])*(reference[1]-calib_internal_pointer->stokes_dat[2])+(reference[2]-calib_internal_pointer->stokes_dat[3])*(reference[2]-calib_internal_pointer->stokes_dat[3]) );
+            if(backward_difference<= initial_difference){
+
+            temp_difference=initial_difference;
+
+            while(backward_difference<=temp_difference){
+
+                temp_difference=backward_difference;
+                if(angle==1) {
+                theta=theta-step;
+                }
+                else if(angle==2){
+                phi=phi-step;
+                }
+                calib_internal_pointer->rotate_calib_matrix(theta,phi);
+                untitled2::updatestokes(out);
+                backward_difference=(  (reference[0]-calib_internal_pointer->stokes_dat[1])*(reference[0]-calib_internal_pointer->stokes_dat[1])+(reference[1]-calib_internal_pointer->stokes_dat[2])*(reference[1]-calib_internal_pointer->stokes_dat[2])+(reference[2]-calib_internal_pointer->stokes_dat[3])*(reference[2]-calib_internal_pointer->stokes_dat[3]) );
+
+
+            }
+
+            if(angle==1) {
+            theta=theta+step;
+            }
+            if(angle==2){
+            phi=phi+step;
+            }
+            calib_internal_pointer->rotate_calib_matrix(theta,phi);
+            untitled2::updatestokes(out);
+            }
+
+
+    }
+
+
+    return temp_difference;
+
+
+}
+
+void untitled2::updatestokes(bool out)
+{
+    if(calib_internal_pointer!=0 && daq_internal_pointer!=0 ){
+
+
+
+      double itot=daq_internal_pointer->mean(7);
+
+      itot=1;
+      double i1=(daq_internal_pointer->mean(1))/itot;
+      double i2=(daq_internal_pointer->mean(2))/itot;
+      double i3=(daq_internal_pointer->mean(3))/itot;
+      double i4=(daq_internal_pointer->mean(4))/itot;
+      double i5=(daq_internal_pointer->mean(5))/itot;
+      double i6=(daq_internal_pointer->mean(6))/itot;
+
+
+
+      calib_internal_pointer->stokes_dat[0]=i1*calib_internal_pointer->matrix[0][0] + i2*calib_internal_pointer->matrix[0][1] + i3*calib_internal_pointer->matrix[0][2] + i4*calib_internal_pointer->matrix[0][3] + i5*calib_internal_pointer->matrix[0][4] + i6*calib_internal_pointer->matrix[0][5];
+      calib_internal_pointer->stokes_dat[1]=i1*calib_internal_pointer->matrix[1][0] + i2*calib_internal_pointer->matrix[1][1] + i3*calib_internal_pointer->matrix[1][2] + i4*calib_internal_pointer->matrix[1][3] + i5*calib_internal_pointer->matrix[1][4] + i6*calib_internal_pointer->matrix[1][5];
+      calib_internal_pointer->stokes_dat[2]=i1*calib_internal_pointer->matrix[2][0] + i2*calib_internal_pointer->matrix[2][1] + i3*calib_internal_pointer->matrix[2][2] + i4*calib_internal_pointer->matrix[2][3] + i5*calib_internal_pointer->matrix[2][4] + i6*calib_internal_pointer->matrix[2][5];
+      calib_internal_pointer->stokes_dat[3]=i1*calib_internal_pointer->matrix[3][0] + i2*calib_internal_pointer->matrix[3][1] + i3*calib_internal_pointer->matrix[3][2] + i4*calib_internal_pointer->matrix[3][3] + i5*calib_internal_pointer->matrix[3][4] + i6*calib_internal_pointer->matrix[3][5];
+
+      double s0,s1,s2,s3=0.0;
+      s0=calib_internal_pointer->stokes_dat[0];
+      s1=calib_internal_pointer->stokes_dat[1]/s0;
+      s2=calib_internal_pointer->stokes_dat[2]/s0;
+      s3=calib_internal_pointer->stokes_dat[3]/s0;
+        if(out){
+      cout<<s1<<s2<<s3<<endl;
+        }
+      calib_internal_pointer->stokes_dat[1]=s1;
+      calib_internal_pointer->stokes_dat[2]=s2;
+      calib_internal_pointer->stokes_dat[3]=s3;
+
+
+      if(out){
+      for(int i=0;i<4;i++){
+             if(  stokesvect_qs[i]!=0){
+                 delete stokesvect_qs[i];
+                 stokesvect_qs[i]=0;
+             }
+      }
+
+      for(int i=0;i<4;i++){
+              stokesvect_qs[i]=new QStandardItem (QString::number(calib_internal_pointer->stokes_dat[i]));
+              model_stokes->setItem(i,0,stokesvect_qs[i]);
+
+      }
+
+      ui.tableView_3->update();
+        }
+    }
+    else{
+        QMessageBox msgBox;
+        msgBox.setText("Error: No reference to daq istance");
+        msgBox.exec();
+    }
+}
+
+void untitled2::on_testButton_clicked()
+{
+    calib_internal_pointer->rotate_calib_matrix(1.5,1.5);
 
 }

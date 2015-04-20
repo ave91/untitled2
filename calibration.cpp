@@ -124,3 +124,34 @@ void calibration::compute_calibration_Numeric( ){
     }
     cout<<final<<endl;
 }
+
+
+void calibration::rotate_calib_matrix(double theta,double phi){
+    MatrixXd Cmatrixoriginal(4,6);
+            for(int i=0;i<4;i++){
+                for(int j=0;j<6;j++){
+                 Cmatrixoriginal(i,j)=matrix[i][j];
+            }
+           }
+
+    MatrixXd rotationmatrix(4,4);
+//cout<< Cmatrixoriginal<<endl;
+    rotationmatrix<<1,0,0,0,0,cos(theta),sin(theta),0,0,(-cos(phi)*sin(theta)),(cos(theta)*cos(phi)),sin(phi),0,(sin(theta)*sin(phi)),(-cos(theta)*sin(phi)),cos(phi);
+   // cout<<rotationmatrix<<endl;
+     MatrixXd Cmatrixrotated(4,6);
+    Cmatrixrotated=rotationmatrix*Cmatrixoriginal;
+
+    for(int i=0;i<4;i++){
+        for(int j=0;j<6;j++){
+         matrix[i][j]=Cmatrixrotated(i,j);
+    }
+   }
+
+//cout<<Cmatrixrotated<<endl;
+
+
+}
+
+
+
+

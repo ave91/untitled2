@@ -26,6 +26,9 @@ public:
     void compute_calibration();
     void compute_calibration_4_det( );
     void compute_calibration_Numeric( );
+    void rotate_calib_matrix(double theta,double phi);
+
+
 signals:
 
 public slots:

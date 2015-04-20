@@ -41,6 +41,7 @@ public:
     static double untitled2::Q(const double *xx);
     static double untitled2::Q_over(const double *xx);
     static double untitled2::Q_comb(const double *xx);
+    static double untitled2::Q_sym(const double *xx);
     int NumericalMinimization(double avg,int nparam,const char * minName = "Minuit2",
                               const char *algoName = "" ,
                               int randomSeed = -1);
@@ -110,6 +111,11 @@ private:
     string create_command(int i,double value);
     double minimization_stabiliz(int waw, double &ang, double * reference);
     void untitled2::stabilization_thread(double s1, double s2, double s3);
+    double untitled2::fix_reference(int angle,double &theta,double &phi,double * reference);
+    void untitled2::fixreference_thread();
+    void untitled2::updatestokes(bool out);
+
+
     bool stabilizatio_loop;
     double matrix_NI_temp[4][6];
     double matrix_MC_temp[4][4];
@@ -142,6 +148,8 @@ private slots:
     void on_stabilizationButton_clicked();
     void on_stabstopButton_clicked();
     void on_referenceButton_clicked();
+    void on_fixreferenceButton_clicked();
+    void on_testButton_clicked();
 };
 
 #endif // UNTITLED2_H
