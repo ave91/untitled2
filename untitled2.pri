@@ -12,6 +12,7 @@ HEADERS += ./untitled2.h \
     $$PWD/GeneratedFiles/ui_untitled2.h \
     $$PWD/qcustomplot.h
 SOURCES += ./main.cpp \
-    ./untitled2.cpp
+    ./untitled2.cpp \
+    $$PWD/untitled2_cal.cpp
 FORMS += ./untitled2.ui
 RESOURCES += untitled2.qrc

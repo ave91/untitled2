@@ -40,7 +40,7 @@ untitled2::untitled2(QWidget *parent)
 	: QMainWindow(parent)
 {	
 
-
+    angle_pol_test=0;
     wdg=0;
     //Configure pointers reference not initialized yet
     daq_internal_pointer=0;
@@ -1248,11 +1248,11 @@ void untitled2::on_stabilizationButton_clicked(){
     stabilizatio_loop=true;
     bool ok;
        double s1 = QInputDialog::getDouble(this, tr("QInputDialog::getDouble()"),
-                                          tr("S1:"), 1, -1, 1, 0.00001, &ok);
+                                          tr("S1:"), 1, -1, 1, 2, &ok);
        double s2 = QInputDialog::getDouble(this, tr("QInputDialog::getDouble()"),
-                                          tr("S2:"), 1, -1, 1, 0.00001, &ok);
+                                          tr("S2:"), 1, -1, 1, 2, &ok);
        double s3 = QInputDialog::getDouble(this, tr("QInputDialog::getDouble()"),
-                                          tr("S3:"), 1, -1, 1, 0.00001, &ok);
+                                          tr("S3:"), 1, -1, 1, 2, &ok);
     QFuture <void> future = QtConcurrent::run(this,&untitled2::stabilization_thread,s1,s2,s3);
 
 
@@ -1332,9 +1332,10 @@ void untitled2::on_stabstopButton_clicked()
 {
     stabilizatio_loop=false;
 }
-
+/*
 void untitled2::on_referenceButton_clicked()
 {
+    angle_pol_test=0;
     //Set up a source of pseudorandom number generator for taking the measurments
     //I like mt so I'll use that
     std::random_device rd;
@@ -1389,7 +1390,7 @@ void untitled2::on_referenceButton_clicked()
        }
        cout<<endl;
        temp[6]=1;
-*/
+/*
 
 
              for(int j=0;j<7;j++){
@@ -1473,7 +1474,7 @@ return;
 }
 
 
-
+*/
 
 void untitled2::dumpMatrixValues(matrix <double>& M)  {
   bool xyz;
@@ -1491,347 +1492,20 @@ void untitled2::dumpMatrixValues(matrix <double>& M)  {
   return;
 }
 
-int untitled2::NumericalMinimization(double avg,int nparam,const char * minName, const char *algoName ,
-                                     int randomSeed){
-  // create minimizer giving a name and a name (optionally) for the specific
-  // algorithm
-  // possible choices are:
-  //     minName                  algoName
-  // Minuit /Minuit2             Migrad, Simplex,Combined,Scan  (default is Migrad)
-  //  Minuit2                     Fumili2
-  //  Fumili
-  //  GSLMultiMin                ConjugateFR, ConjugatePR, BFGS,
-  //                              BFGS2, SteepestDescent
-  //  GSLMultiFit
-  //   GSLSimAn
-  //   Genetic
-    minName="Minuit";
-    algoName="Combined";
-   // gDebug=1;
-    //ROOT::Math::Minimizer* min =ROOT::Math::Factory::CreateMinimizer(minName, algoName);
-   ROOT::Minuit2::Minuit2Minimizer* min=new ROOT::Minuit2::Minuit2Minimizer(ROOT::Minuit2::kCombined);
-   //ROOT::Math::GSLSimAnMinimizer * min=new ROOT::Math::GSLSimAnMinimizer();
-   cout<<min<<endl;
-    // set tolerance , etc...
-
-
-
-min->SetMaxFunctionCalls(100000000); // for Minuit/Minuit2
-       min->SetMaxIterations(10000000);  // for GSL
-       min->SetTolerance(0.0000001);
-       min->SetPrintLevel(1);
-
-  // create funciton wrapper for minmizer
-  // a IMultiGenFunction type
-
-  ROOT::Math::Functor f(&(untitled2::Q_comb),18);
-
-  //double stepp=0.000000000001;
-  double stepp=0.0000001;
-  double step[18] = {stepp,stepp,stepp,stepp,stepp,stepp,stepp,stepp,stepp,stepp,stepp,stepp,stepp,stepp,stepp,stepp,stepp,stepp};
-  // starting point
-
-  //double variable[18] = {+avg,-avg,0,0,0,0,0,0,avg,-avg,0,0,0,0,0,0,-avg,+avg};
-  double mean=0.3;
-  double variable[18]={0.0324577*avg,-0.784184*avg,1.33234*avg,0.70708*avg,-1.33917*avg,-0.784177*avg,0.695335*avg,0.472558*avg,-0.437909*avg,-0.356402*avg,-0.0378962*avg,-0.291313*avg,1.17834*avg,1.61196*avg,-0.488954*avg,-0.048198*avg,-1.55931*avg,-0.91889*avg};
-  //double variable[18]={0.924577*avg,-0.984184*avg,1.33234*avg,0.70708*avg,-1.33917*avg,-0.784177*avg,0.695335*avg,0.472558*avg,-0.437909*avg,-0.356402*avg,-0.0378962*avg,-0.291313*avg,1.17834*avg,1.61196*avg,-0.488954*avg,-0.048198*avg,-1.55931*avg,-0.91889*avg};
-
-
-  if (randomSeed >= 0) {
-     TRandom2 r(randomSeed);
-     variable[0] = r.Uniform(-20,20);
-     variable[1] = r.Uniform(-20,20);
-     variable[2] = r.Uniform(-20,20);
-     variable[3] = r.Uniform(-20,20);
-     variable[4] = r.Uniform(-20,20);
-     variable[5] = r.Uniform(-20,20);
-     variable[6] = r.Uniform(-20,20);
-     variable[7] = r.Uniform(-20,20);
-     variable[8] = r.Uniform(-20,20);
-     variable[9] = r.Uniform(-20,20);
-     variable[10] = r.Uniform(-20,20);
-     variable[11] = r.Uniform(-20,20);
-     variable[12] = r.Uniform(-20,20);
-     variable[13] = r.Uniform(-20,20);
-     variable[14] = r.Uniform(-20,20);
-     variable[15] = r.Uniform(-20,20);
-     variable[16] = r.Uniform(-20,20);
-     variable[17] = r.Uniform(-20,20);
-
-  }
-
-
-  min->SetFunction(f);
-    cout<<"lolo4"<<endl;
-  // Set the free variables to be minimized!
-
-  min->SetVariable(0,"t",variable[0], step[0]);
-
-  min->SetVariable(1,"y",variable[1], step[1]);
-  min->SetVariable(2,"z",variable[2], step[2]);
-  min->SetVariable(3,"a",variable[3], step[3]);
-  min->SetVariable(4,"b",variable[4], step[4]);
-  min->SetVariable(5,"c",variable[5], step[5]);
-  min->SetVariable(6,"d",variable[6], step[6]);
-  min->SetVariable(7,"e",variable[7], step[7]);
-  min->SetVariable(8,"f",variable[8], step[8]);
-  min->SetVariable(9,"g",variable[9], step[9]);
-
-  min->SetVariable(10,"h",variable[10], step[10]);
-  min->SetVariable(11,"j",variable[11], step[11]);
-  min->SetVariable(12,"l",variable[12], step[12]);
-  min->SetVariable(13,"m",variable[13], step[13]);
-  min->SetVariable(14,"n",variable[14], step[14]);
-  min->SetVariable(15,"o",variable[15], step[15]);
-  min->SetVariable(16,"p",variable[16], step[16]);
-  min->SetVariable(17,"q",variable[17], step[17]);
-
-cout<<"lolo3"<<endl;
-
-  // do the minimization
-  min->Minimize();
-  cout<<"lolo3"<<endl;
-  const double *xs = min->X();
-
-
-  std::cout << "Minimum: f(";
-    for(int i=0;i<nparam;i++){
-          cout  << xs[i] << ",";
-          calib_internal_pointer->matrix[1+int(i/6)][i%6]=xs[i];
-    }
-            cout << "): " << min->MinValue()  << std::endl;
-
-  // expected minimum is 0
-  if ( min->MinValue()  < 1.E-4  && f(xs) < 1.E-4)
-     std::cout << "Minimizer " << minName << " - " << algoName
-               << "   converged to the right minimum" << std::endl;
-  else {
-     std::cout << "Minimizer " << minName << " - " << algoName
-               << "   failed to converge !!!" << std::endl;
-     Error("NumericalMinimization","fail to converge");
-  }
-
-  return 0;
-}
-
-
-double untitled2::Q(const double *xx){
-
-  vector <Double_t> S0;
-  vector <Double_t> S1;
-  vector <Double_t> S2;
-  vector <Double_t> S3;
-
-  for (int j=0;j<temp_data.size();j++){
-   S0.push_back(temp_data[j][6]);
-  }
-
-
-  for (int j=0;j<temp_data.size();j++) {
-      Double_t temp=0.;
-      for(int k=0;k<6;k++){
-        temp=temp+(xx[k]*temp_data[j][k]);
-
-           }
-         S1.push_back(temp);
-  }
-
-  for (int j=0;j<temp_data.size();j++) {
-      Double_t temp=0.;
-      for(int k=0;k<6;k++){
-        temp=temp+(xx[k+6]*temp_data[j][k]);
-
-           }
-         S2.push_back(temp);
-  }
-
-  for (int j=0;j<temp_data.size();j++) {
-      Double_t temp=0.;
-      for(int k=0;k<6;k++){
-        temp=temp+(xx[k+12]*temp_data[j][k]);
-
-           }
-         S3.push_back(temp);
-  }
-
-
-
-  Double_t minimize=0.;
-
-  for(int k=0;k<temp_data.size();k++){
-      //minimize=minimize+((S1[k]*S1[k]+S2[k]*S2[k]+S3[k]*S3[k]-S0[k]*S0[k])/(S0[k]*S0[k]*S0[k]*S0[k]))*((S1[k]*S1[k]+S2[k]*S2[k]+S3[k]*S3[k]-S0[k]*S0[k])/(S0[k]*S0[k]*S0[k]*S0[k]));
-      minimize=minimize+((S1[k]*S1[k]+S2[k]*S2[k]+S3[k]*S3[k]-S0[k]*S0[k]))*((S1[k]*S1[k]+S2[k]*S2[k]+S3[k]*S3[k]-S0[k]*S0[k]));
-  }
-
-  return minimize;
-
-}
-
-
-double untitled2::Q_over(const double *xx){
-
-  vector <Double_t> S0;
-  vector <Double_t> S1;
-  vector <Double_t> S2;
-  vector <Double_t> S3;
-
-
-  vector< vector <Double_t>>S1_tot;
-  vector< vector <Double_t>> S2_tot;
-  vector< vector <Double_t>> S3_tot;
-
-  for (int j=0;j<temp_data.size();j++){
-   S0.push_back(temp_data[j][6]);
-  }
-
-  for(int t=0;t<6;t++){
-
-  for (int j=0;j<temp_data.size();j++) {
-      Double_t temp=0.;
-      for(int k=0;k<5;k++){
-        temp=temp+(xx[k]*temp_data[j][(k+t)%6]);
-
-           }
-         S1.push_back(temp);
-  }
-
-  for (int j=0;j<temp_data.size();j++) {
-      Double_t temp=0.;
-      for(int k=0;k<5;k++){
-        temp=temp+(xx[k+6]*temp_data[j][(k+t)%6]);
-
-           }
-         S2.push_back(temp);
-  }
-
-  for (int j=0;j<temp_data.size();j++) {
-      Double_t temp=0.;
-      for(int k=0;k<5;k++){
-        temp=temp+(xx[k+12]*temp_data[j][(k+t)%6]);
-
-           }
-         S3.push_back(temp);
-  }
-
-  S1_tot.push_back(S1);
-  S2_tot.push_back(S2);
-  S3_tot.push_back(S3);
-
-
-}
-
-  Double_t minimize=0.;
-
-  for(int k=0;k<temp_data.size();k++){
-      for(int x=0;x<6;x++){
-        for(int y=0;y<6;y++){
-
-            //minimize=minimize+((S1[k]*S1[k]+S2[k]*S2[k]+S3[k]*S3[k]-S0[k]*S0[k])/(S0[k]*S0[k]*S0[k]*S0[k]))*((S1[k]*S1[k]+S2[k]*S2[k]+S3[k]*S3[k]-S0[k]*S0[k])/(S0[k]*S0[k]*S0[k]*S0[k]));
-      minimize=minimize+ fabs(S1_tot[x][k]-S1_tot[y][k])+fabs(S2_tot[x][k]-S2_tot[y][k])+fabs(S3_tot[x][k]-S3_tot[y][k]);
-  }
-      }
-}
-  return minimize;
-
-}
-
-double untitled2::Q_sym(const double *xx){
-
-  vector <Double_t> S0;
-  vector <Double_t> S1;
-  vector <Double_t> S2;
-  vector <Double_t> S3;
-
-  MatrixXd corig(3,6);
-  MatrixXd rotation(3,3);
-  MatrixXd crot(3,6);
-
-  Double_t minimize=0.;
-  corig<<xx[1], xx[2], xx[3], xx[4], xx[5], xx[6], xx[7], xx[8], xx[9],xx[10], xx[11], xx[12], xx[13], xx[14], xx[15], xx[16], xx[17], xx[18];
-
-  for (int j=0;j<temp_data.size();j++){
-   S0.push_back(temp_data[j][6]);
-  }
-
-
-
-  for(double theta=0;theta<(2*M_PI);theta=theta+0.5){
-    for(double phi=0;phi<(2*M_PI);phi=phi+0.5){
-
-        rotation<<cos(theta),sin(theta),0,(-cos(phi)*sin(theta)),(cos(theta)*cos(phi)),sin(phi),(sin(theta)*sin(phi)),(-cos(theta)*sin(phi)),cos(phi);
-        crot=rotation*corig;
-
-        vector<double> xxx;
-        xxx.resize(18);
-
-        for(int i=0;i<3;i++){
-            for(int j=0;j<6;j++){
-                xxx.push_back((crot(i,j)));
-            }
-        }
-
-
-   for (int j=0;j<temp_data.size();j++) {
-      Double_t temp=0.;
-      for(int k=0;k<6;k++){
-        temp=temp+(xxx[k]*temp_data[j][k]);
-
-           }
-         S1.push_back(temp);
-  }
-
-  for (int j=0;j<temp_data.size();j++) {
-      Double_t temp=0.;
-      for(int k=0;k<6;k++){
-        temp=temp+(xxx[k+6]*temp_data[j][k]);
-
-           }
-         S2.push_back(temp);
-  }
-
-  for (int j=0;j<temp_data.size();j++) {
-      Double_t temp=0.;
-      for(int k=0;k<6;k++){
-        temp=temp+(xxx[k+12]*temp_data[j][k]);
-
-           }
-         S3.push_back(temp);
-  }
-
-
-
-
-
-  for(int k=0;k<temp_data.size();k++){
-      //minimize=minimize+((S1[k]*S1[k]+S2[k]*S2[k]+S3[k]*S3[k]-S0[k]*S0[k])/(S0[k]*S0[k]*S0[k]*S0[k]))*((S1[k]*S1[k]+S2[k]*S2[k]+S3[k]*S3[k]-S0[k]*S0[k])/(S0[k]*S0[k]*S0[k]*S0[k]));
-      minimize=minimize+((S1[k]*S1[k]+S2[k]*S2[k]+S3[k]*S3[k]-S0[k]*S0[k]))*((S1[k]*S1[k]+S2[k]*S2[k]+S3[k]*S3[k]-S0[k]*S0[k]));
-  }
-
-
-
-
-    }
-  }
-  return (minimize);
-
-}
-
-
-
-
-
-
-double untitled2::Q_comb(const double *xx){
-
-    return (Q(xx)+Q_over(xx));//+Q_sym(xx));
-
-}
-
-
 
 void untitled2::on_fixreferenceButton_clicked(){
     stabilizatio_loop=true;
-     QFuture <void> future = QtConcurrent::run(this,&untitled2::fixreference_thread);
+
+
+    bool ok;
+       reference[0] = QInputDialog::getDouble(this, tr("QInputDialog::getDouble()"),
+                                          tr("S1:"), 1, -1, 1, 2, &ok);
+       reference[1] = QInputDialog::getDouble(this, tr("QInputDialog::getDouble()"),
+                                          tr("S2:"), 1, -1, 1, 2, &ok);
+       reference[2] = QInputDialog::getDouble(this, tr("QInputDialog::getDouble()"),
+                                          tr("S3:"), 1, -1, 1, 2, &ok);
+
+    QFuture <void> future = QtConcurrent::run(this,&untitled2::fixreference_thread);
 }
 
 
@@ -1841,7 +1515,8 @@ void untitled2::fixreference_thread()
     if(calib_internal_pointer!=0 && daq_internal_pointer!=0 ){
     if(acquisition::NI==true){
 
-        double reference[3]={1,0,0};
+
+
 
         double theta=0;
         double phi=0;
@@ -1871,8 +1546,80 @@ void untitled2::fixreference_thread()
 
 }
 
+double untitled2::fix_reference(int angle,double &theta,double &phi,double * reference){
+
+    double initial_difference;
+    double forward_difference;
+    double backward_difference;
+    double temp_difference;
+
+    double step=0.0000001;
+    bool out=true;
 
 
+    initial_difference=(  (reference[0]-calib_internal_pointer->stokes_dat[1])*(reference[0]-calib_internal_pointer->stokes_dat[1])+(reference[1]-calib_internal_pointer->stokes_dat[2])*(reference[1]-calib_internal_pointer->stokes_dat[2])+(reference[2]-calib_internal_pointer->stokes_dat[3])*(reference[2]-calib_internal_pointer->stokes_dat[3]) );
+    untitled2::updatestokes(out);
+    if(initial_difference>0.1){
+       // step=0.00001;
+    }
+
+
+    if(angle==1) {
+    theta=theta+step;
+    }
+    else if(angle==2){
+    phi=phi+step;
+    }
+    calib_internal_pointer->rotate_calib_matrix(theta,phi);
+    untitled2::updatestokes(out);
+    forward_difference=(  (reference[0]-calib_internal_pointer->stokes_dat[1])*(reference[0]-calib_internal_pointer->stokes_dat[1])+(reference[1]-calib_internal_pointer->stokes_dat[2])*(reference[1]-calib_internal_pointer->stokes_dat[2])+(reference[2]-calib_internal_pointer->stokes_dat[3])*(reference[2]-calib_internal_pointer->stokes_dat[3]) );
+
+    if(forward_difference<= initial_difference){
+
+        temp_difference=forward_difference;
+    }
+    else{
+        if(angle==1) {
+        theta=theta-2*step;
+        }
+        else if(angle==2){
+        phi=phi-2*step;
+        }
+        calib_internal_pointer->rotate_calib_matrix(theta,phi);
+        untitled2::updatestokes(out);
+        backward_difference=(  (reference[0]-calib_internal_pointer->stokes_dat[1])*(reference[0]-calib_internal_pointer->stokes_dat[1])+(reference[1]-calib_internal_pointer->stokes_dat[2])*(reference[1]-calib_internal_pointer->stokes_dat[2])+(reference[2]-calib_internal_pointer->stokes_dat[3])*(reference[2]-calib_internal_pointer->stokes_dat[3]) );
+            if(backward_difference<= initial_difference){
+
+            temp_difference=backward_difference;
+
+
+
+            }else{
+                if(angle==1) {
+                theta=theta+step;
+                }
+                else if(angle==2){
+                phi=phi+step;
+                }
+
+                temp_difference=initial_difference;
+
+
+            }
+
+}
+
+    return temp_difference;
+
+
+}
+
+
+
+
+
+
+/*
 double untitled2::fix_reference(int angle,double &theta,double &phi,double * reference){
 
     double initial_difference;
@@ -1920,7 +1667,7 @@ double untitled2::fix_reference(int angle,double &theta,double &phi,double * ref
 
 
         }
-      /*
+
         if(angle==1) {
         theta=theta-step;
         }
@@ -1929,7 +1676,7 @@ double untitled2::fix_reference(int angle,double &theta,double &phi,double * ref
         }
         calib_internal_pointer->rotate_calib_matrix(theta,phi);
         untitled2::updatestokes(out);
-        */
+
     }
     else{
         if(angle==1) {
@@ -1979,7 +1726,7 @@ double untitled2::fix_reference(int angle,double &theta,double &phi,double * ref
 
 
 }
-
+*/
 void untitled2::updatestokes(bool out)
 {
     if(calib_internal_pointer!=0 && daq_internal_pointer!=0 ){
@@ -2042,6 +1789,24 @@ void untitled2::updatestokes(bool out)
 
 void untitled2::on_testButton_clicked()
 {
-    calib_internal_pointer->rotate_calib_matrix(1.5,1.5);
+   // calib_internal_pointer->rotate_calib_matrix(1.5,1.5);
+    ofstream fileout("polarimeter_perform.txt", std::fstream::in | std::fstream::out | std::fstream::app);
+    on_stokesButton_clicked();
+   angle_pol_test=angle_pol_test+2;
+   fileout<<angle_pol_test<<"\t"<<calib_internal_pointer->stokes_dat[0]<<"\t"<<calib_internal_pointer->stokes_dat[1]<<"\t"<<calib_internal_pointer->stokes_dat[2]<<"\t"<<calib_internal_pointer->stokes_dat[3]<<endl;
+
+
+}
+
+void untitled2::on_rotateButton_clicked()
+{
+    angle_pol_test=0;
+    bool ok;
+       double theta = QInputDialog::getDouble(this, tr("QInputDialog::getDouble()"),
+                                          tr("Theta:"), 0.00, -7.00, 7.22, 5, &ok);
+       double phi = QInputDialog::getDouble(this, tr("QInputDialog::getDouble()"),
+                                          tr("phi:"), 0.00,-7.00, 7.22, 5, &ok);
+
+       calib_internal_pointer->rotate_calib_matrix(theta,phi);
 
 }

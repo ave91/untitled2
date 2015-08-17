@@ -96,6 +96,7 @@ void calibration::compute_calibration_Numeric( ){
 
    MatrixXd Smat(4,6);
     Smat<<1, 1, 1, 1, 1, 1, 1,-1, 0, 0, 0, 0, 0, 0, 1, -1, 0, 0, 0, 0, 0, 0, 1, -1;
+   // Smat<<H_vector[6], V_vector[6], P_vector[6], M_vector[6], L_vector[6],R_vector[6] ,H_vector[6],-V_vector[6], 0, 0, 0, 0, 0, 0, P_vector[6], -M_vector[6], 0, 0, 0, 0, 0, 0, L_vector[6], -R_vector[6];
     //std::cout<<Smat<<std::endl;
      MatrixXd Dmat(6,6);
      MatrixXd Dmat_inv(6,6);

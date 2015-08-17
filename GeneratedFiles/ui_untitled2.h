@@ -92,6 +92,7 @@ public:
     QPushButton *referenceButton;
     QPushButton *fixreferenceButton;
     QPushButton *testButton;
+    QPushButton *rotateButton;
     QMenuBar *menuBar;
     QToolBar *mainToolBar;
     QStatusBar *statusBar;
@@ -340,6 +341,9 @@ public:
         testButton = new QPushButton(centralWidget);
         testButton->setObjectName(QStringLiteral("testButton"));
         testButton->setGeometry(QRect(680, 360, 75, 23));
+        rotateButton = new QPushButton(centralWidget);
+        rotateButton->setObjectName(QStringLiteral("rotateButton"));
+        rotateButton->setGeometry(QRect(570, 360, 75, 23));
         untitled2Class->setCentralWidget(centralWidget);
         menuBar = new QMenuBar(untitled2Class);
         menuBar->setObjectName(QStringLiteral("menuBar"));
@@ -400,6 +404,7 @@ public:
         referenceButton->setText(QApplication::translate("untitled2Class", "ReferenceFree", 0));
         fixreferenceButton->setText(QApplication::translate("untitled2Class", "FixReference", 0));
         testButton->setText(QApplication::translate("untitled2Class", "Test", 0));
+        rotateButton->setText(QApplication::translate("untitled2Class", "Rotate", 0));
     } // retranslateUi
 
 };

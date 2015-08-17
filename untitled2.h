@@ -45,7 +45,7 @@ public:
     int NumericalMinimization(double avg,int nparam,const char * minName = "Minuit2",
                               const char *algoName = "" ,
                               int randomSeed = -1);
-
+    int angle_pol_test;
 private:
 	Ui::untitled2Class ui;
     QStandardItemModel *model;
@@ -115,6 +115,7 @@ private:
     void untitled2::fixreference_thread();
     void untitled2::updatestokes(bool out);
 
+    double reference[3];
 
     bool stabilizatio_loop;
     double matrix_NI_temp[4][6];
@@ -150,6 +151,7 @@ private slots:
     void on_referenceButton_clicked();
     void on_fixreferenceButton_clicked();
     void on_testButton_clicked();
+    void on_rotateButton_clicked();
 };
 
 #endif // UNTITLED2_H

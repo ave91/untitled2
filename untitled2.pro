@@ -53,13 +53,13 @@ win32 {
     # aadimos la ruta para localizar la cabecera de la tarjeta
     INCLUDEPATH += "C:\Program Files (x86)\National Instruments\Shared\ExternalCompilerSupport\C\include"
     INCLUDEPATH += "C:\Users\Public\Documents\Measurement Computing\DAQ\C"
-    INCLUDEPATH += "E:\root\rootbuild\include"
+    INCLUDEPATH += "E:\root\root_v5.34.32\include"
     INCLUDEPATH += "E:\eigen"
 
 # aadimos la ruta de busqueda de las bibliotecas (opcin -L)
     LIBS += -L"C:\Program Files (x86)\National Instruments\Shared\ExternalCompilerSupport\C\lib32\msvc"
     LIBS += -L"C:\Users\Public\Documents\Measurement Computing\DAQ\C"
-    LIBS += -L"E:\root\rootbuild\lib"
+    LIBS += -L"E:\root\root_v5.34.32\lib"
 
 #LIBS += -L$$PWD # donde esta mi programa
     
@@ -116,7 +116,6 @@ LIBS += -llibNet
 LIBS += -llibPhysics
 LIBS += -llibPostscript
 LIBS += -llibProof
-LIBS += -llibProofBench
 LIBS += -llibProofDraw
 LIBS += -llibProofPlayer
 LIBS += -llibQuadp
