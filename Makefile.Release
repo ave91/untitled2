@@ -204,7 +204,7 @@ release\untitled2.res: untitled2.rc
 	rc $(DEFINES) -fo release\untitled2.res untitled2.rc
 
 qmake: FORCE
-	@$(QMAKE) -spec win32-msvc2013 CONFIG+=debug -o Makefile.Release untitled2.pro
+	@$(QMAKE) -spec win32-msvc2013 -o Makefile.Release untitled2.pro
 
 qmake_all: FORCE
 

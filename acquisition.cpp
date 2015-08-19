@@ -31,7 +31,7 @@ using namespace std;
   HANDLE acquisition::MemHandle = 0;
  unsigned acquisition::Options=CONVERTDATA+BURSTIO;
  int acquisition::total_num_chan;
- bool acquisition::NI;
+ bool acquisition::NI=true;
 
 acquisition::acquisition( QObject *parent) : QObject(parent)
 {
@@ -253,6 +253,12 @@ int32 CVICALLBACK acquisition::EveryNCallback(TaskHandle taskHandle, int32 every
         /*********************************************/
         DAQmxErrChk (DAQmxReadAnalogF64(taskHandle,samp_per_chan,10.0,DAQmx_Val_GroupByChannel,&(data[0]),datasize,&read,NULL));
         if( read>0 ) {
+                if(acquisition::stop==true){
+                    DAQmxStopTask(taskHandle);
+                    DAQmxClearTask(taskHandle);
+
+                    return 1;
+                }
                 printf("Acquired %d samples. Total %d\r",(int)read,(int)(totalRead+=read));
                 fflush(stdout);
         }
@@ -308,14 +314,23 @@ void acquisition::thread_cont_acq_stop(){
 }
 
 void acquisition::setOffsetVoltage(){
+/*
+    offset_volt_NI[0]=0;
+    offset_volt_NI[1]=0;
+    offset_volt_NI[2]=0;
+    offset_volt_NI[3]=0;
+    offset_volt_NI[4]=0;
+    offset_volt_NI[5]=0;
+    offset_volt_NI[6]=0;
+*/
 
-        offset_volt_NI[0]=0.00814998;
-        offset_volt_NI[1]=0.0117947;
-        offset_volt_NI[2]=0.00263705;
-        offset_volt_NI[3]=0.0056605;
-        offset_volt_NI[4]=0.08825019;
-        offset_volt_NI[5]=0.00765609;
-        offset_volt_NI[6]=0.00923653;
+        offset_volt_NI[0]=-0.000837336;
+        offset_volt_NI[1]=-0.00101199;
+        offset_volt_NI[2]=-0.00284008;
+        offset_volt_NI[3]=-8.86313e-05;
+        offset_volt_NI[4]=-0.00154882;
+        offset_volt_NI[5]=-0.000715653;
+        offset_volt_NI[6]=-0.0017564;
 
 
 

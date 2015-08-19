@@ -11,7 +11,7 @@ TARGET = untitled2
 DESTDIR = ../Win32/Debug
 QT += core opengl widgets gui
 greaterThan(QT_MAJOR_VERSION, 4): QT += widgets printsupport
-CONFIG += debug
+CONFIG += release
 DEFINES += WIN64 QT_DLL QT_OPENGL_LIB QT_WIDGETS_LIB
 INCLUDEPATH += ./GeneratedFiles \
     . \

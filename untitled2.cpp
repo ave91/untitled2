@@ -26,7 +26,8 @@
 #include "Eigen/Core"
 #include "Eigen/LU"
 #include "Math/GSLSimAnMinimizer.h"
-
+#include <chrono>
+#include <thread>
 
 using namespace Eigen;
 
@@ -864,6 +865,7 @@ void untitled2::on_contAcqButton_clicked()
 
 void untitled2::on_stopacqButton_clicked()
 {
+    acquisition::stop=true;
     daq_internal_pointer->thread_cont_acq_stop();
 }
 
@@ -911,7 +913,8 @@ void untitled2::threaded_save_stokes(const QString &filename_out){
     ofstream file_out;
     file_out.open(filename_out.toUtf8().constData());
     while(acquisition::stop==false) {
-        double itot=daq_internal_pointer->mean(7);
+        std::this_thread::sleep_for(std::chrono::seconds(10));
+        float itot=1.;
         double i1=(daq_internal_pointer->mean(1))/itot;
         double i2=(daq_internal_pointer->mean(2))/itot;
         double i3=(daq_internal_pointer->mean(3))/itot;
@@ -926,6 +929,17 @@ void untitled2::threaded_save_stokes(const QString &filename_out){
         calib_internal_pointer->stokes_dat[2]=i1*calib_internal_pointer->matrix[2][0] + i2*calib_internal_pointer->matrix[2][1] + i3*calib_internal_pointer->matrix[2][2] + i4*calib_internal_pointer->matrix[2][3] + i5*calib_internal_pointer->matrix[2][4] + i6*calib_internal_pointer->matrix[2][5];
         calib_internal_pointer->stokes_dat[3]=i1*calib_internal_pointer->matrix[3][0] + i2*calib_internal_pointer->matrix[3][1] + i3*calib_internal_pointer->matrix[3][2] + i4*calib_internal_pointer->matrix[3][3] + i5*calib_internal_pointer->matrix[3][4] + i6*calib_internal_pointer->matrix[3][5];
 
+        double s0,s1,s2,s3=0.0;
+        s0=calib_internal_pointer->stokes_dat[0];
+        s1=calib_internal_pointer->stokes_dat[1]/s0;
+        s2=calib_internal_pointer->stokes_dat[2]/s0;
+        s3=calib_internal_pointer->stokes_dat[3]/s0;
+
+       // cout<<s1<<s2<<s3<<endl;
+
+        calib_internal_pointer->stokes_dat[1]=s1;
+        calib_internal_pointer->stokes_dat[2]=s2;
+        calib_internal_pointer->stokes_dat[3]=s3;
 
         file_out<<calib_internal_pointer->stokes_dat[0]<<"\t"<<calib_internal_pointer->stokes_dat[1]<<"\t"<<calib_internal_pointer->stokes_dat[2]<<"\t"<<calib_internal_pointer->stokes_dat[3]<<endl;
 
@@ -939,7 +953,7 @@ void untitled2::on_polmodButton_clicked()
     if(gpib_int_pointer!=0){
         gpib_int_pointer->init();
          Sleep(60);
-        gpib_int_pointer->GPIBWrite("*IDN?\n");
+        gpib_int_pointer->GPIBWrite((char *)"*IDN?\n");
         Sleep(60);
         cout<<gpib_int_pointer->GPIBRead()<<endl;
     }
@@ -1101,11 +1115,11 @@ void untitled2::on_polContCalButton_clicked()
    if(gpib_int_pointer!=0){
         gpib_int_pointer->init();
          Sleep(60);
-         gpib_int_pointer->GPIBWrite("X=-99.00\n");
+         gpib_int_pointer->GPIBWrite((char *)"X=-99.00\n");
          Sleep(60);
-         gpib_int_pointer->GPIBWrite("Y=00.00\n");
+         gpib_int_pointer->GPIBWrite((char *)"Y=00.00\n");
          Sleep(60);
-         gpib_int_pointer->GPIBWrite("Z=00.00\n");
+         gpib_int_pointer->GPIBWrite((char *)"Z=00.00\n");
          Sleep(60);
          for (int i=0;i<=1320;i++){
              angle =-99+ 0.15*i;       // number to be converted to a string
@@ -1121,9 +1135,9 @@ void untitled2::on_polContCalButton_clicked()
 
          }
         fileout<<endl;
-        gpib_int_pointer->GPIBWrite("X=00.00\n");
+        gpib_int_pointer->GPIBWrite((char *)"X=00.00\n");
         Sleep(60);
-        gpib_int_pointer->GPIBWrite("Y=-99.00\n");
+        gpib_int_pointer->GPIBWrite((char *)"Y=-99.00\n");
         Sleep(60);
         for (int i=0;i<=1320;i++){
             angle =-99+ 0.15*i;       // number to be converted to a string
@@ -1138,9 +1152,9 @@ void untitled2::on_polContCalButton_clicked()
             fileout<<angle<<"\t"<<calib_internal_pointer->stokes_dat[0]<<"\t"<<calib_internal_pointer->stokes_dat[1]<<"\t"<<calib_internal_pointer->stokes_dat[2]<<"\t"<<calib_internal_pointer->stokes_dat[3]<<endl;
             }
         fileout<<endl;
-        gpib_int_pointer->GPIBWrite("Y=00.00\n");
+        gpib_int_pointer->GPIBWrite((char *)"Y=00.00\n");
         Sleep(60);
-        gpib_int_pointer->GPIBWrite("Z=-99.00\n");
+        gpib_int_pointer->GPIBWrite((char *)"Z=-99.00\n");
         Sleep(60);
         for (int i=0;i<=1320;i++){
             angle =-99+ 0.15*i;       // number to be converted to a string
@@ -1172,10 +1186,18 @@ double untitled2::minimization_stabiliz(int waw,double &ang,double * reference){
     double temp_difference;
     string temp_command;
     double step=0.15;
-
-
     untitled2::on_stokesButton_clicked();
     initial_difference=(  (reference[0]-calib_internal_pointer->stokes_dat[1])*(reference[0]-calib_internal_pointer->stokes_dat[1])+(reference[1]-calib_internal_pointer->stokes_dat[2])*(reference[1]-calib_internal_pointer->stokes_dat[2])+(reference[2]-calib_internal_pointer->stokes_dat[3])*(reference[2]-calib_internal_pointer->stokes_dat[3]) );
+    if(initial_difference>0.3){
+        step=3;
+    }
+    else if(initial_difference>0.15){
+        step=0.45;
+    }
+    else if(initial_difference>0.1){
+        step=0.3;
+    }
+
     new_angle=ang+step;
     temp_command=create_command(waw,new_angle);
     gpib_int_pointer->GPIBWrite(&(temp_command[0]));
@@ -1260,11 +1282,17 @@ void untitled2::on_stabilizationButton_clicked(){
 
 void untitled2::stabilization_thread(double s1, double s2,double s3)
 {
+    qRegisterMetaType<QList<QPersistentModelIndex>>("QList<QPersistentModelIndex>");
+    qRegisterMetaType<QVector<int>>("QVector<int>");
+    qRegisterMetaType<QAbstractItemModel::LayoutChangeHint>("QAbstractItemModel::LayoutChangeHint");
+
+
+
     double angle1=0.;
     double angle2=0.;
     double angle3=0.;
     double difference;
-    double tollerance=0.001;
+    double tollerance=0.00000001;
     //bool loop_total=true;
 
 
@@ -1277,15 +1305,15 @@ cout<<s1<<s2<<s3;
    if(gpib_int_pointer!=0){
         gpib_int_pointer->init();
          Sleep(60);
-         gpib_int_pointer->GPIBWrite("X?\n");
+         gpib_int_pointer->GPIBWrite((char *)"X?\n");
          Sleep(60);
          angle1=atof(gpib_int_pointer->GPIBRead());
          Sleep(60);
-         gpib_int_pointer->GPIBWrite("Y?\n");
+         gpib_int_pointer->GPIBWrite((char *)"Y?\n");
          Sleep(60);
          angle2=atof(gpib_int_pointer->GPIBRead());
          Sleep(60);
-         gpib_int_pointer->GPIBWrite("Z?\n");
+         gpib_int_pointer->GPIBWrite((char *)"Z?\n");
          Sleep(60);
          angle3=atof(gpib_int_pointer->GPIBRead());
          Sleep(60);

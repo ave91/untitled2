@@ -34,7 +34,7 @@ void untitled2::on_referenceButton_clicked()
     std::random_device rd;
        std::mt19937 gen(rd());
        std::uniform_real_distribution<> dis(-99, 99); // Range of the generation= range of PC (I know here range=[-99,99) but i don't care so much Unlikely {-99,-99,-99} will be an eigenstate so...
-    int total_data=80;
+    int total_data=100;
 
     if(calib_internal_pointer!=0 && daq_internal_pointer!=0 ){
 
@@ -147,7 +147,22 @@ void untitled2::on_referenceButton_clicked()
     }
     //cout<<"lolo2"<<endl;
     NumericalMinimization(temp_data[0][6],18,"Minuit2","Migrad");
+    bool is_ok=false;
+    while(!is_ok){
+    QMessageBox::StandardButton reply;
+     reply = QMessageBox::question(this, "Test", "Is the minimization OK?",
+                                   QMessageBox::Yes|QMessageBox::No);
+     if (reply == QMessageBox::Yes) {
+       qDebug() << "Yes was clicked";
+       is_ok=true;
+       return;
+     } else {
+       NumericalMinimization(temp_data[0][6],18,"Minuit2","Migrad",std::rand());
+         qDebug() << "Yes was *not* clicked";
+     }
 
+    }
+    return;
 
     //Ok so now c is a row vector and goes from 0 to 5 with each entry is the top entry of every column in the calibration matrix
     //Now start the funny part... Need to build the functional to be minimized (20 dim!!!!! hope for it)
@@ -335,14 +350,16 @@ min->SetMaxFunctionCalls(100000000); // for Minuit/Minuit2
   double stepp=0.000000000001;
   //double stepp=0.0000001;
   double step[18] = {stepp,stepp,stepp,stepp,stepp,stepp,stepp,stepp,stepp,stepp,stepp,stepp,stepp,stepp,stepp,stepp,stepp,stepp};
+
   // starting point
 
   //double variable[18] = {+avg,-avg,0,0,0,0,0,0,avg,-avg,0,0,0,0,0,0,-avg,+avg};
   double mean=0.3;
   //double variable[18]={0.0324577*avg,-0.784184*avg,1.33234*avg,0.70708*avg,-1.33917*avg,-0.784177*avg,0.695335*avg,0.472558*avg,-0.437909*avg,-0.356402*avg,-0.0378962*avg,-0.291313*avg,1.17834*avg,1.61196*avg,-0.488954*avg,-0.048198*avg,-1.55931*avg,-0.91889*avg};
-  double variable[18]={-0.315504018364667,-0.186892227511484,-0.521670627740295,-0.522430703277551,-0.201104949373917,-0.114301207639755,0.00128560378836436,0.380444053158126,-0.272932986603822,-0.245115501182876,1.07162874852352,0.898012052717405,-0.496399130911951,-1.11558977981970,0.0998692053377596,0.108637780836426,-0.545835823855231,-0.495068663821190};
-
-
+  //double variable[18]={-0.315504018364667,-0.186892227511484,-0.521670627740295,-0.522430703277551,-0.201104949373917,-0.114301207639755,0.00128560378836436,0.380444053158126,-0.272932986603822,-0.245115501182876,1.07162874852352,0.898012052717405,-0.496399130911951,-1.11558977981970,0.0998692053377596,0.108637780836426,-0.545835823855231,-0.495068663821190};
+  //double variable[18]={0.30656305479907614,0.03101093492471959,0.6187775551277827,0.5838922287765484,0.19701203673713807,0.15521977861516048,-0.020131089013634015,-0.26595079920106096,0.3172255644450963,0.27852225509126805,-0.05655530787730796,-0.10000209372190863,-0.41952143055767227,-0.6394615506870377,-0.06515818686266675,-0.10069399899431783,-0.38115743371378935,-0.4038838855771517};
+  //double variable[18]={-0.613,-0.183,-1.492,2.683,-2.563,1.951,1.288,0.219,-1.129,-0.176,0.610,-0.772,0.209,-2.345,0.022,-1.112,2.055};
+  double variable[18]={-0.61616,	0.248457,	-3.40898,	0.818792,	-0.805741,	4.76776,0.409278,	-1.46225,	-0.0866583,	0.942473,	0.569543,	-0.752036,1.77814,	-0.156264,	0.00538577,	-1.15195,	-0.658304,	-0.00931175};
   if (randomSeed >= 0) {
      TRandom2 r(randomSeed);
      variable[0] = r.Uniform(-20,20);
@@ -629,7 +646,7 @@ double untitled2::Q_sym(const double *xx){
 
 double untitled2::Q_comb(const double *xx){
 
-    return (Q(xx)+Q_over(xx));//+Q_sym(xx));
+    return (Q(xx));//+Q_over(xx));//+Q_sym(xx));
 
 }
 
